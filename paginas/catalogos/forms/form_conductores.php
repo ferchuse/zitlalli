@@ -49,7 +49,8 @@
 						<label for="acta_conductores">ACTA DE NACIMIENTO</label>
 						<input type="text" class="form-control" id="acta_conductores" name="acta_conductores" placeholder="acta de nacimiento">
 					</div> 
-					<div class="col-5">			
+					<div class="form-group">	
+						<label for="estatus_conductores">Estatus</label>
 						<select class="form-control" id="estatus_conductores" name="estatus_conductores" required>
 							<option value="">Seleccione:</option>
 							<option selected value="Alta">Alta</option>
