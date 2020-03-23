@@ -5,7 +5,7 @@
 
 
 
-<form id="form_edicion" autocomplete="off">
+<form id="form_edicion" autocomplete="off" class="was-validated">
 	<div class="modal " id="modal_edicion">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -49,7 +49,7 @@
 						</div>	
 						<div class="col-5">			
 							<?php
-								echo generar_select($link, "recaudaciones", "id_recaudaciones", "nombre_recaudaciones", false);
+								echo generar_select($link, "recaudaciones", "id_recaudaciones", "nombre_recaudaciones", false, false, true);
 							?>
 						</div>
 					</div>
