@@ -38,6 +38,10 @@
 						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas"); ?>
 					</div> 
 					<div class="form-group">
+						<label for="id_derroteros">DERROTERO</label>
+						<?php echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros"); ?>
+					</div> 
+					<div class="form-group">
 						<label for="curp_conductores">CURP</label>
 						<input type="text" class="form-control" id="curp_conductores" name="curp_conductores" placeholder="CURP del conductor">
 					</div> 
@@ -45,6 +49,14 @@
 						<label for="acta_conductores">ACTA DE NACIMIENTO</label>
 						<input type="text" class="form-control" id="acta_conductores" name="acta_conductores" placeholder="acta de nacimiento">
 					</div> 
+					<div class="col-5">			
+						<select class="form-control" id="estatus_conductores" name="estatus_conductores" required>
+							<option value="">Seleccione:</option>
+							<option selected value="Alta">Alta</option>
+							<option value="Baja">Baja</option>
+							<option value="Inactivo">Inactivo</option>
+						</select>
+					</div>
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">

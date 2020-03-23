@@ -11,7 +11,7 @@
 				<div class="modal-body">
 					
 					<input class="d-none" name="id_unidades" id="id_unidades" value="">
-				
+					
 					<div class="row mb-2">
 						<div class="col-2">
 							<label >Empresa:</label>
@@ -40,12 +40,20 @@
 							?>
 						</div>
 					</div>
-						<div class="row mb-2">
+					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Fecha de Alta:</label>
+							<label for="fecha_ingreso">Fecha de Ingreso:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="date" name="fecha_ingreso" id="fecha_ingreso" value="<?php echo date("Y-m-d");?>">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="censo">Censo:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="number" name="censo" id="censo">
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -89,91 +97,92 @@
 							<label for="nombre_propietario">Serie:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="serie" id="serie">
+						<input class="form-control" type="text" name="serie" id="serie">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Modelo:</label>
+						<label for="nombre_propietario">Modelo:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="modelo" id="modelo">
+						<input class="form-control" type="text" name="modelo" id="modelo">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Poliza:</label>
+						<label for="nombre_propietario">Poliza:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="poliza" id="poliza" required>
+						<input class="form-control" type="text" name="poliza" id="poliza" required>
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Aseguradora:</label>
+						<label for="nombre_propietario">Aseguradora:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="aseguradora" id="aseguradora">
+						<input class="form-control" type="text" name="aseguradora" id="aseguradora">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Vigencia:</label>
+						<label for="nombre_propietario">Vigencia:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="date" name="vigencia" id="vigencia">
+						<input class="form-control" type="date" name="vigencia" id="vigencia">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Mutualidad:</label>
+						<label for="nombre_propietario">Mutualidad:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="number" name="mutualidad" id="mutualidad">
+						<input class="form-control" type="number" name="mutualidad" id="mutualidad">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Rin:</label>
+						<label for="nombre_propietario">Rin:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="rin" id="rin">
+						<input class="form-control" type="text" name="rin" id="rin">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Tipo de Aceite:</label>
+						<label for="nombre_propietario">Tipo de Aceite:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite">
+						<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Asientos:</label>
+						<label for="nombre_propietario">Asientos:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="asientos" id="asientos">
+						<input class="form-control" type="text" name="asientos" id="asientos">
 						</div>
-					</div>
-					<div class="row mb-2">
+						</div>
+						<div class="row mb-2">
 						<div class="col-2">
-							<label for="saldo_unidades">Saldo Inicial:</label> 
+						<label for="saldo_unidades">Saldo Inicial:</label> 
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="number"  name="saldo_unidades" id="saldo_unidades" value="0">
+						<input class="form-control" type="number"  name="saldo_unidades" id="saldo_unidades" value="0">
 						</div>
-					</div>
-				</div>
-				
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">
-					<i class="fas fa-times"></i> Cancelar</button>
-					<button type="submit" class="btn btn-success " >
-					<i class="fas fa-save"></i> Guardar </button>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>		
+						</div>
+						</div>
+						
+						<!-- Modal footer -->
+						<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<i class="fas fa-times"></i> Cancelar</button>
+						<button type="submit" class="btn btn-success " >
+						<i class="fas fa-save"></i> Guardar </button>
+						</div>
+						</div>
+						</div>
+						</div>
+						</form>		
+												
