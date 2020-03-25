@@ -104,7 +104,11 @@ function listarRegistros(){
 					<td class="text-center">${element.nombre_empresas}</td>
 					<td class="text-center">
 					<button class="btn btn-outline-danger eliminar" data-id_conductores='${element.id_conductores}'><i class="fas fa-trash-alt"></i></button>
-					<button class="btn btn-outline-warning editar" data-id_conductores='${element.id_conductores}'><i class="fas fa-pencil-alt"></i></button>
+					<button class="btn btn-outline-warning editar" data-id_conductores='${element.id_conductores}'><i class="fas fa-pencil-alt"></i>
+					</button>
+					<a class="btn btn-outline-info" href='conductores/imprimir_conductor.php?id_registro=${element.id_conductores}'>
+						<i class="fas fa-print"></i>
+					</a>
 					</td>
 					</tr>
 					`;

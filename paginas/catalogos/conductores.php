@@ -113,7 +113,7 @@
 			include("../../scripts.php");
             include("forms/form_conductores.php");
 		?>
-    <script src="js/conductores.js"></script>
+    <script src="js/conductores.js?v=<?= date("d-m-Y-h-i-s")?>"></script>
     <script src="js/buscar.js"></script>
 	</body>
 </html>
