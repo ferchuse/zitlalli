@@ -53,9 +53,9 @@
 								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
-								<div class="col-sm-7 col-12 text-center">
+								<div class="col-7 text-center">
 									<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
-									<legend>Hoja de Datos</legend> 
+									<legend>Datos de Unidad</legend> 
 								</div>
 							</div>
 							
