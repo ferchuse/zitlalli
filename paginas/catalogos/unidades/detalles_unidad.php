@@ -53,7 +53,7 @@
 								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
-								<div class="col-7 text-center">
+								<div class="col-sm-7 col-12 text-center">
 									<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
 									<legend>Hoja de Datos</legend> 
 								</div>
@@ -63,122 +63,122 @@
 							<div class="row">
 								<div class="col-12 col-sm-8" >
 									
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Empresa:</label>
 										</div>	 
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["nombre_empresas"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >No Eco:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Propietario:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											
 											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="fecha_ingreso">Fecha de Ingreso:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" type="date" value="<?= $unidad["fecha_ingreso"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="censo">Concesion:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Tipo Vehículo:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["tipo_unidad"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Estatus:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Placas:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label >Derrotero:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											
 											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Motor:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["serie"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Modelo:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["modelo"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Poliza:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["poliza"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Aseguradora:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["aseguradora"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Vigencia:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" type="date" value="<?= $unidad["vigencia"]?>" readonly>
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-5">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Mutualidad:</label>
 										</div>	
-										<div class="col-7">			
+										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["mutualidad"]?>" readonly>
 											
 										</div>
