@@ -9,6 +9,7 @@
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN derroteros USING(id_derroteros)
+	LEFT JOIN propietarios USING(id_propietarios)
 	WHERE serie= '{$_GET['serie']}'";
 	
 	
@@ -49,10 +50,10 @@
 						
 						<div class="media_carta">
 							<div class="row">
-								<div class="col-2 text-center" >
+								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
-								<div class="col-10 text-center">
+								<div class="col-7 text-center">
 									<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
 									<legend>Hoja de Datos</legend> 
 								</div>
@@ -60,141 +61,141 @@
 							
 							
 							<div class="row">
-								<div class="col-6 " >
+								<div class="col-8 " >
 									
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >Empresa:</label>
 										</div>	 
-										<div class="col-5">			
-											<input class="form-control" value="<?= $unidad["nombre_conductores"]?>" readonly>
+										<div class="col-6">			
+											<input class="form-control" value="<?= $unidad["nombre_empresas"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >No Eco:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >Propietario:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											
 											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="fecha_ingreso">Fecha de Ingreso:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["fecha_ingreso"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="censo">Concesion:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >Tipo Vehículo:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["tipo_unidad"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >Estatus:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label >Derrotero:</label>
 										</div>	
-										<div class="col-5">			
-										
+										<div class="col-6">			
+											
 											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Motor:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["serie"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Modelo:</label>
 										</div>	
-										<div class="col-5">			
-												<input class="form-control" value="<?= $unidad["modelo"]?>" readonly>
+										<div class="col-6">			
+											<input class="form-control" value="<?= $unidad["modelo"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Poliza:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["poliza"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Aseguradora:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["aseguradora"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Vigencia:</label>
 										</div>	
-										<div class="col-5">			
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["vigencia"]?>" readonly>
 											
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-6">
 											<label for="nombre_propietario">Mutualidad:</label>
 										</div>	
-										<div class="col-5">			
-												<input class="form-control" value="<?= $unidad["mutualidad"]?>" readonly>
+										<div class="col-6">			
+											<input class="form-control" value="<?= $unidad["mutualidad"]?>" readonly>
 											
 										</div>
 									</div>
 									
-								</div>
-								<div class="col-6 text-center">
-									
-									Fecha de Impresión: <?php echo date("d/m/Y H:i:s");?><br>
+									<div class="col-6 text-center">
+										
+										Fecha de Impresión: <?php echo date("d/m/Y H:i:s");?><br>
+									</div>
 								</div>
 							</div> 
 						</div> 
@@ -203,8 +204,6 @@
 			</div> 
 			
 			<?php include("../../scripts.php")?>
-			<script src="js/orden_trabajo.js"></script>
-			<script src="js/buscar.js"></script>
 		</body>
 	</html>	
 	
