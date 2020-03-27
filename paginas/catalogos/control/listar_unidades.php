@@ -65,7 +65,13 @@
 						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["id_unidades"];?>">
 							<i class="fas fa-clock"></i> 
 						</button>
-					
+						<a class="btn btn-default" href="unidades/imprimir_unidades.php?id_registro=<?php echo $fila["id_unidades"];?>">
+							<i class="fas fa-print"></i> 
+						</a>
+						<a class="btn btn-secondary" href="unidades/imprimir_qr.php?serie=<?php echo $fila["serie"];?>">
+							<i class="fas fa-qrcode"></i> 
+						</a>
+						
 					</td>
 				</tr>
 				
