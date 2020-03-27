@@ -24,7 +24,7 @@
 		
 		while($fila = mysqli_fetch_assoc($result)){
 			
-			$conductor = $fila ;
+			$unidad = $fila ;
 			
 		}
 		
@@ -67,9 +67,8 @@
 											<label >Empresa:</label>
 										</div>	 
 										<div class="col-5">			
-											<?php
-												echo generar_select($link, "empresas", "id_empresas", "nombre_empresas");
-											?>
+											<input class="form-control" value="<?= $unidad["nombre_conductores"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -77,7 +76,8 @@
 											<label >No Eco:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="number" name="num_eco" id="num_eco" required>
+											<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -85,9 +85,9 @@
 											<label >Propietario:</label>
 										</div>	
 										<div class="col-5">			
-											<?php
-												echo generar_select($link, "propietarios", "id_propietarios", "nombre_propietarios");
-											?>
+											
+											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -95,7 +95,8 @@
 											<label for="fecha_ingreso">Fecha de Ingreso:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="date" name="fecha_ingreso" id="fecha_ingreso" value="<?php echo date("Y-m-d");?>">
+											<input class="form-control" value="<?= $unidad["fecha_ingreso"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -103,7 +104,8 @@
 											<label for="censo">Concesion:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="number" name="censo" id="censo">
+											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -111,12 +113,8 @@
 											<label >Tipo Vehículo:</label>
 										</div>	
 										<div class="col-5">			
-											<select class="form-control" id="tipo_unidad" name="tipo_unidad">
-												<option value="">Seleccione</option>
-												<option value="Autobús">Autobús</option>
-												<option value="Camioneta">Camioneta</option>
-												<option value="Sprinter">Sprinter</option>
-											</select>
+											<input class="form-control" value="<?= $unidad["tipo_unidad"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -124,12 +122,8 @@
 											<label >Estatus:</label>
 										</div>	
 										<div class="col-5">			
-											<select class="form-control" id="estatus_unidades" name="estatus_unidades">
-												<option value="">Seleccione</option>
-												<option value="Alta">Alta</option>
-												<option value="Baja">Baja</option>
-												<option value="Inactivo">Inactivo</option>
-											</select>
+											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -137,9 +131,9 @@
 											<label >Derrotero:</label>
 										</div>	
 										<div class="col-5">			
-											<?php
-												echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros");
-											?>
+										
+											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -147,7 +141,8 @@
 											<label for="nombre_propietario">Motor:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="text" name="serie" id="serie">
+											<input class="form-control" value="<?= $unidad["serie"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -155,7 +150,8 @@
 											<label for="nombre_propietario">Modelo:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="text" name="modelo" id="modelo">
+												<input class="form-control" value="<?= $unidad["modelo"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -163,7 +159,8 @@
 											<label for="nombre_propietario">Poliza:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="text" name="poliza" id="poliza" required>
+											<input class="form-control" value="<?= $unidad["poliza"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -171,7 +168,8 @@
 											<label for="nombre_propietario">Aseguradora:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="text" name="aseguradora" id="aseguradora">
+											<input class="form-control" value="<?= $unidad["aseguradora"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -179,7 +177,8 @@
 											<label for="nombre_propietario">Vigencia:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="date" name="vigencia" id="vigencia">
+											<input class="form-control" value="<?= $unidad["vigencia"]?>" readonly>
+											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -187,42 +186,35 @@
 											<label for="nombre_propietario">Mutualidad:</label>
 										</div>	
 										<div class="col-5">			
-											<input class="form-control" type="number" name="mutualidad" id="mutualidad">
+												<input class="form-control" value="<?= $unidad["mutualidad"]?>" readonly>
+											
 										</div>
 									</div>
 									
-									<div class="row mb-2">
-										<div class="col-2">
-											<label for="saldo_unidades">Saldo Inicial:</label> 
-										</div>	
-										<div class="col-5">			
-											<input class="form-control" type="number"  name="saldo_unidades" id="saldo_unidades" value="0">
-										</div>
-									</div>
 								</div>
 								<div class="col-6 text-center">
 									
 									Fecha de Impresión: <?php echo date("d/m/Y H:i:s");?><br>
 								</div>
-								</div> 
 							</div> 
 						</div> 
 					</div> 
 				</div> 
-				
-				<?php include("../../scripts.php")?>
-				<script src="js/orden_trabajo.js"></script>
-				<script src="js/buscar.js"></script>
-			</body>
-		</html>	
-		
-		
-		<?php    
-		}
-		else {
-			echo "Error en ".$consulta.mysqli_Error($link);
+			</div> 
 			
-		}
+			<?php include("../../scripts.php")?>
+			<script src="js/orden_trabajo.js"></script>
+			<script src="js/buscar.js"></script>
+		</body>
+	</html>	
+	
+	
+	<?php    
+	}
+	else {
+		echo "Error en ".$consulta.mysqli_Error($link);
 		
-		
-	?>																																																		
+	}
+	
+	
+?>																																																		
