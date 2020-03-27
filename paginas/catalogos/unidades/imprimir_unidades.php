@@ -6,10 +6,11 @@
 	$filas = array();
 	
 	
-	$consulta = "SELECT * FROM conductores 
+	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN derroteros USING(id_derroteros)
-	WHERE id_conductores= '{$_GET['id_registro']}'";
+	LEFT JOIN propietarios USING(id_propietarios)
+	WHERE serie= '{$_GET['serie']}'";
 	
 	
 	$result = mysqli_query($link,$consulta); 
@@ -24,7 +25,7 @@
 		
 		while($fila = mysqli_fetch_assoc($result)){
 			
-			$conductor = $fila ;
+			$unidad = $fila ;
 			
 		}
 		
@@ -49,10 +50,10 @@
 						
 						<div class="media_carta">
 							<div class="row">
-								<div class="col-2 text-center" >
+								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
-								<div class="col-10 text-center">
+								<div class="col-sm-7 col-12 text-center">
 									<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
 									<legend>Hoja de Datos</legend> 
 								</div>
@@ -60,73 +61,151 @@
 							
 							
 							<div class="row">
-								<div class="col-6 " >
-									<div class="form-group">
-										<label for="nombre_conductores">NOMBRE</label>
-										<input class="form-control" value="<?= $conductor["nombre_conductores"]?>" readonly>
-										
+								<div class="col-12 col-sm-8" >
+									
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Empresa:</label>
+										</div>	 
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["nombre_empresas"]?>" readonly>
+											
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="rfc_conductores">RFC</label>
-										<input class="form-control" value="<?= $conductor["rfc_conductores"]?>" readonly>
-										
-									</div> 
-									<div class="form-group">
-										<label for="tipo_licencia">TIPO LICENCIA</label>
-										<input class="form-control" value="<?= $conductor["tipo_licencia"]?>" readonly>
-										
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >No Eco:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
+											
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="noLicencia_conductores">LICENCIA</label>
-										<input class="form-control" value="<?= $conductor["noLicencia_conductores"]?>" readonly>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Propietario:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											
+											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
+											
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="fechaVigencia_conductores">FECHA DE VIGENCIA</label>
-										<input type="date" class="form-control" value="<?= $conductor["fechaVigencia_conductores"]?>" >
-									</div> 
-									<div class="form-group">
-										<label for="id_empresas">EMPRESA</label>
-										<input class="form-control" value="<?= $conductor["nombre_empresas"]?>" readonly>
-									</div> 
-									<div class="form-group">
-										<label for="id_derroteros">DERROTERO</label>
-										<input class="form-control" value="<?= $conductor["nombre_derroteros"]?>" readonly>
-									</div> 
-									<div class="form-group">
-										<label for="curp_conductores">CURP</label>
-										<input class="form-control" value="<?= $conductor["curp_conductores"]?>" readonly>
-									</div> 
-									<div class="form-group">
-										<label for="acta_conductores">ACTA DE NACIMIENTO</label>
-										<input class="form-control" value="<?= $conductor["acta_conductores"]?>" readonly>
-									</div> 
-									<div class="form-group">	
-										<label for="estatus_conductores">Estatus</label>
-											<input class="form-control" value="<?= $conductor["estatus_conductores"]?>" readonly>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="fecha_ingreso">Fecha de Ingreso:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" type="date" value="<?= $unidad["fecha_ingreso"]?>" readonly>
+											
+										</div>
 									</div>
-									<div class="col-6 text-center">
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="censo">Concesion:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Tipo Vehículo:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["tipo_unidad"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Estatus:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Placas:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label >Derrotero:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											
+											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Motor:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["serie"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Modelo:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["modelo"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Poliza:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["poliza"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Aseguradora:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["aseguradora"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Vigencia:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" type="date" value="<?= $unidad["vigencia"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="nombre_propietario">Mutualidad:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["mutualidad"]?>" readonly>
+											
+										</div>
+									</div>
+									
+									<div class="col-12 text-center">
 										
 										Fecha de Impresión: <?php echo date("d/m/Y H:i:s");?><br>
 									</div>
-								</div> 
+								</div>
 							</div> 
 						</div> 
 					</div> 
 				</div> 
-				
-				<?php include("../../scripts.php")?>
-				<script src="js/orden_trabajo.js"></script>
-				<script src="js/buscar.js"></script>
-			</body>
-		</html>	
-		
-		
-		<?php    
-		}
-		else {
-			echo "Error en ".$consulta.mysqli_Error($link);
+			</div> 
 			
-		}
+			<?php include("../../scripts.php")?>
+		</body>
+	</html>	
+	
+	
+	<?php    
+	}
+	else {
+		echo "Error en ".$consulta.mysqli_Error($link);
 		
-		
-	?>																																																	
+	}
+	
+	
+?>																																																		
