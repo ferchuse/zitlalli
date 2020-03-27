@@ -61,7 +61,7 @@
 							
 							
 							<div class="row">
-								<div class="col-8 " >
+								<div class="col-12 col-sm-8" >
 									
 									<div class="row mb-2">
 										<div class="col-6">
@@ -96,7 +96,7 @@
 											<label for="fecha_ingreso">Fecha de Ingreso:</label>
 										</div>	
 										<div class="col-6">			
-											<input class="form-control" value="<?= $unidad["fecha_ingreso"]?>" readonly>
+											<input class="form-control" type="date" value="<?= $unidad["fecha_ingreso"]?>" readonly>
 											
 										</div>
 									</div>
@@ -123,8 +123,15 @@
 											<label >Estatus:</label>
 										</div>	
 										<div class="col-6">			
+											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
+										</div>
+									</div>
+									<div class="row mb-2">
+										<div class="col-6">
+											<label >Placas:</label>
+										</div>	
+										<div class="col-6">			
 											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
-											
 										</div>
 									</div>
 									<div class="row mb-2">
@@ -178,7 +185,7 @@
 											<label for="nombre_propietario">Vigencia:</label>
 										</div>	
 										<div class="col-6">			
-											<input class="form-control" value="<?= $unidad["vigencia"]?>" readonly>
+											<input class="form-control" type="date" value="<?= $unidad["vigencia"]?>" readonly>
 											
 										</div>
 									</div>
@@ -192,7 +199,7 @@
 										</div>
 									</div>
 									
-									<div class="col-6 text-center">
+									<div class="col-12 text-center">
 										
 										Fecha de Impresión: <?php echo date("d/m/Y H:i:s");?><br>
 									</div>
