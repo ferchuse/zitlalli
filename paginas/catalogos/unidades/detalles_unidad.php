@@ -39,7 +39,7 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 				<meta name="description" content="">
 				<meta name="author" content="">
-				<title>Hoja de Datos</title>
+				<title>Datos de Unidad</title>
         <?php include('../../../styles.php')?>
 			</head>
 			<body id="page-top">
@@ -49,11 +49,11 @@
 					<div class="container">		
 						
 						<div class="media_carta">
-							<div class="row">
+								<div class="row">
 								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
-								<div class="col-7 col-12 text-center">
+								<div class="col-7 text-center">
 									<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
 									<legend>Datos de Unidad</legend> 
 								</div>
@@ -97,11 +97,17 @@
 										</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label for="censo">Concesion:</label>
+											<label for="censo">Censo:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
-											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="concesion">Concesión:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["concesion"]?>" readonly>
 										</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
@@ -136,10 +142,18 @@
 										</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label for="nombre_propietario">Motor:</label>
+											<label for="serie">Serie:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["serie"]?>" readonly>
+											
+										</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+											<label for="motor">Motor:</label>
+										</div>	
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["motor"]?>" readonly>
 											
 										</div>
 									</div>

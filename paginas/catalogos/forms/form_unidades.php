@@ -50,10 +50,18 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="censo">Concesion:</label>
+							<label for="censo">Censo:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="number" name="censo" id="censo">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="concesion">Concesión:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="text" name="concesion" id="concesion">
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -94,7 +102,7 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Motor:</label>
+							<label for="serie">Serie:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="text" name="serie" id="serie">
@@ -102,7 +110,15 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Modelo:</label>
+							<label for="motor">Motor:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="text" name="motor" id="motor">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="modelo">Modelo:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="text" name="modelo" id="modelo">
@@ -110,7 +126,7 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Poliza:</label>
+							<label for="poliza">Poliza:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="text" name="poliza" id="poliza" required>
@@ -118,7 +134,7 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Aseguradora:</label>
+							<label for="aseguradora">Aseguradora:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="text" name="aseguradora" id="aseguradora">
@@ -126,7 +142,7 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Vigencia:</label>
+							<label for="vigencia">Vigencia:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="date" name="vigencia" id="vigencia">
@@ -134,7 +150,7 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Mutualidad:</label>
+							<label for="mutualidad">Mutualidad:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="number" name="mutualidad" id="mutualidad">
