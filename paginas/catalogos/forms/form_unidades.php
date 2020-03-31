@@ -66,6 +66,30 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
+							<label for="tel_unidades">Teléfono:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="tel" name="tel_unidades" id="tel_unidades">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="tel_unidades">Num Cuenta:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="text" name="num_cuenta" id="num_cuenta">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="placas">Placas:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="text" name="placas" id="placas">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
 							<label >Tipo Vehículo:</label>
 						</div>	
 						<div class="col-5">			
