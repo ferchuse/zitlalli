@@ -1,0 +1,39 @@
+<?php
+	// include("numlet.php");
+	$texto="";
+	echo "Printing";
+	// $textoimp=explode("|",$_GET['textoimp']);
+	// for($i=0;$i<count($textoimp);$i++){
+		// $texto.=$textoimp[$i].chr(10).chr(13);
+	// }
+	// $texto.=chr(10).chr(13).chr(29).chr(86).chr(66).chr(0);
+	
+	
+	if($file=fopen("nota.txt","w+")){
+		fwrite($file, base64_decode($_POST["texto"]));
+		fclose($file);
+		// chmod("abonos/F_".$folio.".txt", 0777);
+	}
+	system("copy nota.txt lpt1: >null:");
+	// shell_exec('print /D:"\\%COMPUTERNAME%\POS" nota.txt');
+	
+	echo base64_decode($_POST["texto"]);
+	echo "Done";
+	
+	
+	
+	// if($_GET['copia']==1){
+	// $texto="        COPIA".chr(10).chr(13);
+	// $textoimp=explode("|",$_GET['textoimp']);
+	// for($i=0;$i<count($textoimp);$i++){
+	// $texto.=$textoimp[$i].chr(10).chr(13);
+	// }
+	// $texto.=chr(10).chr(13).chr(29).chr(86).chr(66).chr(0);
+	// if($file=fopen("nota1.txt","w+")){
+	// fwrite($file,$texto);
+	// fclose($file);
+	
+	// }
+	// system("copy nota1.txt lpt1: >null:");
+	// }
+?>
