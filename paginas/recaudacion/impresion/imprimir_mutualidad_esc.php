@@ -35,14 +35,25 @@
 		
 		
 		$print = "@";
-		$print.= "Pago de Mutualidad".chr(10).chr(13);
+		$print.= "PAGO DE MUTUALIDAD".chr(10).chr(13);
 		$print.= "Fecha: ".$filas["fecha_mutualidad"].chr(10).chr(13);
 		$print.= "Usuario: ".$filas["nombre_usuarios"].chr(10).chr(13);
 		$print.= "Empresa: ".$filas["nombre_empresas"].chr(10).chr(13);
 		$print.= "Num Eco: ".$filas["num_eco"].chr(10).chr(13);
-		$print.= "Monto: ".$filas["monto_mutualidad"].chr(10).chr(13);
+		$print.= "Monto: $".$filas["monto_mutualidad"].chr(10).chr(13);
 		
-		$print.=chr(10).chr(10).chr(13).chr(29).chr(86).chr(66).chr(0);
+		$print.="\n\nVB";
+		
+		
+		$print.= "@";
+		$print.= "PAGO DE MUTUALIDAD COPIA".chr(10).chr(13);
+		$print.= "Fecha: ".$filas["fecha_mutualidad"].chr(10).chr(13);
+		$print.= "Usuario: ".$filas["nombre_usuarios"].chr(10).chr(13);
+		$print.= "Empresa: ".$filas["nombre_empresas"].chr(10).chr(13);
+		$print.= "Num Eco: ".$filas["num_eco"].chr(10).chr(13);
+		$print.= "Monto: $".$filas["monto_mutualidad"].chr(10).chr(13);
+		
+		$print.="\n\nVB";
 		
 		echo base64_encode($print);
 		

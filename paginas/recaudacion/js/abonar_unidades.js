@@ -302,15 +302,11 @@ function guardarMutualidad(){
 		$("#monto_mutualidad").prop("disabled", true); 
 		$("#imprimir_mutualidad").prop("hidden", false);
 		$("#imprimir_mutualidad").data("id_registro", respuesta.nuevo_id);
-		if($("#silent_print").val() == "SI" ){
-			$("#imprimir_mutualidad").data("url", "imprimir_mutualidad_esc.php");
-			
-		}
-		else{
-			
-			$("#imprimir_mutualidad").data("url", "imprimir_mutualidad.php");
-			
-		}
+		
+		
+		$("#imprimir_mutualidad").data("url", "imprimir_mutualidad.php");
+		
+		
 		$("#loader_mutualidad").prop("hidden", true);
 		$("#imprimir_mutualidad").click();
 		
@@ -334,13 +330,13 @@ function actualizaMutualidad(){
 					name: "mutualidad_cobrada",
 					value: 1
 				}],
-				id_campo : "tarjeta",
-				id_valor: $("#tarjeta").val()
-		}
-		
-		}).done(function(respuesta){
-		
-		
+		id_campo : "tarjeta",
+		id_valor: $("#tarjeta").val()
+	}
+	
+	}).done(function(respuesta){
+	
+	
 	})
 }
 
@@ -501,18 +497,19 @@ function imprimirTicket(event){
 		}
 		}).done(function (respuesta){
 		
+		$.ajax({
+		url: "http://localhost/imprimir_zitlalli.php",
+		method: "POST",
+		data:{
+			"texto" : respuesta
+		}
+		});
 		
-		if($("#silent_print").val() == "SI" && url == "imprimir_mutualidad_esc.php" ){
-			
-			printService.submit({
-				'type': 'LABEL',
-				'raw_content': respuesta
-			});
-		}
-		else{
-			$("#ticket").html(respuesta); 
-			window.print();
-		}
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		
 		
 		}).always(function(){
 		
@@ -521,5 +518,8 @@ function imprimirTicket(event){
 		
 	});
 }
+
+
+
 
 
