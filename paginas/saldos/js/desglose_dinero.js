@@ -112,7 +112,7 @@ function cadena_numeros (){
 		</div>
 		<div class="form-group col-md-6">
 		<div class="input-group">
-		<input type="number" min="0" class="form-control importe" value="0" readOnly>
+		<input tabindex="-1" type="number" min="0" class="form-control importe" value="0" readOnly>
 		</div>
 		</div>
 		</div>
