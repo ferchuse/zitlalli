@@ -11,7 +11,7 @@
 	
 	
 	$consulta = "SELECT * FROM abono_general 
-	LEFT JOIN unidades USING (id_unidades) LEFT JOIN empresas USING (id_empresas) LEFT JOIN propietarios USING (id_propietarios) LEFT JOIN derroteros USING (id_derroteros) LEFT JOIN motivosAbonoUnidades USING (id_motivosAbono) LEFT JOIN usuarios USING (id_usuarios)
+	LEFT JOIN unidades USING (id_unidades) LEFT JOIN empresas USING (id_empresas) LEFT JOIN propietarios USING (id_propietarios) LEFT JOIN derroteros USING (id_derroteros) LEFT JOIN motivosabonounidades USING (id_motivosAbono) LEFT JOIN usuarios USING (id_usuarios)
 	WHERE id_abonogeneral= '{$_GET['id_registro']}'";
 	
 	
