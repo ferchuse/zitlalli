@@ -133,7 +133,10 @@
 		</div>
 		<?php include("../../scripts.php")?>
 		<?php include("forms/form_desglose.php");?>
-		<script src="js/desglose_dinero.js"></script>
+		
+		
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+		<script src="js/desglose_dinero.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
 		<script src="js/buscar.js"></script>
 	</body>
 </html>	

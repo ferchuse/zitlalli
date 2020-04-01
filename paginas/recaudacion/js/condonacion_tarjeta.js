@@ -1,3 +1,6 @@
+var printService = new WebSocketPrinter();
+
+
 $(document).ready(function(){
 	console.log("ready")
 	listarRegistros();
@@ -35,7 +38,7 @@ $(document).ready(function(){
 		};
 	});
 	
-
+	
 	//==========GUARDAR ============
 	$('#form_edicion').on('keypress',function(event){
 		if(event.which == 13){
@@ -83,7 +86,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	$('#form_edicion').on('submit',function(event){
+	$('#form_edicion').on('submit',function guardarCondonacion(event){
 		
 		//guarda en condonaciones, 
 		event.preventDefault();
@@ -105,6 +108,7 @@ $(document).ready(function(){
 				alertify.success('Guardado correctamente');
 				$('#modal_edicion').modal('hide');
 				listarRegistros();
+				
 			}
 			else{
 				alertify.error('Ocurrio un error');
@@ -197,12 +201,16 @@ function confirmaCancelacion(event){
 }
 
 function imprimirTicket(event){
-	var id_registro = $(this).data("id_registro");
-	var boton = $(this);
-	var icono = boton.find("fas");
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
+		
+		var id_registro = $(this).data("id_registro");
+		var boton = $(this);
+		var icono = boton.find("fas");
+		
+		boton.prop("disabled", true);
+		icono.toggleClass("fa-print fa-spinner fa-spin");
+		
+	
 	
 	$.ajax({
 		url: "impresion/imprimir_condonacion.php",
@@ -211,8 +219,18 @@ function imprimirTicket(event){
 		}
 		}).done(function (respuesta){
 		
-		$("#ticket").html(respuesta);
-		window.print();
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
+		
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
 		}).always(function(){
 		
 		boton.prop("disabled", false);

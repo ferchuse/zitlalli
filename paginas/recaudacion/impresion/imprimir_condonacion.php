@@ -26,75 +26,33 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			console_log($fila);
+			
 			$filas = $fila ;
-			//TODO
-			///Tarjeta Cancelada
-			///Tarjeta Ya recaudada
 			
 		}
 		
-	?> 
-	<legend>Condonación de Tarjeta
-	</legend> 
-	<div class="row mb-2">
-		<div class="col-4">
-			<b >Fecha:</b>
-		</div>	 
-		<div class="col-8">			
-			<?php echo date("d/m/Y - H:i:S", strtotime($filas["fecha_condonaciones"]))?>
-		</div>
-	</div>
-	<div class="row mb-2">
-		<div class="col-4">
-			<b >Usuario:</b>
-		</div>	 
-		<div class="col-8">			
-			<?php echo $filas["nombre_usuarios"]?>
-		</div>
-	</div>
-	<div class="row mb-2">
-		<div class="col-4">
-			<b >Tarjeta:</b> 
-		</div>	 
-		<div class="col-8">			
-			<?php echo $filas["tarjeta"]?>
-		</div>
-	</div>
-	<div class="row mb-2">
-		<div class="col-4">
-			<b >Motivo:</b> 
-		</div>	 
-		<div class="col-8">			
-			<?php echo $filas["motivo_condonacion"]?>
-		</div>
-	</div>
-	<div class="row mb-2">
-		<div class="col-4">
-			<b >Monto:</b> 
-		</div>	 
-		<div class="col-8">			
-			<?php echo $filas["monto_condonaciones"]?>
-		</div>
-	</div>
-	<div class="row mb-2"> 
-		<div class="col-12">
-			<b >Observaciones:</b> 
-		</div>	
-		<br>
-		<div class="col-12">			
-			<?php echo $filas["observaciones_condonaciones"]?>
-		</div>
-	</div>
-	
-	
-	<?php
+		
+		$print = "@";
+		$print.= "CONDONACION DE TARJETA".chr(10).chr(13);
+		$print.= "Fecha: ".$filas["fecha_condonaciones"].chr(10).chr(13);
+		$print.= "Usuario: ".$filas["nombre_usuarios"].chr(10).chr(13);
+		$print.= "Empresa: ".$filas["nombre_empresas"].chr(10).chr(13);
+		$print.= "Num Eco: ".$filas["num_eco"].chr(10).chr(13);
+		$print.= "Tarjeta: ".$filas["tarjeta"].chr(10).chr(13);
+		$print.= "Motivo: ".$filas["motivo_condonacion"].chr(10).chr(13);
+		$print.= "Monto: ".$filas["monto_condonaciones"].chr(10).chr(13);
+		$print.= "Observaciones: ".$filas["observaciones_condonaciones"].chr(10).chr(13);
+		
+		$print.="\n\nVB";
+		
+		
+		echo base64_encode($print);
 		
 		
 	}
 	else {
 		echo "Error en ".$consulta.mysqli_Error($link);
-	
+		
 	}
 	
 	

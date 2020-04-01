@@ -1,7 +1,7 @@
 <?php 
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
-	include('../../../funciones/console_log.php');
+	
+	include('../../../funciones/numero_a_letras.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
@@ -30,74 +30,32 @@
 			
 		}
 		
-	?> 
-	<div >
-		<legend>Desglose de Dinero </legend> 
-		<div class="row mb-2">
-			<div class="col-4">
-				<b >Fecha:</b>
-			</div>	 
-			<div class="col-8">			
-				<?php echo $filas["fecha_desglose"];?>
-			</div>
-		</div>
-		<div class="row mb-2">
-			<div class="col-4">
-				<b >Usuario:</b>
-			</div>	 
-			<div class="col-8">			
-				<?php echo $filas["nombre_usuarios"]?>
-			</div>
-		</div>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >Denom.</b> 
-				</div>	 
-				<div class="col-4">			
-					<b >Cantidad</b> 
-				</div>
-				<div class="col-4">			
-					<b >Importe</b> 
-				</div>
-			</div>
-		<?php foreach($denominaciones as $i => $denominacion){?>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >$<?php echo $denominacion;?>:</b> 
-				</div>	 
-				<div class="col-4 text-right">			
-					<?php echo number_format($filas[$denominacion]);?>
-				</div>
-				<div class="col-4 text-right">			
-					<?php echo number_format($filas[$denominacion] * $denominacion);?>
-				</div>
-			</div>
-			<?php
-			}
-		?>
 		
-			<hr>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >IMPORTE TOTAL:</b> 
-				</div>	 
-				<div class="col-8 text-right">			
-					<?php echo number_format($filas["importe_desglose"])?>
-				</div>
-			</div>
-		</div>
+		$print.= "@";
+		$print.= "!".chr(16)."DESGLOSE DE DINERO"."!".chr(0)."\n";
+		$print.= "Folio: ".$filas["id_desglose"]."\n";
+		$print.= "Fecha: ".$filas["fecha_desglose"]."\n";
+		$print.= "Usuario: ".$filas["nombre_usuarios"]."\n";
+		$print.= "Denom".chr(9).chr(9)."Cantidad".chr(9)."Importe  \n";
 		
-		<div style="page-break-after:always;"></div>
-		
-		
-		<?php
-			
-			
-		}
-		else {
-			echo "Error en ".$consulta.mysqli_Error($link);
-			
+		foreach($denominaciones as $i => $denominacion){
+			$print.= "$".number_format($denominacion).chr(9).chr(9).number_format($filas[$denominacion]).chr(9).chr(9).number_format($filas[$denominacion] * $denominacion)."  \n";
 		}
 		
 		
-	?>	
+		$print.="\n\nIMPORTE TOTAL: $".number_format($filas["importe_desglose"])."\n";
+		$print.= NumeroALetras::convertir($filas["importe_desglose"], 'PESOS', 'CENTAVOS')."\n";
+		$print.="\n\nVB";
+		
+		echo base64_encode($print);
+		
+		
+		
+	}
+	else {
+		echo "Error en ".$consulta.mysqli_Error($link);
+		
+	}
+	
+	
+?>		

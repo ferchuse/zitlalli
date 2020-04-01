@@ -61,7 +61,7 @@
 					<footer class="sticky-footer">
 						<div class="container my-auto">
 							<div class="copyright text-center my-auto">
-								<span>Copyright © Glifo Media 2018</span>
+								<span>Copyright © Glifo Media 2020</span>
 							</div>
 						</div>
 					</footer>
