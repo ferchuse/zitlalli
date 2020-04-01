@@ -20,7 +20,7 @@
 	LEFT JOIN empresas USING (id_empresas)  
 	LEFT JOIN propietarios USING (id_propietarios) 
 	LEFT JOIN derroteros USING (id_derroteros) 
-	LEFT JOIN motivosAbonoUnidades USING (id_motivosAbono) 
+	LEFT JOIN motivosabonounidades USING (id_motivosAbono) 
 	LEFT JOIN usuarios USING (id_usuarios)
 	
 	WHERE 
@@ -108,7 +108,7 @@
 					<td><?php echo $fila["fecha_abonogeneral"]?></td>
 					<td><?php echo $fila["nombre_empresas"]?></td>
 					<td><?php echo $fila["num_eco"]?></td>
-					<td><?php echo $fila["nombre_motivosAbono"]?></td>
+					<td><?php echo $fila["nombre_motivosabono"]?></td>
 					<td><?php echo $fila["monto_abonogeneral"]?></td>
 					<td><?php echo $fila["nombre_usuarios"]?></td>
 					<td>
