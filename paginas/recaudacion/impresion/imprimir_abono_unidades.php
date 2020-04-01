@@ -59,9 +59,23 @@
 			$print.= "Devolucion: $".$filas["devolucion"] ."\n";
 			
 			$print.="\n\nVB";
+		
 			
 		}
-		// if($filas["devolucion"] > 0){
+		if($filas["devolucion"] > 0){
+			$print.= "!".chr(16)."DEVOLUCION"."!".chr(0)."\n";
+			$print.= "Folio Abono: ".$filas["id_abonos_unidades"]."\n";
+			$print.= "Fecha Abono: ".$filas["fecha_abonos"]."\n";
+			$print.= "Fecha Cuenta: ".$filas["fecha_tarjetas"]."\n";
+			$print.= "Usuario: ".$filas["nombre_usuarios"]."\n";
+			$print.= "Recaudacion: ".$filas["nombre_recaudaciones"]."\n";
+			$print.= "Empresa: ".$filas["nombre_empresas"]."\n";
+			$print.= "Num Eco: ".$filas["num_eco"]."\n";
+			$print.= "Conductor: ".$filas["nombre_conductores"]."\n";
+			$print.= "Devolucion: ".$filas["devolucion"]."\n";
+			
+			$print.="\n\nVB";
+		}
 		
 		echo base64_encode($print);
 		

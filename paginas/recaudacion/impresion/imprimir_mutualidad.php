@@ -45,7 +45,7 @@
 		$print.="\n\nVB";
 		
 		
-		$print = "@";
+		$print.= "@";
 		$print.= "PAGO DE MUTUALIDAD COPIA".chr(10).chr(13);
 		$print.= "Fecha: ".$filas["fecha_mutualidad"].chr(10).chr(13);
 		$print.= "Usuario: ".$filas["nombre_usuarios"].chr(10).chr(13);

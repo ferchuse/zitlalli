@@ -102,8 +102,17 @@ function imprimirTicket(event){
 		}
 		}).done(function (respuesta){
 		
-		$("#ticket").html(respuesta);
-		window.print();
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
+		
+		
+		// $("#ticket").html(respuesta);
+		// window.print();
 		}).always(function(){
 		
 		boton.prop("disabled", false);

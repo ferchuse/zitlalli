@@ -72,7 +72,7 @@
 		
 		while($fila_roles= mysqli_fetch_assoc($result_roles)){
 			
-			if($_COOKIE["id_administrador"] == '1'){
+			if($_COOKIE["id_administrador"] != '1'){
 				
 				$print.= "____________".CHR(9).CHR(9);
 			}
@@ -80,7 +80,7 @@
 				$print.= $fila_roles["nombre_origenes"].CHR(9).CHR(9);
 				
 			}	
-			if($_COOKIE["id_administrador"] == '1'){
+			if($_COOKIE["id_administrador"] != '1'){
 				$print.= "_____________ \n\n\n";
 			}
 			else{
