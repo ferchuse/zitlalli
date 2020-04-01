@@ -114,24 +114,24 @@
 										<div class="col-2">
 											<label for="tel_unidades">Teléfono:</label>
 										</div>	
-										<div class="col-5">			
-											<input class="form-control" type="tel" value="<?= $unidad["tel_unidades"]?>">
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" type="tel" value="<?= $unidad["tel_unidades"]?>" readonly>
 										</div>
 									</div>
 									<div class="row mb-2">
 										<div class="col-2">
 											<label for="tel_unidades">Num Cuenta:</label>
 										</div>	
-										<div class="col-5">			
-											<input class="form-control" value="<?= $unidad["num_cuenta"]?>">
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["num_cuenta"]?>" readonly>
 										</div>
 									</div>
 									<div class="row mb-2">
 										<div class="col-2">
 											<label for="placas">Placas:</label>
 										</div>	
-										<div class="col-5">			
-											<input class="form-control" value="<?= $unidad["placas"]?>">
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
 										</div>
 									</div>
 									<div class="row mb-2">
