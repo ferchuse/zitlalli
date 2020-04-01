@@ -30,7 +30,7 @@ $(document).ready(function(){
 			method: 'POST',
 			dataType: 'JSON',
 			data:{
-				tabla: 'motivosAbonoUnidades',
+				tabla: 'motivosabonounidades',
 				datos: datos
 			}
 			}).done(function(respuesta){
@@ -72,7 +72,7 @@ function listarMotivosAbono(){
 		method: 'POST',
 		dataType: 'JSON',
 		data: {
-			tabla: 'motivosAbonoUnidades'
+			tabla: 'motivosabonounidades'
 		}
     }).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
@@ -114,7 +114,7 @@ function listarMotivosAbono(){
 						method: 'POST',
 						dataType: 'JSON',
 						data: {
-							tabla: 'motivosAbonoUnidades',
+							tabla: 'motivosabonounidades',
 							id_campo: 'id_motivosAbono',
 							campo: id_motivosAbono
 						}
@@ -143,7 +143,7 @@ function listarMotivosAbono(){
 					method: 'POST',
 					dataType: 'JSON',
 					data: {
-						tabla: 'motivosAbonoUnidades',
+						tabla: 'motivosabonounidades',
 						id_campo: 'id_motivosAbono',
 						campo: id_motivosabono
 					}
