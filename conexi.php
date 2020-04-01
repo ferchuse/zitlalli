@@ -39,6 +39,7 @@
 		if($_SERVER["SERVER_NAME"] != "localhost") {
 		
 			mysqli_query($link, "SET sql_mode = ''") or die("Error Cambiando sqlmode").mysqli_error($link);
+			mysqli_query($link, "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));") or die("Error Cambiando sqlmode").mysqli_error($link);
 			
 			
 			mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));

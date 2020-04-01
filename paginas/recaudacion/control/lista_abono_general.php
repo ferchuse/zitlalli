@@ -82,7 +82,7 @@
 					
 					
 				?>
-				<tr class="<?= $bg;?>">
+				<tr class="">
 					<td class="text-center"> 
 						<?php 
 							if($fila["estatus_abono"] != 'Cancelado'){
@@ -108,14 +108,15 @@
 					<td><?php echo $fila["fecha_abonogeneral"]?></td>
 					<td><?php echo $fila["nombre_empresas"]?></td>
 					<td><?php echo $fila["num_eco"]?></td>
-					<td><?php echo $fila["nombre_motivosabono"]?></td>
+					<td><?php echo $fila["nombre_motivosAbono"]?></td>
 					<td><?php echo $fila["monto_abonogeneral"]?></td>
 					<td><?php echo $fila["nombre_usuarios"]?></td>
 					<td>
 						
-						<?php echo $fila["estatus_abono"];
+						<?php 
 							if( $fila["estatus_abono"] == "Cancelado"){
-								echo "<br>".$fila["datos_cancelacion_abono_general"];
+							 
+								echo "<small><span class='badge badge-danger'>".$fila["estatus_abono"]."<br>".$fila["datos_cancelacion_abono_general"]."</span></small>";
 							}	
 							
 							
