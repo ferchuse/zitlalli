@@ -49,7 +49,7 @@
 					<div class="container">		
 						
 						<div class="media_carta">
-								<div class="row">
+							<div class="row">
 								<div class="col-3 text-center" >
 									<img  src="../../../img/logo.jpg" class="img-fluid">
 								</div>
@@ -64,75 +64,95 @@
 								<div class="col-12 col-sm-8" >
 									
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label >Empresa:</label>
-										</div>	 
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" value="<?= $unidad["nombre_empresas"]?>" readonly>
-											
-										</div>
+										<label >Empresa:</label>
+									</div>	 
+									<div class="col-sm-7 col-12">			
+										<input class="form-control" value="<?= $unidad["nombre_empresas"]?>" readonly>
+										
+									</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label >No Eco:</label>
+										<label >No Eco:</label>
+									</div>	
+									<div class="col-sm-7 col-12">			
+										<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
+										
+									</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+										<label >Propietario:</label>
+									</div>	
+									<div class="col-sm-7 col-12">			
+										
+										<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
+										
+									</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+										<label for="fecha_ingreso">Fecha de Ingreso:</label>
+									</div>	
+									<div class="col-sm-7 col-12">			
+										<input class="form-control" type="date" value="<?= $unidad["fecha_ingreso"]?>" readonly>
+										
+									</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+										<label for="censo">Censo:</label>
+									</div>	
+									<div class="col-sm-7 col-12">			
+										<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
+									</div>
+									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+										<label for="concesion">Concesión:</label>
+									</div>	
+									<div class="col-sm-7 col-12">			
+										<input class="form-control" value="<?= $unidad["concesion"]?>" readonly>
+									</div>
+									</div>
+									<div class="row mb-2">
+										<div class="col-2">
+											<label for="tel_unidades">Teléfono:</label>
 										</div>	
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" value="<?= $unidad["num_eco"]?>" readonly>
-											
+										<div class="col-5">			
+											<input class="form-control" type="tel" value="<?= $unidad["tel_unidades"]?>">
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label >Propietario:</label>
+									<div class="row mb-2">
+										<div class="col-2">
+											<label for="tel_unidades">Num Cuenta:</label>
 										</div>	
-										<div class="col-sm-7 col-12">			
-											
-											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
-											
+										<div class="col-5">			
+											<input class="form-control" value="<?= $unidad["num_cuenta"]?>">
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label for="fecha_ingreso">Fecha de Ingreso:</label>
+									<div class="row mb-2">
+										<div class="col-2">
+											<label for="placas">Placas:</label>
 										</div>	
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" type="date" value="<?= $unidad["fecha_ingreso"]?>" readonly>
-											
+										<div class="col-5">			
+											<input class="form-control" value="<?= $unidad["placas"]?>">
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label for="censo">Censo:</label>
-										</div>	
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" value="<?= $unidad["censo"]?>" readonly>
-										</div>
-									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label for="concesion">Concesión:</label>
-										</div>	
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" value="<?= $unidad["concesion"]?>" readonly>
-										</div>
-									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label >Tipo Vehículo:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["tipo_unidad"]?>" readonly>
-											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label >Estatus:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
 											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-											<label >Placas:</label>
-										</div>	
-										<div class="col-sm-7 col-12">			
-											<input class="form-control" value="<?= $unidad["placas"]?>" readonly>
-										</div>
-									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label >Derrotero:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -141,7 +161,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="serie">Serie:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -149,7 +170,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="motor">Motor:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -157,7 +179,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Modelo:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -165,7 +188,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Poliza:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -173,7 +197,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Aseguradora:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -181,7 +206,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Vigencia:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -189,7 +215,8 @@
 											
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
 											<label for="nombre_propietario">Mutualidad:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
