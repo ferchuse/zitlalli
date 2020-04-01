@@ -36,7 +36,7 @@
 						
 						<div class="form-group col-md-12">
 							<label for="id_motivosAbono">MOTIVO</label>
-							<?php echo generar_select($link, "motivosabonounidades", "id_motivosabono", "nombre_motivosAbono",false,false,true);?>
+							<?php echo generar_select($link, "motivosabonounidades", "id_motivosAbono", "nombre_motivosAbono",false,false,true);?>
 						</div>
 					</div>
 					<div class="form-row">
