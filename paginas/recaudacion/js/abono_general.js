@@ -1,3 +1,7 @@
+var printService = new WebSocketPrinter();
+
+
+
 $(document).ready(function(){
 	//=================CARGAR LA TABLA AL INICIO===================
 	listarRegistros();
@@ -274,8 +278,19 @@ function imprimirTicket(event){
 		}
 		}).done(function (respuesta){
 		
-		$("#carta").html(respuesta); 
-		window.print();
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
+		
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		
 		}).always(function(){
 		
 		boton.prop("disabled", false);
