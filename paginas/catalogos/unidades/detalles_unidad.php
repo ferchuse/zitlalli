@@ -111,7 +111,7 @@
 									</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-sm-5 col-12">
 											<label for="tel_unidades">Teléfono:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -119,7 +119,7 @@
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-sm-5 col-12">
 											<label for="tel_unidades">Num Cuenta:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
@@ -127,7 +127,7 @@
 										</div>
 									</div>
 									<div class="row mb-2">
-										<div class="col-2">
+										<div class="col-sm-5 col-12">
 											<label for="placas">Placas:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
