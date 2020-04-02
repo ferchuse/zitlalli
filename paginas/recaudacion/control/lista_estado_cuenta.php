@@ -12,6 +12,17 @@
 	
 	$fecha_inicial = date("Y-m-01");
 	
+	
+	$sql_mode ="SET sql_mode = ''";
+	
+	$result = mysqli_query($link, $sql_mode);
+	
+	
+	if(!$result){
+		
+		die("<pre>".$sql_mode.mysqli_error($link) ."<pre>";
+	}
+	
 	$consulta = "##estado de cuenta
 	SELECT
 	id_unidades,
@@ -237,7 +248,7 @@
 	}
 	
 	else {
-		echo "Error en ".$consulta.mysqli_Error($link);
+		echo "<pre>".$consulta.mysqli_Error($link) ."<pre>";
 		
 	}
 	
