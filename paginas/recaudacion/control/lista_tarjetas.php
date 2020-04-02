@@ -5,6 +5,7 @@
 	}
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
@@ -77,49 +78,55 @@
 				<tr>
 					<td class="text-center"> 
 						<?php if($fila["estatus_tarjetas"] != 'Cancelado'){?>
-							<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['tarjeta']?>'>
-								<i class="fas fa-times"></i>
-							</button>
+							
+							<?php if(dame_permiso("tarjetas.php", $link) == 'Supervisor'){?>
+								
+								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['tarjeta']?>'>
+									<i class="fas fa-times"></i>
+								</button>
+								<?php
+								}
+							?>
 							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['tarjeta']?>'>
 								<i class="fas fa-print"></i>
 							</button>
 							<?php
 							}
-						?>
-					</td>
-					<td class="text-center"><?php echo $fila['tarjeta'];?></td>
-					<td class="text-center"><?php echo $fila['fecha_creacion'];?></td>
-					<td class="text-center"><?php echo $fila['fecha_tarjetas'];?></td>
-					<td class="text-center"><?php echo $fila['nombre_empresas'];?></td>
-					<td class="text-center"><?php echo $fila['num_eco'];?></td>
-					<td class="text-center">
+							?>
+						</td>
+						<td class="text-center"><?php echo $fila['tarjeta'];?></td>
+						<td class="text-center"><?php echo $fila['fecha_creacion'];?></td>
+						<td class="text-center"><?php echo $fila['fecha_tarjetas'];?></td>
+						<td class="text-center"><?php echo $fila['nombre_empresas'];?></td>
+						<td class="text-center"><?php echo $fila['num_eco'];?></td>
+						<td class="text-center">
+							
+							<?php echo $fila['estatus_tarjetas'];?> <br>
+							<?php if($fila["estatus_tarjetas"] == 'Cancelado'){
+								echo $fila['datos_cancelacion'];
+							}
+							?>
+							
+						</td>
+						<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
 						
-						<?php echo $fila['estatus_tarjetas'];?> <br>
-						<?php if($fila["estatus_tarjetas"] == 'Cancelado'){
-							echo $fila['datos_cancelacion'];
-						}
-						?>
-						
-					</td>
-					<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
-					
-				</tr> 
-				<?
-				}
-			?>
-			<tr>	
-				<td colspan="11"><?php echo  mysqli_num_rows($result);?> Registros</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	
-	<?php
+					</tr> 
+					<?
+					}
+				?>
+				<tr>	
+					<td colspan="11"><?php echo  mysqli_num_rows($result);?> Registros</td>
+				</tr>
+			</tbody>
+		</table>
 		
 		
-	}
-	else {
-		echo  "Error en ".$consulta.mysqli_Error($link);
-	}
-	
-?>			
+		<?php
+			
+			
+		}
+		else {
+			echo  "Error en ".$consulta.mysqli_Error($link);
+		}
+		
+	?>					

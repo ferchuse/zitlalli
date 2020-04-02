@@ -1,3 +1,5 @@
+var printService = new WebSocketPrinter();
+
 $(document).ready(function(){
 	console.log("onLoad")
 	listarRegistros();
@@ -23,7 +25,7 @@ function listarRegistros(){
 	let icono = boton.find('.fas');
 	
 	boton.prop('disabled',true);
-	icono.toggleClass('fa-save fa-spinner fa-pulse ');
+	icono.toggleClass('fa-search fa-spinner fa-pulse ');
 	
 	return $.ajax({
 		url: 'control/lista_tarjetas.php',
@@ -110,9 +112,10 @@ function imprimirTicket(event){
 			}
 		});
 		
-		
-		// $("#ticket").html(respuesta);
-		// window.print();
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
 		}).always(function(){
 		
 		boton.prop("disabled", false);

@@ -23,7 +23,7 @@
 	tarjetas
 	WHERE
 	tarjetas.id_unidades = unidades.id_unidades
-	AND estatus_tarjetas <> 'Cancelada' 
+	AND estatus_tarjetas <> 'Cancelado' 
 	ORDER BY
 	fecha_tarjetas DESC
 	LIMIT 1
