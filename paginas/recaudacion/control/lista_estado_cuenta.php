@@ -13,7 +13,7 @@
 	$fecha_inicial = date("Y-m-01");
 	
 	
-	$sql_mode ="SET GLOBAL sql_mode = ''";
+	$sql_mode ="SET SESSION sql_mode = ''";
 	
 	$result = mysqli_query($link, $sql_mode);
 	
