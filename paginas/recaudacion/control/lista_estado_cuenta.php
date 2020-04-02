@@ -20,7 +20,7 @@
 	
 	if(!$result){
 		
-		die("<pre>".$sql_mode.mysqli_error($link) ."</pre>";
+		die("<pre>".$sql_mode.mysqli_error($link) ."</pre>");
 	}
 	
 	$consulta = "##estado de cuenta
