@@ -108,9 +108,8 @@
 					</form>
 					<hr>
 					
-					<hr>
-					<div class="card card-primary mb-3" >
-						<div class="card-header bg-info">
+					<div class="card  mb-3" >
+						<div class="card-header ">
 							<i class="fas fa-table"></i>
 							Lista de <?php echo $nombre_pagina?>
 						</div>
