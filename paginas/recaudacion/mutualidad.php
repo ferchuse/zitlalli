@@ -88,7 +88,13 @@
 							</div>	
 							<div class="col-4">			
 								<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, 0,0)?>
-							</div>  
+							</div> 
+							<div class="col-2">
+								<label >Empresa:</label>
+							</div>	
+							<div class="col-4">			
+								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
+							</div> 
 						</div>
 					</form>
 					<hr>

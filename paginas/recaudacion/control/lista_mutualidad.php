@@ -17,24 +17,25 @@
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN unidades USING(id_unidades) 
 	LEFT JOIN conductores USING(id_conductores) 
-	WHERE mutualidad.id_administrador = {$_SESSION["id_administrador"]}
+	WHERE mutualidad.id_administrador = {$_COOKIE["id_administrador"]}
 	";
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND mutualidad.id_empresas = '{$_GET['id_empresas']}' ";
+	}
+	
+	
 	$consulta.=  " AND  DATE(fecha_mutualidad) BETWEEN '{$_GET['fecha_inicial']}'
 	AND '{$_GET['fecha_final']}'";
 	
-	foreach($_GET as $name=>$value){
-		$i++;
-		if($value != '' && $i > 2){ //Agrega filtros saltando fechas (2)
-			$consulta.= " AND  $name = '$value'";
-		}
+	if($_GET["id_usuarios"] != ""){
+		$consulta.=  " AND mutualidad.id_usuarios = '{$_GET['id_usuarios']}' ";
 	}
 	
-	// if($_GET["id_usuarios"] != ''){
-	// $consulta.= " AND id_usuarios = {$_GET["id_usuarios"]} ";
-	// }
-	// if($_GET["id_empresas"] != ''){
+	if($_GET["num_eco"] != ""){
+		$consulta.=  " AND num_eco = '{$_GET['num_eco']}' ";
+	}
+	
 	$consulta.= " ORDER BY id_mutualidad DESC";
-	// }
 	
 	
 	$result = mysqli_query($link,$consulta);
@@ -48,7 +49,7 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-		
+			
 			$filas[] = $fila ;
 			
 		}
@@ -80,12 +81,12 @@
 					<td class="text-center"> 
 						<?php if($fila["estatus_mutualidad"] != "Cancelado"){
 							$totales+=$fila['monto_mutualidad'];
-							?>
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_mutualidad']?>'>
-								<i class="fas fa-print"></i>
-							</button>
-							<?php
-							}
+						?>
+						<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_mutualidad']?>'>
+							<i class="fas fa-print"></i>
+						</button>
+						<?php
+						}
 						?>
 					</td>
 					<td class="text-center"><?php echo $fila['id_mutualidad'];?></td>
@@ -93,11 +94,11 @@
 					<td class="text-center"><?php echo $fila['nombre_recaudaciones'];?></td>
 					<td class="text-center"><?php echo $fila['nombre_empresas'];?></td>
 					<td class="text-center"><?php echo $fila['num_eco'];?></td>
-							<td class="text-center"><?php echo $fila['nombre_conductores'];?></td>
-							<td class="text-center"><?php echo $fila['monto_mutualidad'];?></td>
-							<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
-							<td class="text-center"><?php echo $fila['estatus_mutualidad'];?></td>
-							
+					<td class="text-center"><?php echo $fila['nombre_conductores'];?></td>
+					<td class="text-center"><?php echo $fila['monto_mutualidad'];?></td>
+					<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
+					<td class="text-center"><?php echo $fila['estatus_mutualidad'];?></td>
+					
 				</tr> 
 				<?
 				}
