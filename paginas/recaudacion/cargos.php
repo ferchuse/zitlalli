@@ -61,36 +61,28 @@
 							</div>
 						</div>
 						
-						<div class="row mb-2">
-							<div class="col-2">
+						<div class="row mb-1">
+							<div class="col-1">
 								<label for="nombre_condonaciones">Mes:</label>
 							</div>
-							<div class="col-4">			
+							<div class="col-2">			
 								<select class="form-control" name="mes_cargos">
-									<option value="202005">2020-05 </option>
-									<option value="202004">2020-04 </option>
-									<option value="202003">2020-03 </option>
-									<option value="202002">2020-02 </option>
-									<option selected value="202001">2020-01 </option>
-									<option value="201912">2019-12 </option>
-									<option value="201911">2019-11 </option>
-									<option value="201910">2019-10 </option>
-									<option value="201909">2019-09 </option>
-									<option value="201908">2019-08 </option>
-									<option value="201907">2019-07 </option>
-									<option value="201906">2019-06 </option>
-									<option value="201905">2019-05 </option>
-									<option value="201904">2019-04 </option>
-									<option value="201903">2019-03 </option>
-									<option value="201902">2019-02 </option>
-									<option value="201901">2019-01 </option>
-									<option value="201812">2018-12 </option>
+									<option <?= date("Ym") == "202012" ? "selected" : ""?> value="202012">2020-12 </option>
+									<option <?= date("Ym") == "202011" ? "selected" : ""?> value="202011">2020-11 </option>
+									<option <?= date("Ym") == "202010" ? "selected" : ""?> value="202010">2020-10 </option>
+									<option <?= date("Ym") == "202009" ? "selected" : ""?> value="202009">2020-09 </option>
+									<option <?= date("Ym") == "202008" ? "selected" : ""?> value="202008">2020-08 </option>
+									<option <?= date("Ym") == "202007" ? "selected" : ""?> value="202007">2020-07 </option>
+									<option <?= date("Ym") == "202006" ? "selected" : ""?> value="202006">2020-06 </option>
+									<option <?= date("Ym") == "202005" ? "selected" : ""?> value="202005">2020-05 </option>
+									<option <?= date("Ym") == "202004" ? "selected" : ""?> value="202004">2020-04 </option>
+									
 								</select>
 							</div> 
-							<div class="col-2">
+							<div class="col-1">
 								<label for="nombre_condonaciones">Estatus:</label>
 							</div>
-							<div class="col-4">			
+							<div class="col-2">			
 								<select class="form-control" name="estatus_unidades">
 									<option value="">Todos</option>
 									<option value="Alta">Alta </option>
@@ -99,13 +91,19 @@
 								</select>
 							</div>  
 						</div>
-						<div class="row mb-2"> 
-							<div class="col-2">
-								<label for="nombre_condonaciones">No. Economico:</label>
+						<div class="row mb-1"> 
+							<div class="col-1">
+								<label for="nombre_condonaciones">Num Eco:</label>
 							</div>	
-							<div class="col-4">			
+							<div class="col-2">			
 								<input class="form-control" type="text" name="num_eco" id="num_eco" >
-							</div>  
+							</div> 
+							<div class="col-1">
+								<label >Empresa:</label>
+							</div>	
+							<div class="col-2">			
+								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
+							</div> 
 						</div>
 					</form>
 					<hr>

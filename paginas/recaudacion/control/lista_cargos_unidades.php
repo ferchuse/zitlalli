@@ -67,6 +67,10 @@
 		$consulta.=  " AND num_eco = '{$_GET['num_eco']}' ";
 		
 	} 
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND unidades.id_empresas = '{$_GET['id_empresas']}' ";
+		
+	} 
 	
 	$consulta.=  "  ORDER BY num_eco "; 
 	

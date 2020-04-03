@@ -65,7 +65,7 @@
 							<div class="col-1">
 								<label >Empresa:</label>
 							</div>	
-							<div class="col-2">			
+							<div class="col-3">			
 								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
 							</div> 
 						</div>
