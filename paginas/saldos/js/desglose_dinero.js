@@ -63,6 +63,8 @@ function guardarRegistro(event){
 				alertify.success('Se ha agregado correctamente');
 				$('#modal_modal').modal('hide');
 				$('#form_filtros').submit();
+				
+				imprimirTicket(respuesta.nuevo_id)
 			}
 			else{
 				alertify.error('Ocurrio un error');
@@ -90,9 +92,24 @@ function listarRegistros(ev){
 		
 		$('#registros').html(respuesta);
 		
-		$('.imprimir').click(imprimirTicket);
-		
-		
+		$('.imprimir').click(function(){
+			
+			var id_registro = $(this).data("id_registro");
+			var boton = $(this);
+			var icono = boton.find("fas");
+			
+			boton.prop("disabled", true);
+			icono.toggleClass("fa-print fa-spinner fa-spin");
+			
+			imprimirTicket(id_registro).always(function(){
+				
+				boton.prop("disabled", false);
+				icono.toggleClass("fa-print fa-spinner fa-spin");
+				
+			})
+			
+			
+		});
 	});
 }
 
@@ -171,15 +188,11 @@ function cadena_numeros (){
 	}); 
 }
 
-function imprimirTicket(event){
-	var id_registro = $(this).data("id_registro");
-	var boton = $(this);
-	var icono = boton.find("fas");
+
+
+function imprimirTicket(id_registro){
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
-	
-	$.ajax({
+	return	$.ajax({
 		url: "impresion/imprimir_desglose.php",
 		data:{
 			id_registro : id_registro
@@ -198,10 +211,5 @@ function imprimirTicket(event){
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
-		}).always(function(){
-		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
 	});
 }	
