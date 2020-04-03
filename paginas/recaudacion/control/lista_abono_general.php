@@ -24,7 +24,7 @@
 	LEFT JOIN usuarios USING (id_usuarios)
 	
 	WHERE 
-	usuarios.id_administrador = {$_SESSION["id_administrador"]}
+	usuarios.id_administrador = {$_COOKIE["id_administrador"]}
 	AND DATE(fecha_abonogeneral) BETWEEN '{$_GET['fecha_inicial']}'
 	AND '{$_GET['fecha_final']}'";
 	
@@ -34,6 +34,10 @@
 	
 	if($_GET["id_usuarios"] != ""){
 		$consulta.=  " AND abono_general.id_usuarios = '{$_GET['id_usuarios']}' ";
+	}
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND id_empresas = '{$_GET['id_empresas']}' ";
 	}
 	
 	$consulta.=  " ORDER BY  id_abonogeneral ";

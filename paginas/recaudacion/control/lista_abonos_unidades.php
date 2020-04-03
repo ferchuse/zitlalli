@@ -37,6 +37,10 @@
 		$consulta.= " AND abonos_unidades.id_usuarios = '{$_GET["id_usuarios"]}' ";
 	}
   
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND unidades.id_empresas = '{$_GET['id_empresas']}' ";
+	}
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){

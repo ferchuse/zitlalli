@@ -102,6 +102,12 @@
 									<option>Cancelado</option>
 								</select>
 							</div>  
+							<div class="col-1">
+								<label >Empresa:</label>
+							</div>	
+							<div class="col-2">			
+								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
+							</div> 
 						</div>
 					</form>
 					<hr>
@@ -148,6 +154,7 @@
 		
 		
 		<?php include("../../scripts.php")?>
+			<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		<script src="js/abonos_unidades.js?v=<?php echo date('Y-m-d-H:i:s'); ?>"></script>
 	</body>
 	
