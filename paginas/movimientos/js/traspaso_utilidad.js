@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	//=====PROMESA DE LISTAR CONDUCTOR========
 	listarRegistros();
-	$("#propietarios").find("select").prop("disabled", true).val("");
+	// $("#propietarios").find("select").prop("disabled", true).val("");
 	//========DAR LCIK EN BOTON DE NUEVO=============
 	$('#form_filtro').on('submit', function filtrar(){
 		console.log("fultrar")
@@ -11,23 +11,8 @@ $(document).ready(function(){
 	});
 	
 	
-	$('input[name="tipo_benef"]').on('change',function(){
-		console.log("change_beneficiario", $(this).val())
-		
-		if($(this).val() == 'Externo'){
-			$("#externo").find("select").prop("disabled", false);
-			$("#externo").prop("hidden", false);
-			$("#propietarios").find("select").prop("disabled", true);
-			$("#propietarios").prop("hidden", true);
-		}
-		else{
-			$("#externo").find("select").prop("disabled", true);
-			$("#externo").prop("hidden", true);
-			$("#propietarios").find("select").prop("disabled", false);
-			$("#propietarios").prop("hidden", false);
-		}
-		
-	});
+	
+	
 	$('#nuevo').on('click',function(){
 		$('#form_edicion')[0].reset();
 		$('.modal-title').text('Nuevo Traspaso');
@@ -110,8 +95,7 @@ $(document).ready(function(){
 	});
 	
 	
-	//==========GUARDAR NUEVA EMPRESA============
-	$('#form_edicion').on('submit',function(event){
+	$('#form_edicion').on('submit', function guardarTraspaso(event){
 		event.preventDefault();
 		let form = $(this);
 		let boton = form.find(':submit');
@@ -134,6 +118,7 @@ $(document).ready(function(){
 				alertify.success('Se ha agregado correctamente');
 				$('#modal_edicion').modal('hide');
 				listarRegistros();
+				imprimirTicket(respuesta.insert_id);
 				}else{
 				alertify.error('Ocurrio un error');
 			}
@@ -142,50 +127,6 @@ $(document).ready(function(){
 			icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
 		});
 	})
-	
-	
-	//=========BUSCAR RECIBO DE SALIDA=========
-	$("#nombre_empresa").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#nombre_beneficiario").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#buscar_salida").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#fecha_recibo").change(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		console.log(valor_filtro);
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html(''); 
-		}
-	});
 	
 	
 	
@@ -212,8 +153,26 @@ function listarRegistros(){
 		}).done(function(respuesta){
 		
 		$("#tabla_registros").html(respuesta)
-		// $("#dataTable").dataTable();
-		$(".imprimir").click(imprimirTicket);
+		
+		
+		$(".imprimir").click(function (){
+			var id_registro = $(this).data("id_registro");
+			var boton = $(this);
+			var icono = boton.find("fas");
+			
+			boton.prop("disabled", true);
+			icono.toggleClass("fa-print fa-spinner fa-spin");
+			
+			imprimirTicket(id_registro).always(function(){
+				
+				boton.prop("disabled", false);
+				icono.toggleClass("fa-print fa-spinner fa-spin");
+				
+			});
+			
+			
+		});
+		
 		$(".cancelar").click(confirmaCancelacion);
 		
 		
@@ -278,15 +237,10 @@ function obtenerFecha(){
 	return today = `${yyyy}-${mm}-${dd}`;
 }
 
-function imprimirTicket(event){
-	var id_registro = $(this).data("id_registro");
-	var boton = $(this);
-	var icono = boton.find("fas");
+function imprimirTicket(id_registro){
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
-	$.ajax({
+	return $.ajax({
 		url: "impresion/imprimir_traspaso.php",
 		data:{
 			id_registro : id_registro,
@@ -295,13 +249,11 @@ function imprimirTicket(event){
 		}).done(function (respuesta){
 		
 		$("#impresion").html(respuesta);
-		window.print();
-		}).always(function(){
-		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
-	});
+		setTimeout( function(){
+			window.print();
+			
+		}, 500)
+	})
 }
 
 function agregarUnidad(event){

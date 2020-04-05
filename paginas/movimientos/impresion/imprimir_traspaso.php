@@ -37,16 +37,14 @@
 	?> 
 	<div class="media_carta">
 		<div class="row">
-			<div class="col-12 text-center" >
-				<img  hidden 
-				src="../../img/<?php// echo $_SESSION["logo"]?>" class="img-fluid">
+			<div class="col-2 text-center" >
+				<img  src="../../img/logo.jpg" class="img-fluid">
 			</div>
-			<div class="col-12 text-center">
-				<h4><?php// echo $filas["nombre_empresas"]?></h4>
+			<div class="col-7 text-center">
+				<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
+				<legend>Traspaso de Utilidad</legend> 
 			</div>
 		</div>
-		
-		<legend>Traspaso de Utilidad</legend> 
 		
 		<div class="row">
 			<div class="col-6">
@@ -82,11 +80,11 @@
 		<div class="row">
 			<div class="col-12 text-right">
 				<b>Monto:</b> $<?php echo $filas[0]["monto_traspaso"];?>
-				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p><br>
+				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p>
 				<p>Concepto: <?php echo $filas[0]["concepto_traspaso"];?></p>
 			</div>	 
 		</div>
-		<br>
+		
 		<div class="row text-center">
 			<div class="col-4 ">
 			</div>
@@ -100,28 +98,35 @@
 		<div class="row">
 			<div class="col-6 border-top text-center">
 				AUTORIZA<br>
-					
+				
 			</div>
 			<div class="col-6 text-center">
-				ENTREGA: <br><?php echo $filas[0]["nombre_usuarios"];?><br>
+				ENTREGA: <br><?php echo $filas[0]["nombre_completo_usuarios"];?><br>
 				Fecha Elaboracion: <?php echo $filas[0]["fecha_traspaso"];?><br>
 			</div>
 		</div> 
 	</div> 
 	
 	<br>
+	<br>
+	<br>
+	
+	
+	
+	
+	
+	
 	<div class="media_carta">
 		<div class="row">
-			<div class="col-12 text-center" >
-				<img  hidden 
-				src="../../img/<?php// echo $_SESSION["logo"]?>" class="img-fluid">
+			<div class="col-2 text-center" >
+				<img  src="../../img/logo.jpg" class="img-fluid">
 			</div>
-			<div class="col-12 text-center">
-				<h4><?php// echo $filas["nombre_empresas"]?></h4>
+			<div class="col-7 text-center">
+				<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
+				<legend>Traspaso de Utilidad</legend> 
 			</div>
 		</div>
 		
-		<legend>Traspaso de Utilidad</legend> 
 		
 		<div class="row">
 			<div class="col-6">
@@ -153,15 +158,15 @@
 			<?php 	
 			}
 		?>
-		 
+		
 		<div class="row">
 			<div class="col-12 text-right">
 				<b>Monto:</b> $<?php echo $filas[0]["monto_traspaso"];?>
-				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p><br>
+				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p>
 				<p>Concepto: <?php echo $filas[0]["concepto_traspaso"];?></p>
 			</div>	 
 		</div>
-		<br>
+	
 		
 		<div class="row text-center">
 			<div class="col-12 border-top text-center">
@@ -171,14 +176,14 @@
 			
 		</div>
 		<br>
-	
+		
 		<div class="row">
 			<div class="col-6 border-top text-center">
 				AUTORIZA<br>
 				
 			</div>
 			<div class="col-6 text-center">
-				ENTREGA: <br><?php echo $filas[0]["nombre_usuarios"];?><br>
+				ENTREGA: <br><?php echo $filas[0]["nombre_completo_usuarios"];?><br>
 				Fecha Elaboracion: <?php echo $filas[0]["fecha_traspaso"];?><br>
 			</div>
 		</div> 

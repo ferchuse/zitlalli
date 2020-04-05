@@ -8,7 +8,7 @@
 	
 	
 	$insert_traspaso  ="INSERT INTO traspaso_utilidad SET 
-	fecha_traspaso = CURTIME(),	
+	fecha_traspaso = CURDATE(),	
 	fecha_aplicacion = '{$_POST['fecha_aplicacion']}',
 	referencia_bancaria = '{$_POST['referencia_bancaria']}',
 	concepto_traspaso = '{$_POST["concepto_traspaso"]}',

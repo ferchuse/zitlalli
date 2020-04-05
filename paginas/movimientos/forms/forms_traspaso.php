@@ -98,29 +98,15 @@
 							<input type="number" class="form-control " id="monto_traspaso" name="monto_traspaso" readonly value="0" >
 						</div>
 					</div>
-					<div class="row form-group" >
-						<div class="col-4">
-							<label for="">Tipo de Beneficiario:</label>
-						</div>
-						<div class=" col-4">
-							<label><input type="radio" checked  name="tipo_benef" value="Externo"> Externo</label>
-							<label><input type="radio"  name="tipo_benef" value="Unidades"> Unidades</label>
-						</div>
-					</div>
 					
-					<div class="form-group col-6" id="externo">
-						<label for="">BENEFICIARIO</label> 
-						<?php echo generar_select($link, "beneficiarios", "nombre_beneficiarios", "nombre_beneficiarios", false, false, false, 0, 0, 'beneficiario'); ?>
-					</div> 
-					
-					<div class="form-group col-6" id="propietarios" hidden>
+					<div class="form-group col-6" id="propietarios" >
 						<label for="">BENEFICIARIO</label>
 						<?php echo generar_select($link, "propietarios", "nombre_propietarios", "nombre_propietarios" , false, false, false, 0, 0, 'beneficiario'); ?>
 					</div> 
 					
 					<div class="form-group">
 						<label for="concepto_traspaso">Concepto</label>
-						<input type="text" class="form-control" id="concepto_traspaso" name="concepto_traspaso" >
+						<input type="text" class="form-control" id="concepto_traspaso" name="concepto_traspaso" required >
 					</div>
 				</div>
 				<!-- Modal footer -->

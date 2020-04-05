@@ -17,7 +17,7 @@
 	LEFT JOIN unidades USING(id_unidades)
 	LEFT JOIN usuarios USING(id_usuarios)
 	
-	WHERE usuarios.id_administrador = {$_SESSION["id_administrador"]}
+	WHERE usuarios.id_administrador = {$_COOKIE["id_administrador"]}
 	";
 	
 	$consulta.=  " 

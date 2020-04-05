@@ -86,7 +86,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	$('#form_edicion').on('submit',function guardarCondonacion(event){
+	$('#form_edicion').on('submit', function guardarCondonacion(event){
 		
 		//guarda en condonaciones, 
 		event.preventDefault();
@@ -108,7 +108,7 @@ $(document).ready(function(){
 				alertify.success('Guardado correctamente');
 				$('#modal_edicion').modal('hide');
 				listarRegistros();
-				
+				imprimirTicket(respuesta.insert_id);
 			}
 			else{
 				alertify.error('Ocurrio un error');
@@ -146,7 +146,22 @@ function listarRegistros(){
 		$('#tabla_registros').html(respuesta);
 		
 		//Imprimir Ticket
-		$('.imprimir').on('click', imprimirTicket);
+		$('.imprimir').on('click', function(){
+			var id_registro = $(this).data("id_registro");
+			var boton = $(this);
+			var icono = boton.find("fas");
+			
+			boton.prop("disabled", true);
+			icono.toggleClass("fa-print fa-spinner fa-spin");
+			
+			
+			imprimirTicket(id_registro).always(function(){
+				
+				boton.prop("disabled", false);
+				icono.toggleClass("fa-print fa-spinner fa-spin");
+				
+			});
+		});
 		
 		//=========ELIMINAR=========
 		$('.cancelar').click(confirmaCancelacion);
@@ -200,19 +215,12 @@ function confirmaCancelacion(event){
 	}
 }
 
-function imprimirTicket(event){
-	
-		
-		var id_registro = $(this).data("id_registro");
-		var boton = $(this);
-		var icono = boton.find("fas");
-		
-		boton.prop("disabled", true);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
+function imprimirTicket(id_registro){
 	
 	
-	$.ajax({
+	
+	
+	return $.ajax({
 		url: "impresion/imprimir_condonacion.php",
 		data:{
 			id_registro : id_registro
@@ -231,11 +239,6 @@ function imprimirTicket(event){
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
-		}).always(function(){
-		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
 	});
 }
 
