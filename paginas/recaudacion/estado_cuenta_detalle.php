@@ -102,7 +102,7 @@
 	) AS motivo,
 	monto AS cargo,
 	0 AS abono,
-
+	
 	concepto_traspaso AS observaciones
 	FROM
 	traspaso_utilidad
@@ -132,7 +132,7 @@
 	id_unidades = {$_GET['id_unidades']}
 	AND DATE(fecha_condonaciones) BETWEEN '{$_GET["fecha_inicial"]}' AND '{$_GET["fecha_final"]}'
 	
-		
+	
 	ORDER BY fecha_estado_cuenta
 	";
 	
@@ -159,7 +159,7 @@
     <title>Detalle Estado de Cuenta</title>
 		<?php include('../../styles.php')?>
 	</head>
-	<body id="page-top">
+	<body id="page-top  d-print-none">
     <?php include("../../navbar.php")?>
     <div id="wrapper" class="">
 			<?php include("../../menu.php")?>	
@@ -167,12 +167,14 @@
 				<div class="container-fluid">
 					
           <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
+          <ol class="breadcrumb d-print-none">
             <li class="breadcrumb-item">
               <a href="#">Saldos</a>
 						</li>
             <li class="breadcrumb-item active">Estado de Cuenta de Unidad </li>
-					</ol> 
+					</ol>
+					
+					
 					<pre hidden >
 						<?php echo $consulta;?>
 					</pre>
@@ -192,7 +194,7 @@
 					</div>
 					
 					
-					<form id="form_filtro" hidden autocomplete="off">
+					<form id="form_filtro" hidden autocomplete="off" >
 						<div class="row mb-2">
 							<div class="col-2">
 								<label for="nombre_condonaciones">Fecha Inicial:</label>
@@ -227,6 +229,16 @@
 					<hr>
 					
 					<div class="d-print-block" id="reporte_impresion">
+						
+						<div class="row ">
+							<div class="col-sm-2 text-center" >
+								<img  src="../../img/logo.jpg" class="img-fluid">
+							</div>
+							<div class="col-sm-5 text-center">
+								<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
+								<legend>Recibo de Salida</legend> 
+							</div>
+						</div>
 						<legend>
 							Estado de Cuenta de la Unidad <b><?php echo $_GET["num_eco"]?></b>
 							Propietario <b><?php echo $_GET["nombre_propietarios"]?></b>
