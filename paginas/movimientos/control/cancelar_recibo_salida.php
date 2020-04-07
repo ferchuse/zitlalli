@@ -10,7 +10,7 @@
 	$cancela_abono = "UPDATE recibosSalidas
 	
 	SET
-	estatus_reciboSalidas = 'Cancelado' ,
+	estatus_recibosalidas = 'Cancelado' ,
 	datos_cancelacion='Usuario: {$_GET["nombre_usuarios"]} <br> Fecha: $fecha_cancelacion'
 	WHERE  id_reciboSalidas = {$_GET["id_registro"]}";
 	
