@@ -1,3 +1,4 @@
+var printService = new WebSocketPrinter();
 
 
 $('#form_filtro').on('submit', function filtrar(event){
@@ -26,8 +27,19 @@ function listarRegistros(){
 		}).done(function(respuesta){
 		
 		$("#tabla_registros").html(respuesta)
-		// $("#dataTable").dataTable();
-		$(".imprimir").click(imprimirTicket);
+		$(".imprimir").click(function(){
+			
+			let id_registro = $(this).data("id_registro");
+			
+			boton.prop('disabled',true);
+			icono.toggleClass('fa-print fa-spinner fa-spin ');
+			imprimirTicket(id_registro).always(function(){
+				
+				boton.prop('disabled',false);
+				icono.toggleClass('fa-print fa-spinner fa-spin');
+				
+			});
+		});
 		$(".cancelar").click(confirmaCancelacion);
 		
 		
@@ -41,29 +53,29 @@ function listarRegistros(){
 }
 
 
-function imprimirTicket(event){
+function imprimirTicket(id_registro){
 	console.log("imprimirTicket()");
-	var id_registro = $(this).data("id_registro");
-	var url = $(this).data("url");
-	var boton = $(this);
-	var icono = boton.find(".fas");
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
-	$.ajax({
+	return $.ajax({
 		url: "impresion/imprimir_abono_unidades.php",
 		data:{
 			id_registro : id_registro
 		}
 		}).done(function (respuesta){
 		
-		$("#ticket").html(respuesta); 
-		window.print();
-		}).always(function(){
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
 		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
 		
 	});
 }
