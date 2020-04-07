@@ -198,7 +198,7 @@ function imprimirTicket(id_registro){
 	
 	
 	return $.ajax({
-		url: "impresion/imprimir_traspaso.php",
+		url: "impresion/imprimir_salida.php",
 		data:{
 			id_registro : id_registro,
 			nombre_usuarios : $("#sesion_nombre_usuarios").html()
