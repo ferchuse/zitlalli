@@ -7,7 +7,7 @@
 	$fecha_cancelacion = date("Y-m-d H:i:s");
 	//Cancelar Abono
 	
-	$cancela_abono = "UPDATE recibosSalidas
+	$cancela_abono = "UPDATE recibossalidas
 	
 	SET
 	estatus_recibosalidas = 'Cancelado' ,
