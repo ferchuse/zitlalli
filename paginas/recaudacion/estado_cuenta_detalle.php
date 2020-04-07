@@ -236,7 +236,7 @@
 							</div>
 							<div class="col-sm-5 text-center">
 								<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
-								<legend>Recibo de Salida</legend> 
+								<legend>Estado de Cuenta</legend> 
 							</div>
 						</div>
 						<legend>
