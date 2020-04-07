@@ -9,12 +9,12 @@
 	
 	
 	
-	$consulta = "SELECT * FROM recibosSalidas
+	$consulta = "SELECT * FROM recibossalidas
 	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN beneficiarios USING(id_beneficiarios) 
 	LEFT JOIN motivos_salida USING(id_motivosSalida)
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE usuarios.id_administrador = {$_SESSION["id_administrador"]}
+	WHERE usuarios.id_administrador = {$_COOKIE["id_administrador"]}
 	";
 	
 	$consulta.=  " 

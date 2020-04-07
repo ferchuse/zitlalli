@@ -18,7 +18,7 @@ $(document).ready(function(){
 		$('#modal_salida').modal('show');
 	}); 
 	
-	$('#form_salida').on('submit',function(event){
+	$('#form_salida').on('submit', function guardar(event){
 		event.preventDefault();
 		let form = $(this);
 		let boton = form.find(':submit');
@@ -44,7 +44,7 @@ $(document).ready(function(){
 			method: 'POST',
 			dataType: 'JSON',
 			data:{
-				tabla: 'recibosSalidas',
+				tabla: 'recibossalidas',
 				datos: datos
 			}
 			}).done(function(respuesta){
