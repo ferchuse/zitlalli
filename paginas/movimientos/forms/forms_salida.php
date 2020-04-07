@@ -25,10 +25,7 @@
 						<label for="id_motivosSalida">MOTIVO DE LA SALIDA</label>
 						<?php echo generar_select($link, "motivos_salida", "id_motivosSalida", "nombre_motivosSalida"); ?>
 					</div>
-					<div class="form-group">
-						<label for="saldo_reciboSalidas">SALDO</label>
-						<input type="number" readonly class="form-control" id="saldo_reciboSalidas" name="saldo_reciboSalidas" required>
-					</div> 
+					
 					<div class="form-group">
 						<label for="monto_reciboSalidas">MONTO</label>
 						<input type="number" class="form-control" id="monto_reciboSalidas" name="monto_reciboSalidas" required>

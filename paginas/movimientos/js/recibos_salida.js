@@ -29,7 +29,7 @@ $(document).ready(function(){
 		datos.push({
 			name: 'fecha_reciboSalidas',
 			value : fecha
-		
+			
 		});
 		datos.push({
 			name: 'id_usuarios',
@@ -51,7 +51,8 @@ $(document).ready(function(){
 			if(respuesta.estatus == 'success'){
 				alertify.success('Se ha agregado correctamente');
 				$('#modal_salida').modal('hide');
-				listarRecibos();
+				listarRegistros();
+				imprimirTicket(respuesta.folio);
 				}else{
 				alertify.error('Ocurrio un error');
 			}
@@ -140,8 +141,24 @@ function listarRegistros(){
 		}).done(function(respuesta){
 		
 		$("#tabla_registros").html(respuesta)
-		// $("#dataTable").dataTable();
-		$(".imprimir").click(imprimirTicket);
+		
+		$(".imprimir").click(function (){
+			var id_registro = $(this).data("id_registro");
+			var boton = $(this);
+			var icono = boton.find("fas");
+			
+			boton.prop("disabled", true);
+			icono.toggleClass("fa-print fa-spinner fa-spin");
+			
+			imprimirTicket(id_registro).always(function(){
+				
+				boton.prop("disabled", false);
+				icono.toggleClass("fa-print fa-spinner fa-spin");
+				
+			});
+			
+			
+		});
 		$(".cancelar").click(confirmaCancelacion);
 		
 		
@@ -177,16 +194,11 @@ function obtenerFecha(){
 	return today = `${yyyy}-${mm}-${dd}`;
 }
 
-function imprimirTicket(event){
-	var id_registro = $(this).data("id_registro");
-	var boton = $(this);
-	var icono = boton.find("fas");
+function imprimirTicket(id_registro){
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
-	$.ajax({
-		url: "impresion/imprimir_salida.php",
+	return $.ajax({
+		url: "impresion/imprimir_traspaso.php",
 		data:{
 			id_registro : id_registro,
 			nombre_usuarios : $("#sesion_nombre_usuarios").html()
@@ -194,14 +206,12 @@ function imprimirTicket(event){
 		}).done(function (respuesta){
 		
 		$("#impresion").html(respuesta);
-		window.print();
-		}).always(function(){
-		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
-	});
-}			
+		setTimeout( function(){
+			window.print();
+			
+		}, 500)
+	})
+}
 
 
 
@@ -246,27 +256,27 @@ function confirmaCancelacion(event){
 	}
 }
 
+
+function obtenerSaldo(){
+	console.log("obtenerSaldo()")
 	
-	function obtenerSaldo(){
-		console.log("obtenerSaldo()")
-		
-		 $.ajax({
-			url: "control/obtener_saldo_empresa.php",
-			dataType:"JSON",
-			data: {
-				id_empresas: $("#id_empresas").val()
-				
-			 }
-			}).done(function (respuesta){
-			if(respuesta.result == "success"){
-				$("#saldo_reciboSalidas").val(respuesta.saldo_empresa)
-			}
-			else{
-				alertify.error(respuesta.result);
-				
-			}
+	$.ajax({
+		url: "control/obtener_saldo_empresa.php",
+		dataType:"JSON",
+		data: {
+			id_empresas: $("#id_empresas").val()
 			
-			}).always(function(){
+		}
+		}).done(function (respuesta){
+		if(respuesta.result == "success"){
+			$("#saldo_reciboSalidas").val(respuesta.saldo_empresa)
+		}
+		else{
+			alertify.error(respuesta.result);
+			
+		}
 		
-		});
-	}
+		}).always(function(){
+		
+	});
+}
