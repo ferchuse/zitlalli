@@ -160,7 +160,8 @@
     <?php 
 			include("../../scripts.php");
 		?>
-    <script src="js/mutualidad.js" ></script>
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+    <script src="js/mutualidad.js?v=<?php echo date('Y-m-d-H:i:s'); ?>" ></script>
 		
 	</body>
 </html>
