@@ -639,6 +639,14 @@ function imprimirPrueba(){
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
 		}).always(function(){
 		
 		boton.prop("disabled", false);
@@ -670,6 +678,14 @@ function imprimirPago(id_pagos){
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
+		});
+		
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
 		});
 		}).always(function(){
 		

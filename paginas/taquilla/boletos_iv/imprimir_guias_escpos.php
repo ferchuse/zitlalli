@@ -83,9 +83,9 @@
 			$total_boletos += $fila["cantidad"];
 			
 			
-			$respuesta.=  $fila["cantidad"]."\x09";
-			$respuesta.=  $fila["destino"]."\x09"."\x09";
-			$respuesta.="$". $fila["precio_boletos"]."\x09"."\x09";
+			$respuesta.=  $fila["cantidad"]."\x09 ";
+			$respuesta.=  $fila["destino"]."\x09";
+			$respuesta.="$". number_format($fila["precio_boletos"],0)."\x09";
 			$respuesta.= "$" .	number_format($importe,0);
 			
 			$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
