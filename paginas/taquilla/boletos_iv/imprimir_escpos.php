@@ -49,7 +49,7 @@
 			$respuesta.=   "\x1b"."@";
 			$respuesta.= "\x1b"."E".chr(1); // Bold
 			$respuesta.= "!";
-			$respuesta.=   "GRUPO SAUCES \n";
+			$respuesta.=   "GRUPO ZITLALTEPEC Y PIRATAS DEL CARIBE \n";
 			$respuesta.=  "\x1b"."E".chr(0); // Not Bold
 			$respuesta.= "!\x10";
 			$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
