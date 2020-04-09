@@ -15,8 +15,9 @@
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label for="fecha_abonogeneral">Taquilla:</label>
+							<input redonly type="text" class="form-control" value="Zumpango" id="nombre_recaudaciones" name="nombre_recaudaciones" required>
 							
-							<?php echo generar_select($link, "recaudaciones", "id_recaudaciones", "nombre_recaudaciones", false, false, true, $_SESSION["id_recaudaciones"])?>
+							
 						</div>
 						
 					</div>
@@ -27,7 +28,7 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="fecha_abonogeneral">Hora:</label>
-								<input type="time" class="form-control" value="<?php echo date("H:i:s");?>" id="hora_corridas" name="hora_corridas" required>
+							<input type="time" class="form-control" value="<?php echo date("H:i:s");?>" id="hora_corridas" name="hora_corridas" required>
 						</div>
 					</div>
 					<div class="form-row">
@@ -54,7 +55,7 @@
 					
 					<hr>
 					
-				
+					
 					
 				</div>
 				<!-- Modal footer -->

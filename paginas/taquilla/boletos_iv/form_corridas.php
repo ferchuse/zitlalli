@@ -31,7 +31,7 @@
 					<div class="form-row">
 						<div class="form-group col-6">
 							<label for="taquilla">Taquilla:</label>
-							<input class="form-control" name="taquilla" value="Indios Verdes" readonly>
+							<input class="form-control" name="taquilla" value="Zumpango" readonly>
 						</div>
 					</div>
 					<div class="form-row">
@@ -47,11 +47,11 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="origen">Origen:</label>
-							<input class="form-control" name="origen" value="Indios Verdes" readonly>
+							<input class="form-control" name="origen" value="Zumpango" readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="destino">Destino:</label>
-							<input class="form-control" name="destino" value="Sauces" readonly>
+							<input class="form-control" name="destino" value="La Raza" readonly>
 						</div>
 					</div>			
 				</div>

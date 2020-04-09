@@ -27,7 +27,14 @@ function onLoad(){
 	// }
 	// });
 	
-	
+	$('form').on('keydown',function( event){
+		
+		if(event.which == 13){
+			event.preventDefault();
+			console.log("Enter, no enviar");
+			return false;
+		}
+	});
 	
 	$("#lista_boletos").on("click", ".cancelar", confirmaCancelacion);
 	$("#lista_boletos").on("click", ".imprimir", function(){
