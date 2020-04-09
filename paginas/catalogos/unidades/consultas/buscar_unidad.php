@@ -4,9 +4,9 @@
 	$link = Conectarse();
 	$respuesta = Array();
 	
-	$consulta = "SELECT * FROM parque_vehicular 
+	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas) 
-	WHERE parque_vehicular.num_eco = '{$_GET["num_eco"]}'
+	WHERE unidades.num_eco = '{$_GET["num_eco"]}'
 	";
 	
 	
