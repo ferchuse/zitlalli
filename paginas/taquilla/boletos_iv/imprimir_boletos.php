@@ -42,7 +42,7 @@
 	<div class="ml-5 mt-5">
 		
 		<?php foreach($filas as $i => $item){?>
-			<h4 class="text-center">GRUPO SAUCES</h4>
+			<h4 class="text-center">GRUPO ZITLALTEPEC Y PIRATAS DEL CARIBE	</h4>
 			<div class="form-row mb-2">
 				<b >Folio:</b>
 				<?php echo $item["id_boletos"]?>

@@ -11,7 +11,7 @@ function onLoad(){
 	listarCorridas();
 	// listaBoletos();
 	
-
+	
 	$("#form_filtros").on("submit", filtrarRegistros);
 	
 	$("#btn_test").on("click", imprimirPrueba);
@@ -50,7 +50,7 @@ function onLoad(){
 	});
 	$("#lista_corridas").on("change", ".select", sumarCorridas);
 	
-		$("#lista_corridas").on("change", "#check_todos", selectTodos);
+	$("#lista_corridas").on("change", "#check_todos", selectTodos);
 	
 	$(".nuevo").on('click',function(){
 		console.log("Nuevo")
@@ -311,6 +311,15 @@ function imprimirGuia(id_corridas){
 			'raw_content': respuesta
 		});
 		
+		
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
+		});
+		
 	});
 	
 	
@@ -391,7 +400,7 @@ function listarCorridas(){
 	$.ajax({
 		url: 'boletos_iv/lista_corridas.php',
 		data: $("#form_filtros").serialize()
-	}).done(function(respuesta){
+		}).done(function(respuesta){
 		$("#lista_corridas").html(respuesta)
 		
 		}).always(function(){
@@ -591,6 +600,15 @@ function imprimirESCPOS(boletos){
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
+		});
+		
+		
+		$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+			}
 		});
 		}).always(function(){
 		

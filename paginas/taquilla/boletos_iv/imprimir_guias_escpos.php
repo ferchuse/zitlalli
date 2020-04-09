@@ -45,7 +45,7 @@
 		
 		$respuesta ="";
 		
-		$empresa = "GRUPO SAUCES";
+		$empresa = "GRUPO ZITLALTEPEC Y PIRATAS DEL CARIBE	";
 		
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
