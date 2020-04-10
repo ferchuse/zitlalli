@@ -1,8 +1,6 @@
 <?php 
 	
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
-	// include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
@@ -41,7 +39,8 @@
 	LEFT JOIN tarjetas USING (id_unidades)
 	WHERE
 	num_eco = '{$_GET['num_eco']}'
-	
+	AND estatus_tarjetas <> 'Cancelado' 
+	ORDER BY fecha_tarjetas DESC LIMIT 1 
 	";
   
 	$respuesta["consulta"] = "$consulta";
