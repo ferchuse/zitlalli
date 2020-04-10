@@ -259,5 +259,13 @@ function imprimirTicket(id_registro){
 function agregarUnidad(event){
 	console.log("agregarUnidad")
 	$("#unidades .form-row:first").clone(true).appendTo("#unidades");
+	$(".quitar_unidad").click(quitarUnidad);
+}	
+function quitarUnidad(event){
+	console.log("quitarUnidad")
+	if($("#unidades .form-row").length > 1){
+		
+		$(this).closest(".form-row").remove();
+	}
 	
 }	
