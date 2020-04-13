@@ -37,11 +37,11 @@
 							<div class="form-group">
 								<label for="dias">Dias de Trabajo: </label>
 								<select id="dias" name="dias" CLASS="form-control" required>
-									<option>30</option>
-									<option>60</option>
-									<option>90</option>
+									<option >30</option>
+									<option >60</option>
+									<option >90</option>
 								</select>
-							</div>
+								</div>
 							<div class="form-group">
 								<label for="fecha_inicio">Fecha Inicial:</label>
 								<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?= date("Y-m-d")?>" required>

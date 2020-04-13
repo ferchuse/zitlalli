@@ -6,12 +6,10 @@
 	
 	
 	
-	$consulta = "SELECT * FROM ordenes_trabajo 
-	LEFT JOIN empresas USING(id_empresas)
-	LEFT JOIN beneficiarios USING(id_beneficiarios) 
-	LEFT JOIN motivos_salida USING(id_motivosSalida) 
+	$consulta = "SELECT * FROM ordenes_trabajo
+	LEFT JOIN conductores USING(id_conductores)
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE id_reciboSalidas= '{$_GET['id_registro']}'";
+	WHERE id_ordenes= '{$_GET['id_registro']}'";
 	
 	
 	$result = mysqli_query($link,$consulta); 
@@ -19,14 +17,14 @@
 		
 		if( mysqli_num_rows($result) == 0){
 			
-			die("<div class='alert alert-danger'>Tarjeta No encontrada</div>");
+			die("<div class='alert alert-danger'>Registro no encontrado</div>");
 			
 			
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
 			
-			$filas = $fila ;
+			$orden = $fila ;
 			
 		}
 	}
@@ -73,22 +71,22 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-4">VÁLIDA POR <u><?= $fila["dias"]?> </u> DIAS</div>
-						<div class="col-sm-4">A PARTIR DEL DIA <u><?= $fila["fecha_inicial"]?></u> </div>
-						<div class="col-sm-4">AL DIA <u><?= $fila["fecha_Ffinal"]?></u> </div>
+						<div class="col-sm-4">VÁLIDA POR <u><b><?= $orden["dias"]?> </b> </u> DIAS</div>
+						<div class="col-sm-4">A PARTIR DEL DIA <u><?= $orden["fecha_inicio"]?></u> </div>
+						<div class="col-sm-4">AL DIA <u><?= $orden["fecha_fin"]?></u> </div>
 					</div>
 					<div class="row">
-						<div class="col-sm-4">ECO <u><?= $fila["num_eco"]?></u></div>
-						<div class="col-sm-2">PLANTA (<?= $fila["fecha_inicial"]?>)  POSTURA (<?= $fila["fecha_inicial"]?>) </div>
-						<div class="col-sm-2">DERROTERO <u><?= $fila["nombre_derroteros"]?></u> </div>
+						<div class="col-sm-4">ECO <u><?= $orden["num_eco"]?></u></div>
+						<div class="col-sm-3">PLANTA (<?= $orden["tipo_conductor"]?> )  POSTURA (<?= $orden["tipo_conductor"]?> ) </div>
+						<div class="col-sm-3">DERROTERO <u><?= $orden["nombre_derroteros"]?></u> </div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12">NOMBRE DEL OPERADOR <u><?= $fila["nombre_operadores"]?> </u></div>
+						<div class="col-sm-12">NOMBRE DEL OPERADOR <u><?= $orden["nombre_conductores"]?> </u></div>
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-6">LICENCIA TIPO FEDERAL(<?= $fila["fecha_inicial"]?>)  POSTURA (<?= $fila["fecha_inicial"]?>) </div>
-						<div class="col-sm-4">VENCIMIENTO DE LA LICENCIA <?= $fila["vencimiento_licencia"]?> </div>
+						<div class="col-sm-7">LICENCIA TIPO FEDERAL( <?= $orden["tipo_licencia"]?>)  POSTURA ( <?= $orden["tipo_licencia"]?>) </div>
+						<div class="col-sm-5">VENCIMIENTO DE LA LICENCIA <?= date("d/m/Y", strtotime($orden["fecha_vencimiento"]))?> </div>
 					</div>
 					
 					
@@ -163,7 +161,13 @@
 					</div>
 					<hr>
 				</div>
-				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 				
 				<?php 
 					
@@ -176,5 +180,13 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		
+		
+		<script>
+			$(document).ready(function(){
+				window.print();
+				
+			})
+		</script>
 	</body>
 </html>																															

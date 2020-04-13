@@ -22,12 +22,11 @@ function calcularFechaFinal(){
 		var date_inicial = new Date($("#fecha_inicio").val());
 		var date_inicial_parse = Date.parse($("#fecha_inicio").val());
 		
-		var date_final = date_inicial.addDays(Number($("#dias").val()));
+		var date_final = date_inicial.addDays(Number($("#dias").val()) + 1);
 		
 		$("#fecha_fin").val(date_final.toString("yyyy-MM-dd"));
 		console.log("fecha_inicio ", $("#fecha_inicio").val())
 		console.log("date_inicial_parse ", date_inicial_parse)
-		console.log("dias ", $("#dias").val())
 		console.log("dias number", Number($("#dias").val()))
 		console.log("date locale ",date_inicial.toLocaleDateString('en-US'));
 		console.log("date_inicial sec", date_inicial)
@@ -127,7 +126,7 @@ function onLoad(){
 				
 				alertify.success('Se ha guardado correctamente');
 				$('#modal_edicion').modal('hide');
-				window.open("/impresion/imprimir_orden_trabajo.php?id_registro="+respuesta.folio )
+				window.open("impresion/imprimir_orden_trabajo.php?id_registro="+respuesta.insert_id )
 				listarRegistros();
 			}
 			else{
