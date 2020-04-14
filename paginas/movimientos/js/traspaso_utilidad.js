@@ -17,7 +17,7 @@ $(document).ready(function(){
 		$('#form_edicion')[0].reset();
 		$('.modal-title').text('Nuevo Traspaso');
 		$('#modal_edicion').modal('show');
-	});
+		});
 	
 	$("#btn_agregar").click(agregarUnidad)
 	
@@ -26,8 +26,11 @@ $(document).ready(function(){
 		var monto_total = 0;
 		var $fila = $(this).closest(".form-row");
 		var monto = Number($fila.find(".monto").val());
-		var saldo_anterior = Number($fila.find(".saldo_unidades").val());
+		var saldo_anterior = Number($fila.find(".saldo_actual").val());
 		$fila.find(".saldo_restante").val(saldo_anterior - monto ); 
+			console.log("saldo restante", saldo_anterior - monto )
+		
+		
 		
 		$(".monto").each(function sumaMontos(index, item){
 			monto_total+= Number($(item).val());

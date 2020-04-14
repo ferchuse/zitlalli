@@ -52,7 +52,7 @@
 						<button class="btn btn-success" type="button" id="btn_agregar"><i class="fas fa-plus"></i></button>
 					</Legend>
 					<div class="form-row" >
-						<div class="col-2">
+						<div class="col-1">
 							<b for="">Num Eco:</b>
 						</div>
 						<div class="col-4">
@@ -65,12 +65,15 @@
 							<b for="">Monto:</b>
 						</div>
 						<div class="col-2">
-							<b for="">Saldo Restante:</b> 
+							<b for="">Saldo :</b> 
+						</div>
+						<div class="col-1">
+							
 						</div>
 					</div>	
 					<div id="unidades">
 						<div class="form-row">
-							<div class="form-group col-2">
+							<div class="form-group col-1">
 								<input type="text" hidden class="form-control id_unidades" name="id_unidades[]"  >
 								<input type="text" class="form-control num_eco" name="num_eco[]" required >
 							</div>
@@ -85,6 +88,11 @@
 							</div>
 							<div class="form-group col-2">
 								<input type="number" class="form-control saldo_restante" name="saldo_restante[]" readonly>
+							</div>
+							<div class="col-1">
+								<button class="btn btn-danger btn-sm quitar_unidad" type="button">
+									<i class="fas fa-times"></i>
+								</button>
 							</div>
 						</div>	
 					</div>	
