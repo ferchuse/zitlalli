@@ -8,7 +8,6 @@
 	
 	$consulta = "SELECT * FROM ordenes_trabajo
 	LEFT JOIN conductores USING(id_conductores)
-	LEFT JOIN usuarios USING(id_usuarios)
 	WHERE id_ordenes= '{$_GET['id_registro']}'";
 	
 	
