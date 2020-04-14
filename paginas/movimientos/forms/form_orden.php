@@ -14,7 +14,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-sm-6">
-							<div class="form-group">
+							<div class="form-group" hidden>
 								<label for="id_ordenes">Folio:</label>
 								<input type="text" class="form-control" id="id_ordenes" name="id_ordenes" readonly>
 							</div>	
@@ -28,10 +28,6 @@
 								<input type="number" class="form-control" id="num_eco" name="num_eco"  required>
 							</div>
 							
-							<div class="form-group">
-								<label for="fecha_vencimiento">Fecha Vencimiento Licencia:</label>
-								<input type="date" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" required>
-							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">

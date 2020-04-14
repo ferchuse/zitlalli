@@ -8,6 +8,8 @@
 	
 	$consulta = "SELECT * FROM ordenes_trabajo
 	LEFT JOIN conductores USING(id_conductores)
+	LEFT JOIN derroteros USING(id_derroteros)
+	LEFT JOIN unidades USING(num_eco)
 	WHERE id_ordenes= '{$_GET['id_registro']}'";
 	
 	
@@ -83,17 +85,17 @@
 						<div class="col-sm-4">AL DIA: <u><?= $orden["fecha_fin"]?></u> </div>
 					</div>
 					<div class="row">
-						<div class="col-sm-4">ECO <u><?= $orden["num_eco"]?></u></div>
+						<div class="col-sm-4">NUM ECO <u><?= $orden["num_eco"]?></u></div>
 						<div class="col-sm-3">PLANTA (<?= $orden["tipo_conductor"]?> )  POSTURA (<?= $orden["tipo_conductor"]?> ) </div>
-						<div class="col-sm-3 " hidden>DERROTERO <u><?= $orden["nombre_derroteros"]?></u> </div>
+						<div class="col-sm-4 " >DERROTERO: <u><?= $orden["nombre_derroteros"]?></u> </div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">NOMBRE DEL OPERADOR <u><?= $orden["nombre_conductores"]?> </u></div>
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-7">LICENCIA TIPO FEDERAL(A)  SERVICIO PUBLICO (B) </div>
-						<div class="col-sm-5">VENCIMIENTO DE LA LICENCIA <?= date("d/m/Y", strtotime($orden["fecha_vencimiento"]))?> </div>
+						<div class="col-sm-7">LICENCIA TIPO:<u> <?= $orden["tipo_licencia"]?></u> </div>
+						<div class="col-sm-5">VENCIMIENTO DE LA LICENCIA: <?=$orden["fechaVigencia_conductores"]?> </div>
 					</div>
 					
 					
@@ -144,14 +146,13 @@
 							
 						</div>
 						
-						
+						<br>
 						<label for="comment">DESCRIPCION DE LOS HECHOS:</label>
 						<textarea class="form-control" rows="3" id="comment"></textarea>
 						
 						
 					</section>
 					
-					<br>
 					<br>
 					<br>
 					
