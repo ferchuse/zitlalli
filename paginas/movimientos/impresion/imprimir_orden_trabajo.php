@@ -26,8 +26,16 @@
 			
 			$orden = $fila ;
 			
+			
+			
 		}
 	}
+	else{
+		die("<pre>Error $consulta".mysqli_error($link)."</pre>");
+		
+	}
+	
+	
 	
 ?> 
 
@@ -67,18 +75,18 @@
 						</div>
 						<div class="col-2 text-center" >
 							<img  src="../../../img/logo.jpg" class="img-fluid">
-							<label>FOLIO</label>
+							<label>FOLIO: <?= $orden["id_ordenes"]?> </label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4">VÁLIDA POR <u><b><?= $orden["dias"]?> </b> </u> DIAS</div>
-						<div class="col-sm-4">A PARTIR DEL DIA <u><?= $orden["fecha_inicio"]?></u> </div>
-						<div class="col-sm-4">AL DIA <u><?= $orden["fecha_fin"]?></u> </div>
+						<div class="col-sm-4">A PARTIR DEL DIA: <u><?= $orden["fecha_inicio"]?></u> </div>
+						<div class="col-sm-4">AL DIA: <u><?= $orden["fecha_fin"]?></u> </div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4">ECO <u><?= $orden["num_eco"]?></u></div>
 						<div class="col-sm-3">PLANTA (<?= $orden["tipo_conductor"]?> )  POSTURA (<?= $orden["tipo_conductor"]?> ) </div>
-						<div class="col-sm-3">DERROTERO <u><?= $orden["nombre_derroteros"]?></u> </div>
+						<div class="col-sm-3 " hidden>DERROTERO <u><?= $orden["nombre_derroteros"]?></u> </div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">NOMBRE DEL OPERADOR <u><?= $orden["nombre_conductores"]?> </u></div>
@@ -90,7 +98,7 @@
 					</div>
 					
 					
-					
+					<br>
 					<section >
 						<p>Reporte de motivos de</p>
 						<div class="row">
@@ -184,8 +192,8 @@
 		
 		<script>
 			$(document).ready(function(){
-				window.print();
-				
+			window.print();
+			
 			})
 		</script>
 	</body>
