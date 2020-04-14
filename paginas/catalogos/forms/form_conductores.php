@@ -18,6 +18,10 @@
 						<input type="text" class="form-control" id="nombre_conductores" name="nombre_conductores" placeholder="Nombre del conductor" required>
 					</div>
 					<div class="form-group">
+						<label for="curp_conductores">CURP</label>
+						<input type="text" class="form-control" id="curp_conductores" name="curp_conductores" placeholder="CURP del conductor">
+					</div>
+					<div class="form-group">
 						<label for="rfc_conductores">RFC</label>
 						<input type="text" class="form-control" id="rfc_conductores" name="rfc_conductores" placeholder="RFC del conductor">
 					</div> 
@@ -41,10 +45,7 @@
 						<label for="id_derroteros">DERROTERO</label>
 						<?php echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros"); ?>
 					</div> 
-					<div class="form-group">
-						<label for="curp_conductores">CURP</label>
-						<input type="text" class="form-control" id="curp_conductores" name="curp_conductores" placeholder="CURP del conductor">
-					</div> 
+					 
 					<div class="form-group">
 						<label for="acta_conductores">ACTA DE NACIMIENTO</label>
 						<input type="text" class="form-control" id="acta_conductores" name="acta_conductores" placeholder="acta de nacimiento">

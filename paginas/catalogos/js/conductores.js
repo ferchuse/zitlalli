@@ -1,9 +1,11 @@
 $(document).ready(function(){
+	$('#curp_conductores').blur( buscarDuplicado);
+	$('#nombre_conductores').blur( buscarDuplicado);
 	
-	//=====PROMESA DE LISTAR CONDUCTOR========
+	
+	
 	listarRegistros();
 	
-	//========DAR LCIK EN BOTON DE NUEVO=============
 	$('.nuevo').on('click',function(){
 		$('#form_edicion')[0].reset();
 		$('.modal-title').text('Nuevo Conductor');
@@ -12,8 +14,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	//==========GUARDAR NUEVA EMPRESA============
-	$('#form_edicion').on('submit',function(event){
+	$('#form_edicion').on('submit', function guardar(event){
 		event.preventDefault();
 		let form = $(this);
 		let boton = form.find(':submit');
@@ -45,17 +46,7 @@ $(document).ready(function(){
 		});
 	})
 	
-	//=========BUSCAR EMPRESA=========
-	$("#numero_conductor").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_conductores',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
+	
 	//=========BUSCAR EMPRESA=========
 	$("#nombre_conductor").keyup(function filtro_buscar(){
 		var indice = $(this).data("indice");
@@ -74,7 +65,37 @@ $(document).ready(function(){
 });
 
 
-
+function buscarDuplicado(){
+	
+	var $input = $(this);
+	var name  = $input.prop("name");
+	var term = $input.val();
+	
+	$input.addClass("cargando");
+	
+	
+	$.ajax({
+		url: '../../funciones/fila_select.php',
+		method: 'GET',
+		data: {
+			tabla: "conductores",
+			id_campo: name,
+			id_valor: term
+			
+		}
+		}).done(function(respuesta){
+		
+		if(respuesta.count_rows > 0){
+			
+			alertify.error("El conductor ya existe")
+			// $input.select();
+		}
+		
+		}).always(function(){
+		$input.removeClass("cargando");
+		
+	});
+}
 
 
 function listarRegistros(){
@@ -88,7 +109,7 @@ function listarRegistros(){
 			tabla: 'conductores',
 			subconsulta: subconsulta
 		}
-    }).done(function(respuesta){
+		}).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
 			let conductores = '';
 			if(respuesta.num_rows > 0){
@@ -107,7 +128,7 @@ function listarRegistros(){
 					<button class="btn btn-outline-warning editar" data-id_conductores='${element.id_conductores}'><i class="fas fa-pencil-alt"></i>
 					</button>
 					<a class="btn btn-outline-info" href='conductores/imprimir_conductor.php?id_registro=${element.id_conductores}'>
-						<i class="fas fa-print"></i>
+					<i class="fas fa-print"></i>
 					</a>
 					</td>
 					</tr>
