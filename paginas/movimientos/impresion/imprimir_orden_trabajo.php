@@ -92,7 +92,7 @@
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-7">LICENCIA TIPO FEDERAL( <?= $orden["tipo_licencia"]?>)  POSTURA ( <?= $orden["tipo_licencia"]?>) </div>
+						<div class="col-sm-7">LICENCIA TIPO FEDERAL(A)  SERVICIO PUBLICO (B) </div>
 						<div class="col-sm-5">VENCIMIENTO DE LA LICENCIA <?= date("d/m/Y", strtotime($orden["fecha_vencimiento"]))?> </div>
 					</div>
 					
