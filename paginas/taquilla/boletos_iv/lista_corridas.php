@@ -57,7 +57,7 @@
 	LEFT JOIN (SELECT id_corridas, SUM(precio_boletos) AS importe_corridas
 	FROM boletos GROUP BY id_corridas
 	) AS t_importes USING(id_corridas)
-	WHERE corridas.id_administrador = '{$_COOKIE["id_administrador"]}'
+	WHERE 1
 	
 	
 	AND date(fecha_corridas) BETWEEN '{$_GET["fecha_inicial"]}' AND '{$_GET["fecha_final"]}'
