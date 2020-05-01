@@ -1,4 +1,4 @@
-<!-- Latest compiled and minified CSS -->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
@@ -8,7 +8,7 @@
 <link href="../../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">-->
 <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template-->
 <link href="../../css/sb-admin.css" rel="stylesheet">
 <link href="../../css/estilos.css" rel="stylesheet">
 <link href="../../css/alertify.min.css" rel="stylesheet">
+<link href="../../manifest.json" rel="manifest">
