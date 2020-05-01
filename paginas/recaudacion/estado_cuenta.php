@@ -74,7 +74,7 @@
 								<label for="">Num Eco:</label>
 							</div>	
 							<div class="col-sm-2">			
-								<input class="form-control" type="text" name="num_eco" id="num_eco" >
+								<input class="form-control" type="number" name="num_eco" id="num_eco" >
 							</div>
 							<div class="col-sm-1">
 								<label for="">Estatus:</label>
@@ -87,14 +87,20 @@
 									<option >Inactivo</option>
 								</select>
 							</div>
-							<div class="col-sm-1">
-								<label >Propietario:</label>
-							</div>
-							<div class="col-sm-3">			
-								<?php
-									echo generar_select($link, "propietarios", "id_propietarios", "nombre_propietarios", true);
+							<?php
+								if($_COOKIE["tipo_usuario"] != "propietarios"){
 								?>
-							</div>
+								<div class="col-sm-1">
+									<label >Propietario:</label>
+								</div>
+								<div class="col-sm-3">			
+									<?php
+										echo generar_select($link, "propietarios", "id_propietarios", "nombre_propietarios", true);
+									?>
+								</div>
+								<?php
+								}
+							?>
 						</div>
 					</form>
 					<hr>
@@ -134,7 +140,7 @@
 					<footer class="sticky-footer">
 						<div class="container my-auto">
 							<div class="copyright text-center my-auto">
-								<span>Copyright © Glifo Media 2018</span>
+								<span>Copyright © Glifo Media 2020</span>
 							</div>
 						</div>
 					</footer>
