@@ -62,10 +62,10 @@
 							<div class="col-sm-2">			
 								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
 							</div> 
-							<div class="col-1">
+							<div class="col-sm-1">
 								<label >Empresa:</label>
 							</div>	
-							<div class="col-3">			
+							<div class="col-sm-3">			
 								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
 							</div> 
 						</div>
@@ -87,10 +87,10 @@
 									<option >Inactivo</option>
 								</select>
 							</div>
-							<div class="col-1">
+							<div class="col-sm-1">
 								<label >Propietario:</label>
 							</div>
-							<div class="col-3">			
+							<div class="col-sm-3">			
 								<?php
 									echo generar_select($link, "propietarios", "id_propietarios", "nombre_propietarios", true);
 								?>
