@@ -42,7 +42,7 @@
 									<button class="btn btn-primary btn-sm" >
 										<i class="fas fa-search"></i> Buscar
 									</button>
-									<button class="btn btn-info btn-sm" onclick="window.print()" type="button">
+									<button hidden class="btn btn-info btn-sm" onclick="window.print()" type="button">
 										<i class="fas fa-print"></i> Imprimir
 									</button>
 								</div>
