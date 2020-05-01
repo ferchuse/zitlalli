@@ -24,7 +24,7 @@
 <script src="../../js/sb-admin.min.js"></script>
 <script src="../../js/date.js"></script>
 <script src="../../js/notificaciones.js"></script>
-<script src="../../js/permisos.js"></script>
+<script src="../../js/permisos.js?v=<?= date("d-m-Y-H")?>"></script>
 
 <script src="../../vendor/jquery/tableExport.js"></script>
 <script src="../../vendor/jquery/jquery.base64.js"></script>

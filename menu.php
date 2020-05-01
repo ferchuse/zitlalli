@@ -12,7 +12,7 @@
 					Estado de Cuenta 
 					
 				</span>
-				</a>
+			</a>
 		</li>
 	</ul>
 	<?php
@@ -38,7 +38,7 @@
 			<div class="dropdown-menu " >
 				<?php 
 					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Catálogos'";	
-				
+					
 					$result_catalogos = mysqli_query($link, $q_catalogos);
 					if(!$result_catalogos){
 						echo mysqli_error($link);
@@ -166,4 +166,47 @@
 			</div>
 		</div>
 	</div>
-</div>				
+</div>	
+<?php
+	
+	if($_COOKIE["tipo_usuario"] == "propietario"){
+	?>
+	<form id="form_password">
+		<div class="modal fade" id="modal_password" tabindex="-1" role="dialog" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" >Cambiar Contraseña</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span >×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="password_propietarios">NUEVA CONTRASEÑA:</label>
+							<input required type="password" class="form-control" id="new_password" name="password_propietarios" >
+						</div> 
+						
+						<div class="form-group">
+							<label for="password_propietarios">CONFIRMA CONTRASEÑA:</label>
+							<input required type="password" class="form-control" id="confirm_password"  >
+						</div> 
+						
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger" type="button" data-dismiss="modal">
+								<i class="fas fa-times"></i> Cancelar
+						</button>
+						<button class="btn btn-success" type="submit" >
+							<i class="fas fa-save"></i> Aceptar
+						</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>	
+	</form>	
+	
+	<?php
+	}
+?>

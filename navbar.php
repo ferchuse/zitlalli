@@ -57,30 +57,55 @@
 				<i class="fas fa-user-circle fa-fw"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" >
+				
 				<input hidden value="<?php echo $_SESSION["id_usuarios"]?>" id="id_usuarios">
 				<input hidden value="<?php echo $_SESSION["id_recaudaciones"]?>" id="sesion_id_recaudaciones">
 				<input hidden value="<?php echo $_SESSION["id_usuarios"]?>" id="sesion_id_usuarios">
 				<input hidden value="<?php echo $_SESSION["id_empresas"]?>" id="sesion_id_empresas">
 				<input hidden value="<?php echo $_SESSION["id_administrador"]?>" id="sesion_id_administrador">
 				<input hidden id="permiso" value="<?php echo dame_permiso(basename($_SERVER['PHP_SELF']), $link);?>">
+				
+				
 				<a class="dropdown-item" href="#">
 					<?php echo "<b>Usuario</b>: <span id='sesion_nombre_usuarios'>". $_SESSION["nombre_usuarios"]."</span>"?>
 				</a>	
-				<a class="dropdown-item" href="#">
-					<?php echo "<b>Permiso</b>: ". dame_permiso(basename($_SERVER['PHP_SELF']), $link);?>
-				</a>	
-				<a class="dropdown-item" href="#">
-					<?php echo "<b>Empresa: </b>". $_SESSION["id_administrador"];?>
-					<input type="hidden" id="session_id_administrador" value="<?php echo $_SESSION["id_administrador"];?>" >
-				</a>	
-				<a class="dropdown-item" href="#">
-					<b>Impresión Autom: </b>
-					<input type="" id="silent_print" value="<?php echo $_COOKIE["silent_print"];?>" >
-				</a>
-				<a hidden class="dropdown-item" href="#">Configuración</a>
-				<a hidden class="dropdown-item" href="#">Historial</a>
+				
+				
+				<?php
+					if($_COOKIE["tipo_usuario"] != "propietario"){
+					?>
+					<a class="dropdown-item" href="#">
+						<?php echo "<b>Empresa: </b>". $_SESSION["id_administrador"];?>
+						<input type="hidden" id="session_id_administrador" value="<?php echo $_SESSION["id_administrador"];?>" >
+					</a>	
+					<a class="dropdown-item" href="#">
+						<?php echo "<b>Permiso</b>: ". dame_permiso(basename($_SERVER['PHP_SELF']), $link);?>
+					</a>	
+					<a class="dropdown-item" href="#">
+						<b>Impresión Autom: </b>
+						<input type="" id="silent_print" value="<?php echo $_COOKIE["silent_print"];?>" >
+					</a>
+					
+					<?php
+					}
+				?>
+				<?php
+					if($_COOKIE["tipo_usuario"] == "propietario"){
+					?>
+					
+					<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal_password">
+						<i class="fas fa-key"></i> Cambiar Contraseña
+					</a>
+					<?php
+					}
+				?>
+				
+				
+				
+				
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Salir</a>
+				
+				<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out"></i> Salir</a>
 			</div>
 		</li>
 	</ul>

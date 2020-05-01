@@ -23,7 +23,7 @@
 				</div> 
 				<div class="form-group">
 					<label for="password_propietarios">CONTRASEÑA:</label>
-					<input type="text" class="form-control" id="password_propietarios" name="password_propietarios" >
+					<input type="password" class="form-control" id="password_propietarios" name="password_propietarios" >
 				</div> 
 			</div> 
 		   <!-- Modal footer -->
