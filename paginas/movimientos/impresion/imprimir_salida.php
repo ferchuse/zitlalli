@@ -29,12 +29,9 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			console_log($fila);
+		
 			$filas = $fila ;
-			//TODO
-			///Tarjeta Cancelada
-			///Tarjeta Ya recaudada
-			
+		
 		}
 		
 	?> 

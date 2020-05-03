@@ -35,13 +35,13 @@
 					<form class="form-inline d-print-none" id="form_filtro">
 						<div class="form-group mx-sm-3 mb-2">
 							<label for="" class="col-sm col-form-label">Fecha Inicial:</label>
-							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_inicial" id="fecha_inicio">
+							<input type="date" class="form-control" value="<?php echo date("Y-m-01");?>" name="fecha_inicial" id="fecha_inicio">
 						</div>
 						<div class="form-group mx-sm-3 mb-2">
 							<label for="" class="col-sm col-form-label">Fecha Final:</label>
 							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_final" id="fecha_final">
 							<button type="submit" id="btn_fechas" title="Buscar por Fecha" class="btn btn-outline-dark">
-									<i class="fas fa-search"></i>
+								<i class="fas fa-search"></i>
 							</button>
 						</div>
 						<div class=" col-md-2">
@@ -72,7 +72,7 @@
 				<footer class="sticky-footer">
 					<div class="container my-auto ">
 						<div class="copyright text-center my-auto">
-							<span class="d-print-none">Copyright © Glifo Media 2018</span>
+							<span class="d-print-none">Copyright © Glifo Media 2020</span>
 						</div>
 					</div>
 				</footer>
@@ -119,6 +119,9 @@
 					// $(".imprimir").click(imprimirTicket);
 					// $(".cancelar").click(confirmaCancelacion);
 					
+					
+					}).fail(function(xhr, error, ernum){
+					alertify.error(error + ernum)
 					
 					}).always(function(){
 					

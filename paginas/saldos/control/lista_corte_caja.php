@@ -1,17 +1,11 @@
 <?php 
-	session_start();
+	
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
-	include('../../../funciones/console_log.php');
+	
 	$link = Conectarse();
-	$filas = array();
-	$respuesta = array();
-	
-?>
 
-<?php
 	
-	$consulta = "
+	$consulta_recaudacion = "
 	##Recaudacion
 	SELECT
 	id_empresas,
@@ -33,10 +27,9 @@
 	AND '{$_GET["fecha_final"]}'
 	GROUP BY
 	id_empresas
-	) t_abonos USING (id_empresas)
-	WHERE
-	abonos_unidades = 2
-	UNION
+	) t_abonos USING (id_empresas)";
+	
+	$consulta_abono_general= "
 	##Abono General
 	SELECT
 	id_empresas,
@@ -56,14 +49,17 @@
 	estatus_abono <> 'Cancelado'
 	AND date(fecha_abonogeneral) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
-	AND id_empresas = 2
+	
 	GROUP BY
 	id_empresas
 	) t_abono_general USING (id_empresas)
-	WHERE
-	id_empresas = 2
-	UNION
+	";
+	
+	
+	$consulta_mutualidad ="
+	
 	##Mutualidad
+	
 	SELECT
 	id_empresas,
 	'Mutualidad' AS tipo_ingreso,
@@ -85,122 +81,155 @@
 	id_empresas
 	) t_mutualidad USING (id_empresas)
 	WHERE
-	id_empresas = 2;
+	1
 	
 	
 	";
 	
   // echo $consulta;
 	
-	$result = mysqli_query($link,$consulta);
-	if($result){
+	$result_recaudacion = mysqli_query($link,$consulta_recaudacion);
+	if($result_recaudacion){
 		
-		if( mysqli_num_rows($result) == 0){
-			die("<div class='alert alert-danger'>No hay registros $consulta</div>");
-			
+		// if( mysqli_num_rows($result_recaudacion) == 0){
+		
+		// }
+		
+		while($fila = mysqli_fetch_assoc($result_recaudacion)){
+			$recaudaciones[] = $fila;
 		}
-		
-		
-		
-	?>  
-	
-	<table class="table table-bordered table-condensed">
-		<thead class="text-center">
-			<tr>
-				<th colspan="2">Ingresos</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th colspan="">Concepto</th>
-				<th colspan="">Monto</th>
-			</tr>
-			<?php 
-				
-				
-				while($fila = mysqli_fetch_assoc($result)){
-					$total_ingresos+= $fila["ingreso"] ;
-				?>
-				<tr>
-					<td><?php echo $fila["tipo_ingreso"] ?></td>
-					<td><?php echo number_format($fila["ingreso"]) ?></td>
-				</tr>
-				<?php
-				}
-			?>
-		</tbody>
-		<tfoot>
-			<tr class="h4">
-				<td >
-					<b> TOTAL</b>
-				</td>
-				
-				<td ><b><?php echo number_format($total_ingresos)?></b></td>
-			</tr>
-		</tfoot>
-	</table>
-	<?php
 	}
 	else{
-		echo "<pre>Error:".mysqli_error($link)." $consulta</pre>";
-		}
+		
+		// die("<div class='alert alert-danger'>No hay registros $consulta</div>");
+	}
 	
+	$result_abono_general = mysqli_query($link,$consulta_abono_general);
+	if($result_abono_general){
+		
+		// if( mysqli_num_rows($result_abono_general) == 0){
+		// die("<div class='alert alert-danger'>No hay registros $consulta</div>");
+		// }
+		
+		while($fila = mysqli_fetch_assoc($result_abono_general)){
+			$abonos_generales[] = $fila;
+		}
+	}
+	
+	$result_mutualidad = mysqli_query($link,$consulta_mutualidad);
+	if($result_mutualidad){
+		
+		// if( mysqli_num_rows($result_recaudacion) == 0){
+		// die("<div class='alert alert-danger'>No hay registros $consulta</div>");
+		// }
+		
+		while($fila = mysqli_fetch_assoc($resultresult_mutualidad)){
+			$mutualidades[] = $fila;
+			
+		}
+	}
+	
+	
+?>  
+
+<table class="table table-bordered table-condensed">
+	<thead class="text-center">
+		<tr>
+			<th colspan="2">Ingresos</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="2"><b>Recaudación</b></th>
+		</tr>
+		<tr>
+			<th colspan="">Empresa</th>
+			<th colspan="">Monto</th>
+		</tr>
+		<?php 
+			foreach($recaudaciones as $recaudacion){
+				$total_ingresos+= $recaudacion["ingreso"] ;
+			?>
+			<tr>
+				<td><?php echo $recaudacion["nombre_empresas"] ?></td>
+				<td><?php echo number_format($recaudacion["ingreso"]) ?></td>
+			</tr>
+			<?php
+			}
+		?>
+	</tbody>
+	<tfoot>
+		<tr class="h4">
+			<td >
+				<b> TOTAL</b>
+			</td>
+			
+			<td ><b><?php echo number_format($total_ingresos)?></b></td>
+		</tr>
+	</tfoot>
+</table>
+<?php
+}
+else{
+	echo "<pre>Error:".mysqli_error($link)." $consulta</pre>";
+}
+
 ?>	
 
 <?php
 	$consulta = "
 	##Egresos
-
-SELECT
+	
+	SELECT
 	id_empresas,
 	'Recibos de Salida' AS tipo_egreso,
 	nombre_empresas,
 	egreso
-FROM
-	empresas
-LEFT JOIN (
-	SELECT
-		id_empresas,
-		SUM(monto_reciboSalidas) AS egreso
 	FROM
-		recibosSalidas
+	empresas
+	LEFT JOIN (
+	SELECT
+	id_empresas,
+	SUM(monto_reciboSalidas) AS egreso
+	FROM
+	recibosSalidas
 	WHERE
-		estatus_reciboSalidas <> 'Cancelado'
+	estatus_reciboSalidas <> 'Cancelado'
 	AND date(fecha_reciboSalidas) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
 	GROUP BY
-		id_empresas
-) t_recibosSalidas USING (id_empresas)
-WHERE
+	id_empresas
+	) t_recibosSalidas USING (id_empresas)
+	WHERE
 	id_empresas = 2
-UNION
-
-
-##Traspaso
-
-SELECT
+	UNION
+	
+	
+	##Traspaso
+	
+	SELECT
 	id_empresas,
 	'Traspaso de Utilidad' AS tipo_egreso,
 	nombre_empresas,
 	egreso
-FROM
-	empresas
-LEFT JOIN (
-	SELECT
-		id_empresas,
-		SUM(monto_traspaso) AS egreso
 	FROM
-		traspaso_utilidad
-LEFT JOIN usuarios USING(id_usuarios)
+	empresas
+	LEFT JOIN (
+	SELECT
+	id_empresas,
+	SUM(monto_traspaso) AS egreso
+	FROM
+	traspaso_utilidad
+	LEFT JOIN usuarios USING(id_usuarios)
 	WHERE
-		estatus_traspaso <> 'Cancelado'
+	estatus_traspaso <> 'Cancelado'
 	AND date(fecha_traspaso) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
 	GROUP BY
-		id_empresas
-) t_traspasos USING (id_empresas)
-WHERE
+	id_empresas
+	) t_traspasos USING (id_empresas)
+	WHERE
 	id_empresas = 2;
 	";
 	
