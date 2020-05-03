@@ -19,7 +19,7 @@
 	LEFT JOIN unidades USING(id_unidades)
 	LEFT JOIN roles USING(id_roles)
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE tarjetas.id_administrador = '{$_SESSION["id_administrador"]}'
+	WHERE tarjetas.id_administrador = '{$_COOKIE["id_administrador"]}'
 	AND  DATE(fecha_creacion) BETWEEN '{$_GET['fecha_inicial']}' AND '{$_GET['fecha_final']}'
 	
 	";

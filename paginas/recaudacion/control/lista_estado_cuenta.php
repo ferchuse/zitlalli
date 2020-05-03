@@ -13,7 +13,7 @@
 	$fecha_inicial = date("Y-m-01");
 	
 	
-	$sql_mode ="SET SESSION sql_mode = ''";
+	$sql_mode ="SET sql_mode = ''";
 	
 	$result = mysqli_query($link, $sql_mode);
 	
@@ -108,7 +108,7 @@
 	";
 	$consulta.="
 	WHERE 1
-	AND unidades.id_administrador = '{$_SESSION["id_administrador"]}'
+	AND unidades.id_administrador = '{$_COOKIE["id_administrador"]}'
 	"; 
 	
 	if($_GET["num_eco"] != ""){
@@ -125,6 +125,9 @@
 	
 	if($_GET["estatus_unidades"] != 'Todos'){
 		$consulta.=  " AND estatus_unidades  = '{$_GET["estatus_unidades"]}' ";
+	}
+	if($_GET["id_empresas"] != ''){
+		$consulta.=  " AND unidades.id_empresas  = '{$_GET["id_empresas"]}' ";
 	}
 	
 	

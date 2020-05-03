@@ -53,7 +53,7 @@
 	tipo_cargo = 'seguro'
 	AND EXTRACT(YEAR_MONTH FROM fecha_cargos) =  '{$_GET['mes_cargos']}'
 	) AS t_seguro USING (id_unidades)
-	WHERE unidades.id_administrador ='{$_SESSION["id_administrador"]}'
+	WHERE unidades.id_administrador ='{$_COOKIE["id_administrador"]}'
 	
 	
 	";
