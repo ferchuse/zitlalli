@@ -1,18 +1,18 @@
 
-	<!-- The Modal -->
-	<div class="modal fade" id="modal_edicion">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title text-center"></h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				
-				<!-- Modal body -->
-				<div class="modal-body">
-					<form class="was-validated" id="form_edicion">
+<!-- The Modal -->
+<div class="modal fade" id="modal_edicion">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title text-center"></h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+				<form class="was-validated" id="form_edicion" autocomplete="off">
 					<div class="row mb-2">
 						<div class="col-4">
 							<label>Tarjeta:</label>
@@ -88,21 +88,21 @@
 							<textarea class="form-control" type="number" name="observaciones_condonaciones" id="observaciones_condonaciones"></textarea>
 						</div>
 					</div>
-					</form>
-					
-				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
-							<i class="fa fa-times"></i> Cancelar
-					</button>
-					<button type="submit" id="btn_guardar" form="form_edicion" class="btn btn-outline-success">
-							<i class="fa fa-save"></i> Guardar
-					</button>
-				</div>
+				</form>
 				
 			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
+					<i class="fa fa-times"></i> Cancelar
+				</button>
+				<button type="submit" id="btn_guardar" form="form_edicion" class="btn btn-outline-success">
+					<i class="fa fa-save"></i> Guardar
+				</button>
+			</div>
+			
 		</div>
 	</div>
+</div>
 
 
