@@ -27,7 +27,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		
 		
-		$('#tarjeta').addClass("cargando");
+		
 		
 		var tarjeta = $(this).val();
 		
@@ -44,8 +44,7 @@ $(document).ready(function(){
 	$('#tarjeta').on('keyup', function(event){
 		
 		event.preventDefault();
-		
-		$('#tarjeta').addClass("cargando");
+	
 		
 		var tarjeta = $(this).val();
 		
