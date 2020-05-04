@@ -24,6 +24,7 @@ $(document).ready(function(){
 	
 	
 	$('#tarjeta').on('blur', function(event){
+		
 		event.preventDefault();
 		
 		
@@ -35,16 +36,16 @@ $(document).ready(function(){
 		LEFT JOIN conductores USING(id_conductores)
 		LEFT JOIN unidades USING(id_unidades)
 		WHERE tarjeta = ${tarjeta}`;
-		if(event.which == 13){
-			buscarTarjeta(subconsulta);
-			
-		};
+		
+		buscarTarjeta(subconsulta);
+		
+		
 	});
 	
 	$('#tarjeta').on('keyup', function(event){
 		
 		event.preventDefault();
-	
+		
 		
 		var tarjeta = $(this).val();
 		
@@ -53,9 +54,9 @@ $(document).ready(function(){
 		LEFT JOIN unidades USING(id_unidades)
 		WHERE tarjeta = ${tarjeta}`;
 		if(event.which == 13){
-			buscarTarjeta(subconsulta);
-			
-		};
+		buscarTarjeta(subconsulta);
+		
+	};
 	});
 	
 	
