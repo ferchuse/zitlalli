@@ -23,7 +23,22 @@ $(document).ready(function(){
 	});
 	
 	
-	$('#tarjeta').on('keyup',function(event){
+	$('#tarjeta').on('blur', function(event){
+		event.preventDefault();
+		
+		var tarjeta = $(this).val();
+		
+		let subconsulta = `LEFT JOIN empresas USING(id_empresas)
+		LEFT JOIN conductores USING(id_conductores)
+		LEFT JOIN unidades USING(id_unidades)
+		WHERE tarjeta = ${tarjeta}`;
+		if(event.which == 13){
+			buscarTarjeta(subconsulta);
+			
+		};
+	});
+	
+	$('#tarjeta').on('keyup', function(event){
 		event.preventDefault();
 		
 		var tarjeta = $(this).val();
