@@ -1,6 +1,7 @@
 <?php 
 	if(!isset($_COOKIE["tipo_usuario"])){
-		$_COOKIE["tipo_usuario"] = "recaudacion";
+		
+		$_COOKIE["tipo_usuario"] = "propietario";
 	}
 	
 	if($_COOKIE["tipo_usuario"] == "propietario"){?>
