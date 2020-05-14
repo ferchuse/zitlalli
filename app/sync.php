@@ -24,7 +24,7 @@
 		destino = '{$corrida["destino"]}',
 		num_eco = '{$corrida["num_eco"]}',
 		id_empresas = '{$corrida["id_empresas"]}',
-		id_administrador = '2',
+		id_administrador = '1',
 		estatus_corridas = 'Finalizada'
 		";
 		
