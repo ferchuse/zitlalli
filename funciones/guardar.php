@@ -1,12 +1,4 @@
 <?php 
-	session_start();
-	if(count($_SESSION) == 0){
-		$respuesta["estatus"] = "error";
-		$respuesta["mensaje"] = "Tu sesion a caducado, vuelve a entrar ";		
-		
-		echo json_encode($respuesta);
-		exit();
-	}
 	include('../conexi.php');
 	$link = Conectarse();
 	
