@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	if(count($_SESSION) == 0){
+	if(count($_COOKIE) == 0){
 		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	}
 	include('../../../conexi.php');
@@ -115,8 +115,8 @@
 		$consulta.=  " AND num_eco = '{$_GET['num_eco']}' ";
 	}
 	
-	if($_SESSION["tipo_usuario"] == "propietario"){
-		$consulta.=  " AND id_propietarios  = '{$_SESSION["id_usuarios"]}' ";
+	if($_COOKIE["tipo_usuario"] == "propietario"){
+		$consulta.=  " AND id_propietarios  = '{$_COOKIE["id_usuarios"]}' ";
 	}
 	
 	if($_GET["id_propietarios"] != ""){

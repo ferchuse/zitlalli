@@ -78,7 +78,7 @@
 								<label >Usuario:</label>
 							</div>	
 							<div class="col-sm-2">			
-								<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, $_SESSION["id_usuarios"])?>
+								<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"])?>
 							</div> 
 							<div class="col-sm-1">
 								<label >Empresa:</label>

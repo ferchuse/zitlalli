@@ -41,7 +41,7 @@
 	?>
 	
 	<pre hidden>
-		Id_empresas <?php echo $_SESSION["id_empresas"]?>
+		Id_empresas <?php echo $_COOKIE["id_empresas"]?>
 		Session Id <?php echo session_id()?>
 		Sesiion Estatus <?php echo session_status()?>
 		Consulta <?php echo $consulta?>

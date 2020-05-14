@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(count($_SESSION) == 0){
+	if(count($_COOKIE) == 0){
 		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	}
 	
@@ -48,7 +48,7 @@
 		
 	?>
 	<pre hidden >
-		Id_empresas <?php echo $_SESSION["id_empresas"]?>
+		Id_empresas <?php echo $_COOKIE["id_empresas"]?>
 		Session Id <?php echo session_id()?>
 		Sesiion Estatus <?php echo session_status()?>
 		Consulta <?php echo $consulta?>
