@@ -87,7 +87,7 @@
 								<?php
 								}
 							?>
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['tarjeta']?>'>
+							<button hidden class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['tarjeta']?>'>
 								<i class="fas fa-print"></i>
 							</button>
 							<?php

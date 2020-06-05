@@ -124,7 +124,7 @@
 				</button>
 			</div>
 		</div>
-		<?
+		<?php
 		}
 	?>
 	<div class="row mb-2">

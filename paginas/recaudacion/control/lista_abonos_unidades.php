@@ -128,7 +128,7 @@
 								<?php
 								}
 							?>
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_abonos_unidades']?>'>
+							<button hidden class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_abonos_unidades']?>'>
 								<i class="fas fa-print"></i>
 							</button>
 							<?php

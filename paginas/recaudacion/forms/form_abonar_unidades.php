@@ -25,7 +25,7 @@
 			<i class="fas fa-spinner fa-spin"></i>
 		</div> 
 		<div class="col-sm-2" >			
-			<button class="btn btn-info" type="button" id="imprimir_tarjeta"  data-url="../impresion/imprimir_tarjeta.php">
+			<button hidden class="btn btn-info" type="button" id="imprimir_tarjeta"  data-url="../impresion/imprimir_tarjeta.php">
 				<i class="fas fa-print"></i> Imprimir
 			</button>
 		</div>
