@@ -215,7 +215,7 @@
 					<td><?php echo $filas["suma_traspasos"] == '' ? 0 : $filas["suma_traspasos"]?></td>
 					
 					<td>
-						<a href="estado_cuenta_detalle.php?id_unidades=<?php echo $filas["id_unidades"];?>&num_eco=<?php echo $filas["num_eco"];?>
+						<a target="_blank" href="estado_cuenta_detalle.php?id_unidades=<?php echo $filas["id_unidades"];?>&num_eco=<?php echo $filas["num_eco"];?>
 						&nombre_propietarios=<?php echo $filas["nombre_propietarios"];?>
 						&fecha_inicial=<?php echo $_GET["fecha_inicial"];?>
 						&fecha_final=<?php echo $_GET["fecha_final"];?>

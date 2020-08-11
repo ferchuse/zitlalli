@@ -100,7 +100,7 @@
 	'Retiro a Cuenta de Liquidación #',
 	id_traspaso
 	) AS motivo,
-	monto AS cargo,
+	SUM(monto) AS cargo,
 	0 AS abono,
 	
 	concepto_traspaso AS observaciones
@@ -110,8 +110,9 @@
 	WHERE
 	id_unidades = {$_GET['id_unidades']}
 	AND DATE(fecha_aplicacion) BETWEEN '{$_GET["fecha_inicial"]}' AND '{$_GET["fecha_final"]}'
-	
 	AND estatus_traspaso <> 'Cancelado'
+	GROUP BY id_unidades
+	
 	
 	UNION
 	SELECT

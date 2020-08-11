@@ -17,7 +17,7 @@ $(document).ready(function(){
 		$('#form_edicion')[0].reset();
 		$('.modal-title').text('Nuevo Traspaso');
 		$('#modal_edicion').modal('show');
-		});
+	});
 	
 	$("#btn_agregar").click(agregarUnidad)
 	
@@ -28,7 +28,7 @@ $(document).ready(function(){
 		var monto = Number($fila.find(".monto").val());
 		var saldo_anterior = Number($fila.find(".saldo_actual").val());
 		$fila.find(".saldo_restante").val(saldo_anterior - monto ); 
-			console.log("saldo restante", saldo_anterior - monto )
+		console.log("saldo restante", saldo_anterior - monto )
 		
 		
 		
@@ -51,7 +51,23 @@ $(document).ready(function(){
 	});
 	
 	
-	$('.num_eco').on('keyup', function buscarUnidad(event){
+	$('#unidades').on('blur', '.num_eco' , function buscarUnidad(event){
+		var num_eco = $(this).val();
+		if(num_eco == ''){
+			alertify.error("Ingrese un Num Eco");
+			return false;
+		}
+		
+		if(buscaDuplicado(num_eco) > 1){
+			
+			alertify.error("El Num Eco ya esta agregado");
+			$(this).select();
+			return false;
+		}
+		
+		
+	});
+	$('#unidades').on('keyup', '.num_eco' , function buscarUnidad(event){
 		event.preventDefault();
 		
 		$input = $(this);
@@ -61,10 +77,23 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		
+		
+		
 		var $fila = $(this).closest(".form-row");
 		
 		console.log("Buscar Unidad", event.which )
 		if(event.which == 13){
+			
+			// var duplicado= $("#unidades").find(".num_eco[value='"+num_eco+"']");
+			// console.log("buscaDuplicado(num_eco)", duplicado)
+			
+			if(buscaDuplicado(num_eco) > 1){
+				
+				alertify.error("El Num Eco ya esta agregado");
+				$(this).select();
+				return false;
+			}
 			
 			$input.toggleClass("cargando");
 			$.ajax({
@@ -137,6 +166,30 @@ $(document).ready(function(){
 });
 
 
+function buscaDuplicado(num_eco){
+	//busca si la unidad esta duplicada en la lista
+	var duplicado = 0;
+	// var duplicado = $("#unidades").find(".num_eco[value='"+num_eco+"']").length;
+	// var duplicado = false;
+	console.log(duplicado, "duplicado");
+	console.log("undidades", $(".num_eco").length)
+	
+	$(".num_eco").each(function(i, item){
+		
+		if($(this).val() == num_eco){
+			duplicado++;
+			console.log("i", i, "Duplicado", duplicado);
+			
+		}
+		
+		
+		
+	});
+	
+	
+	return duplicado;
+	
+}
 
 
 
@@ -261,7 +314,30 @@ function imprimirTicket(id_registro){
 
 function agregarUnidad(event){
 	console.log("agregarUnidad")
-	$("#unidades .form-row:first").clone(true).appendTo("#unidades");
+	// $("#unidades .form-row:first").clone(true).appendTo("#unidades");
+	$("#unidades").append(`<div class="form-row">
+		<div class="form-group col-1">
+		<input type="text" hidden class="form-control id_unidades" name="id_unidades[]"  >
+		<input type="text" class="form-control num_eco" name="num_eco[]" required >
+		</div>
+		<div class="form-group col-4">
+		<input type="text" class="form-control nombre_propietarios" name="propietario[]" readonly >
+		</div>
+		<div class="form-group col-2">
+		<input type="text" class="form-control saldo_actual" name="saldo_anterior[]" readonly>
+		</div>
+		<div class="form-group col-2">
+		<input type="number" class="form-control monto" name="monto[]" required >
+		</div>
+		<div class="form-group col-2">
+		<input type="number" class="form-control saldo_restante" name="saldo_restante[]" readonly>
+		</div>
+		<div class="col-1">
+		<button class="btn btn-danger btn-sm quitar_unidad" type="button">
+		<i class="fas fa-times"></i>
+		</button>
+		</div>
+	</div>`);
 	$(".quitar_unidad").click(quitarUnidad);
 }	
 function quitarUnidad(event){
