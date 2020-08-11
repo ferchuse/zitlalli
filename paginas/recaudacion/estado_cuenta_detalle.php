@@ -111,7 +111,7 @@
 	id_unidades = {$_GET['id_unidades']}
 	AND DATE(fecha_aplicacion) BETWEEN '{$_GET["fecha_inicial"]}' AND '{$_GET["fecha_final"]}'
 	AND estatus_traspaso <> 'Cancelado'
-	GROUP BY id_unidades
+	GROUP BY id_unidades, id_traspaso
 	
 	
 	UNION
