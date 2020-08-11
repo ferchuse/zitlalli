@@ -32,7 +32,7 @@
 						<li class="breadcrumb-item active"><?php echo $nombre_pagina;?></li>
 					</ol>
 					
-					<form class="form-inline d-print-none" id="form_filtro">
+					<form class="form-inline " id="form_filtro">
 						<div class="form-group mx-sm-3 mb-2">
 							<label for="" class="col-sm col-form-label">Fecha Inicial:</label>
 							<input type="date" class="form-control" value="<?php echo date("Y-m-01");?>" name="fecha_inicial" id="fecha_inicio">
@@ -44,7 +44,7 @@
 								<i class="fas fa-search"></i>
 							</button>
 						</div>
-						<div class=" col-md-2">
+						<div class=" col-md-2 d-print-none">
 							<button type="button" id="btn_imprimir" title="Imprimir" class="btn btn-outline-primary mb-2" onclick="window.print();">
 								<i class="fas fa-print"></i> Imprimir
 							</button>

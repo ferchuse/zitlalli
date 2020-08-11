@@ -7,7 +7,7 @@
 	$respuesta = array();
 	$datos = json_decode($_POST['datos'],false);
 	
-	$q_corte ="
+	$q_corte_total ="
 	SELECT
 	id_empresas,
 	nombre_empresas,
@@ -26,7 +26,7 @@
 	
 	";
 	
-	$result = mysqli_query($link, $q_corte);
+	$result = mysqli_query($link, $q_corte_total);
 	
 	while($fila = mysqli_fetch_assoc($link)){
 		
