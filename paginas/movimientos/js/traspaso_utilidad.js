@@ -21,7 +21,7 @@ $(document).ready(function(){
 	
 	$("#btn_agregar").click(agregarUnidad)
 	
-	$('.monto').on('keyup', function calculaSaldo(event){
+	$('#unidades').on('keyup', ".monto",function calculaSaldo(event){
 		console.log("calculaSaldo()")
 		var monto_total = 0;
 		var $fila = $(this).closest(".form-row");
@@ -63,7 +63,7 @@ $(document).ready(function(){
 			alertify.error("El Num Eco ya esta agregado");
 			$(this).select();
 			return false;
-		}
+			}
 		
 		
 	});
