@@ -75,6 +75,9 @@
 								</button>
 								<?php
 								}
+								else{
+									
+								}
 							?>
 						</td>
 						<td><?php echo $fila["id_reciboSalidas"]?></td>

@@ -63,7 +63,7 @@ $(document).ready(function(){
 			alertify.error("El Num Eco ya esta agregado");
 			$(this).select();
 			return false;
-			}
+		}
 		
 		
 	});
@@ -253,17 +253,14 @@ function confirmaCancelacion(){
 	
 	function eliminar(){
 		$.ajax({
-			url: '../../funciones/fila_update.php',
-			method: 'POST',
+			url: 'control/cancelar_traspaso.php',
+			method: 'GET',
 			dataType: 'JSON',
 			data: {
-				valores: [{name:"estatus_traspaso", value: "Cancelado"}],
-				id_campo: 'id_traspaso',
-				id_valor: id_registro,
-				tabla: "traspaso_utilidad"
+				id_registro: id_registro,
 			}
 			}).done(function(respuesta){
-			if(respuesta.estatus == 'success'){
+			if(respuesta.result == 'success'){
 				alertify.success('Se ha cancelado correctamente');
 				// fila.fadeOut(1000);
 				listarRegistros();

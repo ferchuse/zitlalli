@@ -85,49 +85,49 @@
 									<i class="fas fa-times"></i>
 								</button>
 								<button  class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['tarjeta']?>'>
-								<i class="fas fa-print"></i>
-							</button>
+									<i class="fas fa-print"></i>
+								</button>
 								<?php
 								}
 							?>
 							
 							<?php
 							}
-							?>
-						</td>
-						<td class="text-center"><?php echo $fila['tarjeta'];?></td>
-						<td class="text-center"><?php echo $fila['fecha_creacion'];?></td>
-						<td class="text-center"><?php echo $fila['fecha_tarjetas'];?></td>
-						<td class="text-center"><?php echo $fila['nombre_empresas'];?></td>
-						<td class="text-center"><?php echo $fila['num_eco'];?></td>
-						<td class="text-center">
-							
-							<?php echo $fila['estatus_tarjetas'];?> <br>
-							<?php if($fila["estatus_tarjetas"] == 'Cancelado'){
-								echo $fila['datos_cancelacion'];
-							}
-							?>
-							
-						</td>
-						<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
+						?>
+					</td>
+					<td class="text-center"><?php echo $fila['tarjeta'];?></td>
+					<td class="text-center"><?php echo $fila['fecha_creacion'];?></td>
+					<td class="text-center"><?php echo $fila['fecha_tarjetas'];?></td>
+					<td class="text-center"><?php echo $fila['nombre_empresas'];?></td>
+					<td class="text-center"><?php echo $fila['num_eco'];?></td>
+					<td class="text-center">
 						
-					</tr> 
-					<?
-					}
-				?>
-				<tr>	
-					<td colspan="11"><?php echo  mysqli_num_rows($result);?> Registros</td>
-				</tr>
-			</tbody>
-		</table>
+						<?php echo $fila['estatus_tarjetas'];?> <br>
+						<?php if($fila["estatus_tarjetas"] == 'Cancelado'){
+							echo $fila['datos_cancelacion'];
+						}
+						?>
+						
+					</td>
+					<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
+					
+				</tr> 
+				<?
+				}
+			?>
+			<tr>	
+				<td colspan="11"><?php echo  mysqli_num_rows($result);?> Registros</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<?php
 		
 		
-		<?php
-			
-			
-		}
-		else {
-			echo  "Error en ".$consulta.mysqli_Error($link);
-		}
-		
-	?>					
+	}
+	else {
+		echo  "Error en ".$consulta.mysqli_Error($link);
+	}
+	
+?>					

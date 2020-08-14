@@ -81,6 +81,11 @@
 								</button>
 								<?php
 								}
+								else{
+									echo "<span class='badge badge-danger'>".$fila["estatus_traspaso"]."<br>".$fila["datos_cancelacion"]."</span>";
+									
+								}
+								
 							?>
 						</td>
 						
