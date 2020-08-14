@@ -66,7 +66,7 @@
 				<div class="col-2">
 					<?php echo $item["num_eco"]?>
 				</div>	
-				<div class="col-6">
+				<div class="col-7">
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
 				<div class="col-3">
@@ -145,13 +145,13 @@
 		<legend>Unidades</legend>
 		<?php foreach($filas as $i => $item){ ?>
 			<div class="row text-center">
-				<div class="col-4">
+				<div class="col-2">
 					<?php echo $item["num_eco"]?>
 				</div>	
-				<div class="col-4">
+				<div class="col-7">
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
-				<div class="col-4">
+				<div class="col-3">
 					<?php echo $item["monto"]?>
 				</div>	 
 			</div>
