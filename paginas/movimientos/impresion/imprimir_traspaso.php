@@ -70,16 +70,16 @@
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
 				<div class="col-3">
-					<?php echo $item["monto"]?>
+					<?php echo number_format($item["monto"])?>
 				</div>	 
 			</div>
 			<?php 	
 			}
 		?>
-		
+		<br>
 		<div class="row">
 			<div class="col-12 text-right">
-				<b>Monto:</b> $<?php echo $filas[0]["monto_traspaso"];?>
+				<b>Monto:</b> $<?php echo number_format($filas[0]["monto_traspaso"]);?>
 				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p>
 				<p>Concepto: <?php echo $filas[0]["concepto_traspaso"];?></p>
 			</div>	 
@@ -94,6 +94,7 @@
 			</div>
 			
 		</div>
+		<br>
 		<br>
 		<div class="row">
 			<div class="col-6 border-top text-center">
@@ -152,7 +153,7 @@
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
 				<div class="col-3">
-					<?php echo $item["monto"]?>
+					<?php echo number_format($item["monto"])?>
 				</div>	 
 			</div>
 			<?php 	
@@ -161,7 +162,7 @@
 		
 		<div class="row">
 			<div class="col-12 text-right">
-				<b>Monto:</b> $<?php echo $filas[0]["monto_traspaso"];?>
+	<b>Monto:</b> $<?php echo number_format($filas[0]["monto_traspaso"]);?>
 				<p>( <?php echo NumeroALetras::convertir($filas[0]["monto_traspaso"], 'PESOS', 'CENTAVOS')." 00/100 M.N."?></p>
 				<p>Concepto: <?php echo $filas[0]["concepto_traspaso"];?></p>
 			</div>	 
