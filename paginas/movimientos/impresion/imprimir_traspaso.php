@@ -69,7 +69,7 @@
 				<div class="col-7">
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 text-right">
 					<?php echo number_format($item["monto"])?>
 				</div>	 
 			</div>
@@ -152,7 +152,7 @@
 				<div class="col-7">
 					<?php echo $item["nombre_propietarios"]?>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 text-right">
 					<?php echo number_format($item["monto"])?>
 				</div>	 
 			</div>

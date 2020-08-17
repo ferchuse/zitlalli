@@ -20,13 +20,24 @@
 	WHERE usuarios.id_administrador = {$_COOKIE["id_administrador"]}
 	";
 	
-	$consulta.=  " 
-	AND  DATE(fecha_traspaso)
-	BETWEEN '{$_GET['fecha_inicial']}' 
-	AND '{$_GET['fecha_final']}' 
 	
-	GROUP BY id_traspaso
-	"; 
+	if($_GET['mes'] != ""){
+		$consulta.=  " 
+		AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+		AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
+	}
+	else{
+		
+		$consulta.=  " 
+		AND  DATE(fecha_traspaso)
+		BETWEEN '{$_GET['fecha_inicial']}' 
+		AND '{$_GET['fecha_final']}' 
+		
+		"; 
+	}
+	
+	$consulta.=" GROUP BY id_traspaso ";
+	
 	if($_GET["num_eco"] != ''){
 		
 		$consulta.=  " HAVING unidades LIKE '%{$_GET["num_eco"]}%' "; 
@@ -44,100 +55,100 @@
 			// console_log($fila);
 			$filas[] = $fila ;
 		}
-	?>
-	
-	<pre hidden >
-		Id_empresas <?php echo $_COOKIE["id_empresas"]?>
-		Session Id <?php echo session_id()?>
-		Sesiion Estatus <?php echo session_status()?>
-		Consulta <?php echo $consulta?>
-	</pre>
-	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Folio</th>
-				<th>Fecha Creación </th>
-				<th>Fecha Aplicación</th>
-				<th>Beneficiario</th>
-				<th>Concepto</th>
-				<th>Unidades</th>
-				<th>Monto</th>
-				<th>Estatus</th>
-				<th>Usuario</th>
-			</thead>
-			<tbody id="tabla_DB">
-				<?php 
-					foreach($filas as $index=>$fila){
-					?>
-					<tr>
-						<td class="text-center"> 
-							<?php if($fila["estatus_traspaso"] != 'Cancelado'){?>
-								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_traspaso']?>'>
-									<i class="fas fa-times"></i>
-								</button>
-								<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_traspaso']?>'>
-									<i class="fas fa-print"></i>
-								</button>
-								<?php
-								}
-								else{
-									echo "<span class='badge badge-danger'>".$fila["estatus_traspaso"]."<br>".$fila["datos_cancelacion"]."</span>";
-									
-								}
-								
-							?>
-						</td>
-						
-						<td><?php echo $fila["id_traspaso"]?></td>
-						<td><?php echo $fila["fecha_traspaso"]?></td>
-						<td><?php echo $fila["fecha_aplicacion"]?></td>
-						<td><?php echo $fila["beneficiario"]?></td>
-						<td><?php echo $fila["concepto_traspaso"]?></td>
-						<td><?php echo $fila["unidades"]?></td>
-						<td><?php echo $fila["monto_traspaso"]?></td>
-						<td><?php echo $fila["estatus_traspaso"]?></td>
-						<td><?php echo $fila["nombre_usuarios"]?></td>
-						
-					</tr>
-					<?
-						
-						if($fila["estatus_traspaso"] != "Cancelado"){
-							$totales[0]+= $fila["monto_traspaso"];
-							
-						}
-					}
-				?>
-			</tbody>
-			<tfoot>
+		?>
+		
+		<pre hidden >
+			Id_empresas <?php echo $_COOKIE["id_empresas"]?>
+			Session Id <?php echo session_id()?>
+			Sesiion Estatus <?php echo session_status()?>
+			Consulta <?php echo $consulta?>
+		</pre>
+		<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
+			<thead>
 				<tr>
-					<td><?php echo mysqli_num_rows($result);?> Registros</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<?php
-						foreach($totales as $i =>$total){
+					<th></th>
+					<th>Folio</th>
+					<th>Fecha Creación </th>
+					<th>Fecha Aplicación</th>
+					<th>Beneficiario</th>
+					<th>Concepto</th>
+					<th>Monto</th>
+					<th>Estatus</th>
+					<th>Unidades</th>
+					<th>Usuario</th>
+				</thead>
+				<tbody id="tabla_DB">
+					<?php 
+						foreach($filas as $index=>$fila){
 						?>
-						<td class="h6"><?php echo number_format($total)?></td>
-						<?php	
+						<tr>
+							<td class="text-center"> 
+								<?php if($fila["estatus_traspaso"] != 'Cancelado'){?>
+									<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_traspaso']?>'>
+										<i class="fas fa-times"></i>
+									</button>
+									<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_traspaso']?>'>
+										<i class="fas fa-print"></i>
+									</button>
+									<?php
+									}
+									else{
+										echo "<span class='badge badge-danger'>".$fila["estatus_traspaso"]."<br>".$fila["datos_cancelacion"]."</span>";
+										
+									}
+									
+								?>
+							</td>
+							
+							<td><?php echo $fila["id_traspaso"]?></td>
+							<td><?php echo $fila["fecha_traspaso"]?></td>
+							<td><?php echo $fila["fecha_aplicacion"]?></td>
+							<td><?php echo $fila["beneficiario"]?></td>
+							<td><?php echo $fila["concepto_traspaso"]?></td>
+							<td><?php echo $fila["monto_traspaso"]?></td>
+							<td><?php echo $fila["estatus_traspaso"]?></td>
+							<td><?php echo $fila["unidades"]?></td>
+							<td><?php echo $fila["nombre_usuarios"]?></td>
+							
+						</tr>
+						<?
+							
+							if($fila["estatus_traspaso"] != "Cancelado"){
+								$totales[0]+= $fila["monto_traspaso"];
+								
+							}
 						}
 					?>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
-	
-	<?php
+				</tbody>
+				<tfoot>
+					<tr>
+						<td><?php echo mysqli_num_rows($result);?> Registros</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<?php
+							foreach($totales as $i =>$total){
+							?>
+							<td class="h6 text-right">$<?php echo number_format($total)?></td>
+							<?php	
+							}
+						?>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 		
+		<?php
+			
+			
+		}
+		else {
+			echo  "Error en ".$consulta.mysqli_Error($link);
+		}
 		
-	}
-	else {
-		echo  "Error en ".$consulta.mysqli_Error($link);
-	}
-	
-?>	
+	?>		
