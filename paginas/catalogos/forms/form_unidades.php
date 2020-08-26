@@ -120,7 +120,7 @@
 						</div>	
 						<div class="col-5">			
 							<?php
-								echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros");
+								echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros", false, false, true);
 							?>
 						</div>
 					</div>
