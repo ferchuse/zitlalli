@@ -35,7 +35,7 @@
 		}
 		
 	?> 
-	<div class="media_carta">
+	<div class="media_carta h6">
 		<div class="row">
 			<div class="col-2 text-center" >
 				<img  src="../../img/logo.jpg" class="img-fluid">
@@ -113,11 +113,10 @@
 	<br>
 	
 	
-	<div style="page-break-after:always;"></div>
 	
 	
 	
-	<div class="media_carta">
+	<div class="media_carta h6">
 		<div class="row">
 			<div class="col-2 text-center" >
 				<img  src="../../img/logo.jpg" class="img-fluid">
