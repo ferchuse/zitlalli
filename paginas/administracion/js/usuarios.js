@@ -62,11 +62,11 @@ function listarRegistros() {
 		}).done(function(respuesta){
 		
 		$('#lista_registros').html(respuesta);
-		$('#tabla_registros').DataTable({
-			"language": {
-				"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-			}
-		});
+		// $('#tabla_registros').DataTable({
+			// "language": {
+				// "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+			// }
+		// });
 		
 		//BOTON DE Editar
 		$('.btn_editar').on('click', cargarRegistro);
