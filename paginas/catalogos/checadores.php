@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Usuarios</title>
+    <title>Checadores</title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
@@ -28,9 +28,9 @@
           <!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="#">Administración</a>
+							<a href="#">Catálogos</a>
 						</li>
-						<li class="breadcrumb-item active">Usuarios</li>
+						<li class="breadcrumb-item active">Checadores</li>
 					</ol>
 					
 					<div class="row mb-2">
@@ -48,14 +48,13 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-table"></i>
-							Lista de Usuarios
+							Lista de Checadores
 						</div>
 						<div class="card-body">
 							<div class="table-responsive" id="lista_registros">
 								<h3 >Cargando...</h3>
 							</div>
 						</div>
-						<div class="card-footer small text-muted d-none">Ultima Modificación Ayer 12pm</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
@@ -84,9 +83,9 @@
 	
 		
 		
-		<?php include("forms/form_usuarios.php")?>
+		<?php include("forms/form_checadores.php")?>
 		<?php include("../../scripts.php")?>
-		<script src="js/usuarios.js" ></script>
+		<script src="js/checadores.js?v=<?php date("")?>" ></script>
 
 	</body>
 </html>
