@@ -90,11 +90,39 @@
 			
 		}
 		
+		//https://github.com/mike42/Auth/blob/master/lib/misc/ReceiptPrinter.php
+		// https://github.com/mike42/escpos-php/blob/development/src/Mike42/Escpos/Printer.php
 		
+		$print.= "@";
+		$print.= chr(29)."h".chr(80).chr(29)."H".chr(2).chr(29).chr(0);//Barcode Height and settings
+		$print.= CHR(29) . 'k' . CHR(69).  chr(strlen($filas["tarjeta"])).$filas["tarjeta"]; //Barcode
+		
+		$print.= "\n\n\n";
 		
 		$print.=chr(10).chr(10).chr(13).chr(29).chr(86).chr(66).chr(0);
 		
-		// echo ($print);
+		/*
+			
+			escNewLine   = chr(10);  // New line (LF line feed)
+			escUnerlineOn   = chr(27) + chr(45) + chr(1);  // Unerline On
+			escUnerlineOnx2 = chr(27) + chr(45) + chr(2);  // Unerline On x 2
+			escUnerlineOff  = chr(27) + chr(45) + chr(0);  // Unerline Off
+			escBoldOn       = chr(27) + chr(69) + chr(1);  // Bold On
+			escBoldOff      = chr(27) + chr(69) + chr(0);  // Bold Off
+			escNegativeOn   = chr(29) + chr(66) + chr(1);  // White On Black On'
+			escNegativeOff  = chr(29) + chr(66) + chr(0);  // White On Black Off
+			esc8CpiOn       = chr(29) + chr(33) + chr(16); // Font Size x2 On
+			esc8CpiOff      = chr(29) + chr(33) + chr(0);  // Font Size x2 Off
+			esc16Cpi        = chr(27) + chr(77) + chr(48); // Font A  -  Normal Font
+			esc20Cpi        = chr(27) + chr(77) + chr(49); // Font B - Small Font
+			escReset        = chr(27) + chr(64); //chr(27) + chr(77) + chr(48); // Reset Printer
+			escFeedAndCut   = chr(29) + chr(86) + chr(65); // Partial Cut and feed
+			
+			escAlignLeft    = chr(27) + chr(97) + chr(48); // Align Text to the Left
+			escAlignCenter  = chr(27) + chr(97) + chr(49); // Align Text to the Center
+			escAlignRight   = chr(27) + chr(97) + chr(50); // Align Text to the Right
+		*/
+		
 		echo base64_encode($print);
 		
 	}
