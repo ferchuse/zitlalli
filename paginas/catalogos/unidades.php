@@ -166,6 +166,7 @@
 		});
 		
 		function buscarUnidad(){
+			console.log("buscarUnidad()");
 			console.log("id_unidades", $("#id_unidades").val());
 			if($("#id_unidades").val() != ""){
 				
@@ -178,6 +179,7 @@
 			
 			$.ajax({
 				url: 'unidades/consultas/buscar_unidad_repetida.php',
+				dataType: 'JSON',
 				method: 'GET',
 				data: {
 					

@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	
 	include('../../../../conexi.php');
 	$link = Conectarse();
 	$respuesta = Array();
