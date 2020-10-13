@@ -177,17 +177,16 @@
 			
 			
 			$.ajax({
-				url: '../../funciones/fila_select.php',
+				url: 'unidades/consultas/buscar_unidad_repetida.php',
 				method: 'GET',
 				data: {
-					tabla: "unidades",
-					id_campo: "num_eco",
-					id_valor: num_eco
+					
+					"num_eco": num_eco
 					
 				}
 				}).done(function(respuesta){
 				
-				if(respuesta.count_rows > 0){
+				if(respuesta.existe == 'SI'){
 					alertify.error("Ya existe la unidad")
 					$('#num_eco').focus();
 				}
