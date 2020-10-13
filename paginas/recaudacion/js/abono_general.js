@@ -174,7 +174,7 @@ function buscarUnidad(evnt){
 	
 	
 	
-	let subconsulta ='LEFT JOIN empresas USING (id_empresas)';
+	let subconsulta ='LEFT JOIN empresas USING (id_empresas) ';
 	let group = 'num_eco';
 	console.log("numero_unidad" + " "+numero_unidad);
 	$('#id_eco').addClass("cargando");
@@ -187,8 +187,8 @@ function buscarUnidad(evnt){
 		data: {
 			tabla: 'unidades',
 			subconsulta: subconsulta,
-			campo: 'num_eco',
-			id_campo: numero_unidad,
+		campo: "num_eco",
+			id_campo: numero_unidad + " AND estatus_unidades <> 'Baja' ",
 			group: group
 		}
 		}).done(function(respuesta){
