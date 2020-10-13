@@ -39,6 +39,7 @@
 	LEFT JOIN tarjetas USING (id_unidades)
 	WHERE
 	num_eco = '{$_GET['num_eco']}'
+	AND estatus_unidades <>  'Baja'
 	ORDER BY fecha_tarjetas DESC LIMIT 1 
 	";
   

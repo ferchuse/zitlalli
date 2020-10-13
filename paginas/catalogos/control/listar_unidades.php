@@ -57,7 +57,24 @@
 					<td><?php echo $fila["tipo_unidad"];?></td>
 					<td><?php echo $fila["saldo_unidades"];?></td>
 					<td><?php echo $fila["fecha_ingreso"];?></td>
-					<td><?php echo $fila["estatus_unidades"];?></td>
+					<td>
+						
+						<?php 
+							if($fila["estatus_unidades"] == "Alta"){
+								
+								echo "<span class='badge badge-success'>".$fila["estatus_unidades"]."</span>";
+								
+							}
+							else{
+								echo "<span class='badge badge-danger'>".$fila["estatus_unidades"]."</span>";
+								
+							}
+							
+							
+						?>
+						
+						
+					</td>
 					<td>
 						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_unidades"];?>">
 							<i class="fas fa-edit"></i>
@@ -73,19 +90,19 @@
 						</a>
 						
 					</td>
-				</tr>
-				
-				<?php 	
-				}
-			?>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="7">
-					<?php echo mysqli_num_rows($result);?> Registros.
-				</td>
-			</tr>
-		</tfoot>
+					</tr>
+					
+					<?php 	
+					}
+					?>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="7">
+									<?php echo mysqli_num_rows($result);?> Registros.
+								</td>
+							</tr>
+						</tfoot>
 	</table>
 	
 	
