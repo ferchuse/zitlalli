@@ -131,7 +131,7 @@
 	if($_GET["id_empresas"] != ''){
 		$consulta.=  " AND unidades.id_empresas  = '{$_GET["id_empresas"]}' ";
 	}
-	
+	$consulta.=  " AND estatus_unidades   <> 'Baja' ";
 	
 	
 	
