@@ -117,6 +117,8 @@
 	
 	if($_COOKIE["tipo_usuario"] == "propietario"){
 		$consulta.=  " AND id_propietarios  = '{$_COOKIE["id_usuarios"]}' ";
+		$consulta.=  " AND estatus_unidades   <> 'Baja' ";
+	
 	}
 	
 	if($_GET["id_propietarios"] != ""){
@@ -131,13 +133,15 @@
 	}
 	
 	
+	
+	
 	$consulta.= 
 	" GROUP BY 
 	id_unidades
 	
 	ORDER BY num_eco 
 	";
-  
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){
