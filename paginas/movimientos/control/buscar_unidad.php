@@ -127,7 +127,7 @@ ORDER BY
 	num_eco) as t_saldo USING (id_unidades)
 	WHERE
 	unidades.num_eco = '{$_GET['num_eco']}'
-	AND estatus_unidades <>  'Baja'
+
 	LIMIT 1
 	";
   
