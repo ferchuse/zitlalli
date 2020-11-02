@@ -5,6 +5,7 @@
 	}
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
+	include('../../../funciones/dame_permiso.php');
 	include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
@@ -81,11 +82,17 @@
 					<td class="text-center"> 
 						<?php if($fila["estatus_mutualidad"] != "Cancelado"){
 							$totales+=$fila['monto_mutualidad'];
-						?>
-						<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_mutualidad']?>'>
-							<i class="fas fa-print"></i>
-						</button>
-						<?php
+							
+							if(dame_permiso("mutualidad.php", $link) == 'Supervisor'){ ?>
+							<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_mutualidad']?>'>
+								<i class="fas fa-times"></i>
+							</button>
+							<button  class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_mutualidad']?>'>
+								<i class="fas fa-print"></i>
+							</button>
+							<?php
+							}
+						
 						}
 						?>
 					</td>
@@ -98,10 +105,10 @@
 					<td class="text-center"><?php echo $fila['monto_mutualidad'];?></td>
 					<td class="text-center"><?php echo $fila['nombre_usuarios'];?></td>
 					<td class="text-center"><?php echo $fila['estatus_mutualidad'];?></td>
-					
-				</tr> 
-				<?
-				}
+				
+			</tr> 
+			<?
+			}
 			?>
 			<tr>	
 				
