@@ -117,8 +117,8 @@
 	
 	if($_COOKIE["tipo_usuario"] == "propietario"){
 		$consulta.=  " AND id_propietarios  = '{$_COOKIE["id_usuarios"]}' ";
-		$consulta.=  " AND estatus_unidades   <> 'Baja' ";
-	
+		// $consulta.=  " AND estatus_unidades   <> 'Baja' ";
+		
 	}
 	
 	if($_GET["id_propietarios"] != ""){
@@ -131,7 +131,7 @@
 	if($_GET["id_empresas"] != ''){
 		$consulta.=  " AND unidades.id_empresas  = '{$_GET["id_empresas"]}' ";
 	}
-	$consulta.=  " AND estatus_unidades   <> 'Baja' ";
+	// $consulta.=  " AND estatus_unidades   <> 'Baja' ";
 	
 	
 	
@@ -208,7 +208,21 @@
 					<td><?php echo $filas["num_eco"]?></td>
 					<td><?php echo $filas["nombre_empresas"]?></td>
 					<td><?php echo $filas["nombre_propietarios"]?></td>
-					<td><?php echo $filas["estatus_unidades"]?></td>
+					<td>
+						<?php 
+							if($fila["estatus_unidades"] == "Alta"){
+								
+								echo "<span class='badge badge-success'>".$fila["estatus_unidades"]."</span>";
+								
+							}
+							else{
+								echo "<span class='badge badge-danger'>".$fila["estatus_unidades"]."</span>";
+								
+							}
+							
+							
+						?>
+					</td>
 					<td><?php echo $filas["saldo_anterior"]?></td>
 					
 					<td><?php echo $ingresos;?></td>
