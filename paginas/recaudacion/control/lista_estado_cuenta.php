@@ -117,7 +117,7 @@
 	
 	if($_COOKIE["tipo_usuario"] == "propietario"){
 		$consulta.=  " AND id_propietarios  = '{$_COOKIE["id_usuarios"]}' ";
-		// $consulta.=  " AND estatus_unidades   <> 'Baja' ";
+		$consulta.=  " AND estatus_unidades   <> 'Baja' ";
 		
 	}
 	
