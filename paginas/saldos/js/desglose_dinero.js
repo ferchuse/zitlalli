@@ -4,7 +4,12 @@ var printService = new WebSocketPrinter();
 
 $(document).ready(function(){
 	
-	$('#form_filtros').on('submit', listarRegistros);
+	$('#form_filtros').on('submit', function(ev){
+		
+		ev.preventDefault();
+		
+		listarRegistros();
+	});
 	
 	
 	
@@ -82,7 +87,7 @@ function guardarRegistro(event){
 }
 
 function listarRegistros(ev){
-	ev.preventDefault();
+	// ev.preventDefault();
 	console.log("listarRegistros()");
 	
 	$.ajax({
@@ -91,6 +96,12 @@ function listarRegistros(ev){
 		}).done(function termina_listar(respuesta){
 		
 		$('#registros').html(respuesta);
+		
+		
+		
+		
+		
+		$('.cancelar').click(confirmaCancelacion);
 		
 		$('.imprimir').click(function(){
 			
@@ -115,6 +126,64 @@ function listarRegistros(ev){
 
 
 
+function confirmaCancelacion(event){
+	console.log("confirmaCancelacion()");
+	let boton = $(this);
+	let icono = boton.find(".fas");
+	var id_registro = $(this).data("id_registro");
+	var fila = boton.closest('tr');
+	
+	alertify.confirm()
+	.setting({
+		'reverseButtons': true,
+		'labels' :{ok:"SI", cancel:'NO'},
+		'title': "Cancelar Abono" ,
+		'message': "Esta seguro?",
+		'onok':cancelarRegistro,
+		'oncancel': function(){
+			boton.prop('disabled', false);
+			
+		}
+	}).show();
+	
+	
+	
+	
+	function cancelarRegistro(evt, motivo){
+		if(motivo == ''){
+			console.log("Escribe un motivo");
+			alertify.error("Escribe un motivo");
+			return false;
+			
+		}
+		
+		boton.prop("disabled", true);
+		icono.toggleClass("fa-times fa-spinner fa-spin");
+		
+		
+		return $.ajax({
+			url: "control/cancelar_desglose_dinero.php",
+			dataType:"JSON",
+			data:{
+				id_registro : id_registro
+			}
+			}).done(function (respuesta){
+			if(respuesta.result == "success"){
+				alertify.success("Cancelado");
+				listarRegistros();
+			}
+			else{
+				alertify.error(respuesta.result);
+				
+			}
+			
+			}).always(function(){
+			boton.prop("disabled", false);
+			icono.toggleClass("fa-times fa-spinner fa-spin");
+			
+		});
+	}
+}
 
 
 function cadena_numeros (){

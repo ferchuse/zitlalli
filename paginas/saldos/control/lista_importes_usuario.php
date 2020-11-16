@@ -86,9 +86,9 @@
 	{
 		
 		$consulta.=" AND id_usuarios = {$_COOKIE["id_usuarios"]}";
-		}
+	}
 	
-  
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){
@@ -109,6 +109,7 @@
 				<th>Abonos Generales</th>
 				<th>Mutualidad</th>
 				<th>Total</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -156,18 +157,26 @@
 					</td>
 					<td>
 						
-						<a href="mutualidad_usuario.php?<?php 
+						<a href="mutualidad_usuario.php?
+						<?php 
 							echo "id_usuarios={$filas["id_usuarios"]}
 							&fecha_inicial={$_GET["fecha_inicial"]}
 							&fecha_final={$_GET["fecha_final"]}
 							&nombre_usuarios={$filas["nombre_usuarios"]}
 							";
-							?>">
+						?>" 
+						>
 							
-						<?php echo $filas["suma_mutualidad"]  == '' ? 0 :$filas["suma_mutualidad"]?></td>
-					</a>
+							<?php echo $filas["suma_mutualidad"]  == '' ? 0 :$filas["suma_mutualidad"]?>
+						</a>
+					</td>
 					<td>
 						<?php echo $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"]  ?>
+					</td>
+					<td class="text-right">
+						<button class="btn btn-info imprimir" data-id_registro='<?php echo $fila['id_usuario']?>'>
+							<i class="fas fa-print"></i>
+						</button>
 					</td>
 				</tr>
 				
@@ -210,4 +219,4 @@
 			}
 			
 			
-		?>																							
+		?>																																			

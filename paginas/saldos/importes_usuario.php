@@ -10,17 +10,17 @@
 <!DOCTYPE html>
 <html lang="es_mx">
 	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $nombre_pagina;?></title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title><?php echo $nombre_pagina;?></title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper" class="">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper" class="">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
@@ -94,18 +94,48 @@
 			<i class="fas fa-angle-up"></i>
 		</a>
 		
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		<div class="d-print-block p-2" hidden id="ticket">
 		</div>
-    <?php include("../../scripts.php")?>
-    <script >
+		<?php include("../../scripts.php")?>
+		<script >
 			listarRegistros();
 			
 			$('#form_filtro').on('submit', function filtrar(event){
-				event.preventDefault();
-				
-				listarRegistros();
-				
+			event.preventDefault();
+			
+			listarRegistros();
+			
 			});
+			
+			var printService = new WebSocketPrinter();
+			
+			
+			
+			function imprimirTicket(){
+			console.log("imprimirTicket()");
+			
+			
+			return $.ajax({
+			url: "impresion/imprimir_corte_usario.php"
+			}).done(function (respuesta){
+			
+			$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+				"texto" : respuesta
+				}
+			});
+			
+			printService.submit({
+				'type': 'LABEL',
+				'raw_content': respuesta
+			});
+			
+			});
+			}
+			
 			
 			function listarRegistros(){
 				console.log("listarRegistros()");
@@ -124,6 +154,7 @@
 					
 					$("#tabla_registros").html(respuesta)
 					// $("#dataTable").dataTable();
+					$(".imprimir").click(imprimirTicket);
 					// $(".imprimir").click(imprimirTicket);
 					// $(".cancelar").click(confirmaCancelacion);
 					
