@@ -34,26 +34,41 @@
 					<h3 class="d-none d-print-block">
 						Importes Por Usuario
 					</h3>
-					<form class="form-inline " id="form_filtro">
-						<div class="form-group mx-sm-3 mb-2">
-							<label for="" class="col-sm col-form-label">Fecha Inicial:</label>
-							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_inicial" id="fecha_inicio">
+					<form id="form_filtro">
+						<button type="submit" id="btn_fechas" class="btn btn-info btn-sm">
+							<i class="fas fa-search"></i> Buscar
+						</button>
+						<div class="row" >
+							<div class="col-sm-3" >
+								<div class="form-group" >
+									<label >Fecha Inicial:</label>
+									<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_inicial" id="fecha_inicio">
+								</div>
+							</div>
+							<div class="col-sm-3" >
+								<div class="form-group ">
+									<label for="">Fecha Final:</label>
+									<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_final" id="fecha_final">
+								</div>
+							</div>
+							<div class="col-sm-3" >
+								<div class="form-group">
+									<label for="">Empresa:</label>
+									<?= generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
+									
+								</div>
+							</div>
 						</div>
-						<div class="form-group mx-sm-3 mb-2">
-							<label for="">Fecha Final:</label>
-							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_final" id="fecha_final">
+						<!--<div class="card-footer small text-muted">Ultima Modificación Ayer 12pm</div>
 							
-						</div>
-						<div class="form-group mx-sm-3 mb-2">
-							<label for="">Empresa:</label>
 							
-							<?= generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
-							<button type="submit" id="btn_fechas" title="Buscar por Fecha" class="btn btn-info"><i class="fas fa-search"></i> Buscar</button>
-						</div>
-						<div class=" col-md-2 d-print-none">
+							<div class=" col-md-2 d-print-none">
 							<button type="button" id="btn_imprimir" onclick="window.print();" title="Imprimir" class="btn btn-outline-primary mb-2"><i class="fas fa-print"></i></button>
 							<button hidden type="button" id="btn_excel" title="Exportar a Excel" class="btn btn-outline-success mb-2"><i class="far fa-file-excel"></i></button>
-						</div>
+							</div>
+							
+						-->
+						
 					</form>
 					
 					
@@ -71,73 +86,75 @@
 								
 							</div>
 						</div>
-						<!--<div class="card-footer small text-muted">Ultima Modificación Ayer 12pm</div>-->
+						
 					</div>
-				</div>
-				<!-- /.container-fluid -->
-				
-				<!-- Sticky Footer -->
-				<footer class="sticky-footer">
-					<div class="container my-auto ">
-						<div class="copyright text-center my-auto">
-							<span class="d-print-none">Copyright © Glifo Media 2018</span>
+					</div>
+					<!-- /.container-fluid -->
+					
+					<!-- Sticky Footer -->
+					<footer class="sticky-footer">
+						<div class="container my-auto ">
+							<div class="copyright text-center my-auto">
+								<span class="d-print-none">Copyright © Glifo Media 2018</span>
+							</div>
 						</div>
-					</div>
-				</footer>
-			</div> 
-			<!-- /.content-wrapper -->
-		</div>
-		<!-- /#wrapper -->
-		
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded d-print-none" href="#page-top">
-			<i class="fas fa-angle-up"></i>
-		</a>
-		
-		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
-		<div class="d-print-block p-2" hidden id="ticket">
-		</div>
-		<?php include("../../scripts.php")?>
-		<script >
-			listarRegistros();
+					</footer>
+				</div> 
+				<!-- /.content-wrapper -->
+			</div>
+			<!-- /#wrapper -->
 			
-			$('#form_filtro').on('submit', function filtrar(event){
-			event.preventDefault();
+			<!-- Scroll to Top Button-->
+			<a class="scroll-to-top rounded d-print-none" href="#page-top">
+				<i class="fas fa-angle-up"></i>
+			</a>
 			
-			listarRegistros();
+			<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+			<div class="d-print-block p-2" hidden id="ticket">
+			</div>
+			<?php include("forms/form_vales.php")?>
 			
-			});
-			
-			var printService = new WebSocketPrinter();
-			
-			
-			
-			function imprimirTicket(){
-			console.log("imprimirTicket()");
-			
-			
-			return $.ajax({
-			url: "impresion/imprimir_corte_usario.php"
-			}).done(function (respuesta){
-			
-			$.ajax({
-			url: "http://localhost/imprimir_zitlalli.php",
-			method: "POST",
-			data:{
+			<?php include("../../scripts.php")?>
+			<script >
+				listarRegistros();
+				
+				$('#form_filtro').on('submit', function filtrar(event){
+				event.preventDefault();
+				
+				listarRegistros();
+				
+				});
+				
+				var printService = new WebSocketPrinter();
+				
+				
+				
+				function imprimirTicket(){
+				console.log("imprimirTicket()");
+				
+				
+				return $.ajax({
+				url: "impresion/imprimir_corte_usario.php"
+				}).done(function (respuesta){
+				
+				$.ajax({
+				url: "http://localhost/imprimir_zitlalli.php",
+				method: "POST",
+				data:{
 				"texto" : respuesta
 				}
-			});
-			
-			printService.submit({
+				});
+				
+				printService.submit({
 				'type': 'LABEL',
 				'raw_content': respuesta
-			});
-			
-			});
-			}
-			
-			
-			function listarRegistros(){
+				});
+				
+				});
+				}
+				
+				
+				function listarRegistros(){
 				console.log("listarRegistros()");
 				$("#tabla_registros").html("<h3 class='text-center'>Cargando <i class='fas fa-spinner fa-spin'></i></h3>")
 				let form = $("#form_filtro");
@@ -148,27 +165,27 @@
 				icono.toggleClass('fa-save fa-spinner fa-pulse ');
 				
 				return $.ajax({
-					url: 'control/lista_importes_usuario.php',
-					data: $("#form_filtro").serialize()
-					}).done(function(respuesta){
-					
-					$("#tabla_registros").html(respuesta)
-					// $("#dataTable").dataTable();
-					$(".imprimir").click(imprimirTicket);
-					// $(".imprimir").click(imprimirTicket);
-					// $(".cancelar").click(confirmaCancelacion);
-					
-					
-					}).always(function(){
-					
-					boton.prop('disabled',false);
-					icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
-					
+				url: 'control/lista_importes_usuario.php',
+				data: $("#form_filtro").serialize()
+				}).done(function(respuesta){
+				
+				$("#tabla_registros").html(respuesta)
+				// $("#dataTable").dataTable();
+				$(".imprimir").click(imprimirTicket);
+				// $(".imprimir").click(imprimirTicket);
+				// $(".cancelar").click(confirmaCancelacion);
+				
+				
+				}).always(function(){
+				
+				boton.prop('disabled',false);
+				icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
+				
 				});
 				
-			}
+				}
+				
+			</script>
 			
-		</script>
-		
-	</body>
-</html>
+		</body>
+	</html>						

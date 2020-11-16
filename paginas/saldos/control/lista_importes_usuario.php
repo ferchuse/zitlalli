@@ -14,7 +14,9 @@
 	nombre_usuarios,
 	suma_abonos_unidades,
 	suma_abonos_general,
-	suma_mutualidad
+	suma_mutualidad,
+	suma_vales,
+	suma_desglose
 	FROM
 	usuarios
 	LEFT JOIN (
@@ -59,6 +61,7 @@
 	$consulta.=" GROUP BY
 	id_usuarios
 	) AS t_suma_abonos_general USING (id_usuarios)
+	
 	LEFT JOIN (
 	SELECT
 	id_usuarios,
@@ -77,10 +80,50 @@
 	$consulta.= " GROUP BY
 	id_usuarios
 	) AS t_suma_mutualidad USING (id_usuarios)
-	WHERE usuarios.id_administrador = '{$_COOKIE["id_administrador"]}'
-	
 	
 	";
+	
+	
+	$consulta.="
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(importe_desglose) AS suma_desglose
+	FROM
+	desglose_dinero
+	WHERE
+	estatus_desglose <> 'Cancelado'
+	AND DATE(fecha_desglose) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
+	GROUP BY
+	id_usuarios
+	) AS t_suma_desglose USING (id_usuarios)
+	
+	";
+	
+	
+	$consulta.="
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(importe) AS suma_vales
+	FROM
+	vales_operador
+	WHERE
+	estatus <> 'Cancelado'
+	AND DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
+	GROUP BY
+	id_usuarios
+	) AS t_suma_vales USING (id_usuarios)
+	
+	";
+	
+	
+	
+	
 	
 	if(dame_permiso("importes_usuario.php", $link) == "Lectura" || dame_permiso("importes_usuario.php", $link) == "Escritura")
 	{
@@ -108,7 +151,10 @@
 				<th>Abonos a Unidades</th>
 				<th>Abonos Generales</th>
 				<th>Mutualidad</th>
-				<th>Total</th>
+				<th>Total Recaudación</th>
+				<th>Vales de Operador</th>
+				<th>Desglose de Efectivo</th>
+				<th>Diferencia</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -121,6 +167,8 @@
 					$totales[0]+= $filas["suma_abonos_unidades"];
 					$totales[1]+= $filas["suma_abonos_general"];
 					$totales[2]+= $filas["suma_mutualidad"];
+					$totales[3]+= $filas["suma_vales"];
+					$totales[4]+= $filas["suma_desglose"];
 				?>
 				<tr>
 					<td>
@@ -129,7 +177,7 @@
 						
 					</td>
 					
-					<td>
+					<td class="text-right">
 						<a href="abonos_usuario.php?<?php 
 							
 							echo "id_usuarios={$filas["id_usuarios"]}
@@ -143,7 +191,7 @@
 							<?php echo $filas["suma_abonos_unidades"]  == '' ? 0 : $filas["suma_abonos_unidades"]?>
 						</a>	
 					</td>
-					<td>
+					<td class="text-right">
 						<a href="abonos_general_usuario.php?<?php 
 							echo "id_usuarios={$filas["id_usuarios"]}
 							&fecha_inicial={$_GET["fecha_inicial"]}
@@ -155,7 +203,7 @@
 							<?php echo $filas["suma_abonos_general"]  == ''? 0 : $filas["suma_abonos_general"] ?>
 						</a>	
 					</td>
-					<td>
+					<td class="text-right">
 						
 						<a href="mutualidad_usuario.php?
 						<?php 
@@ -170,8 +218,21 @@
 							<?php echo $filas["suma_mutualidad"]  == '' ? 0 :$filas["suma_mutualidad"]?>
 						</a>
 					</td>
-					<td>
-						<?php echo $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"]  ?>
+					<td class="text-right">
+						<?php
+						$total_recaudacion = $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"] ;
+							echo $total_recaudacion;
+							
+							?>
+					</td>
+					<td class="text-right">
+						<?php echo number_format($filas["suma_vales"])  ?>
+					</td>
+					<td class="text-right">
+						<?php echo number_format($filas["suma_desglose"])  ?>
+					</td>
+					<td class="text-right">
+						<?php echo number_format($filas["suma_d"])  ?>
 					</td>
 					<td class="text-right">
 						<button class="btn btn-info imprimir" data-id_registro='<?php echo $fila['id_usuario']?>'>
@@ -219,4 +280,4 @@
 			}
 			
 			
-		?>																																			
+		?>																																					
