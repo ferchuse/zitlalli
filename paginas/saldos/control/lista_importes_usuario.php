@@ -15,7 +15,7 @@
 	suma_abonos_unidades,
 	suma_abonos_general,
 	suma_mutualidad,
-	suma_vales,
+	suma_egresos,
 	suma_desglose
 	FROM
 	usuarios
@@ -108,7 +108,7 @@
 	LEFT JOIN (
 	SELECT
 	id_usuarios,
-	SUM(importe) AS suma_vales
+	SUM(importe) AS suma_egresos
 	FROM
 	egresos_caja
 	WHERE
@@ -117,7 +117,7 @@
 	AND '{$_GET["fecha_final"]}'
 	GROUP BY
 	id_usuarios
-	) AS t_suma_vales USING (id_usuarios)
+	) AS t_suma_egresos USING (id_usuarios)
 	
 	";
 	
@@ -152,7 +152,7 @@
 				<th>Abonos Generales</th>
 				<th>Mutualidad</th>
 				<th>Total Recaudación</th>
-				<th>Vales de Operador</th>
+				<th>Egresos de Caja</th>
 				<th>Desglose de Efectivo</th>
 				<th>Diferencia</th>
 				<th></th>
@@ -164,11 +164,7 @@
 				while($fila = mysqli_fetch_assoc($result)){
 					
 					$filas = $fila ;
-					$totales[0]+= $filas["suma_abonos_unidades"];
-					$totales[1]+= $filas["suma_abonos_general"];
-					$totales[2]+= $filas["suma_mutualidad"];
-					$totales[3]+= $filas["suma_vales"];
-					$totales[4]+= $filas["suma_desglose"];
+					
 				?>
 				<tr>
 					<td>
@@ -220,19 +216,24 @@
 					</td>
 					<td class="text-right">
 						<?php
-						$total_recaudacion = $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"] ;
+							$total_recaudacion = $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"] ;
 							echo $total_recaudacion;
 							
-							?>
+						?>
 					</td>
 					<td class="text-right">
-						<?php echo number_format($filas["suma_vales"])  ?>
+						<?php echo number_format($filas["suma_egresos"])  ?>
 					</td>
 					<td class="text-right">
 						<?php echo number_format($filas["suma_desglose"])  ?>
 					</td>
 					<td class="text-right">
-						<?php echo number_format($filas["suma_d"])  ?>
+						
+						
+						<?php 
+							$diferencia = $total_recaudacion - ($filas["suma_egresos"] + $filas["suma_desglose"]);
+							
+						echo number_format($diferencia);  ?>
 					</td>
 					<td class="text-right">
 						<button class="btn btn-info imprimir" data-id_registro='<?php echo $fila['id_usuario']?>'>
@@ -242,7 +243,12 @@
 				</tr>
 				
 				<?php
-					
+					$totales[0]+= $filas["suma_abonos_unidades"];
+					$totales[1]+= $filas["suma_abonos_general"];
+					$totales[2]+= $filas["suma_mutualidad"];
+					$totales[3]+= $filas["suma_abonos_unidades"] + $filas["suma_abonos_general"] + $filas["suma_mutualidad"];
+					$totales[4]+= $filas["suma_egresos"];
+					$totales[5]+= $filas["suma_desglose"];
 					
 				}
 			?>
@@ -257,11 +263,10 @@
 						foreach($totales as $i =>$total){
 							$gran_total+=$total;
 						?>
-						<td ><b><?php echo number_format($total)?></b></td>
+						<td class="text-right"><b><?php echo number_format($total)?></b></td>
 						<?php	
 						}
 					?>
-					<td ><b><?php echo number_format($gran_total)?></b></td>
 					
 				</tr>
 				</tfoot>
@@ -280,4 +285,4 @@
 			}
 			
 			
-		?>																																					
+		?>																																							

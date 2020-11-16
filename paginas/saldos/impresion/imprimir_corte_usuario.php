@@ -6,14 +6,15 @@
 	$filas = array();
 	$respuesta = "";
 	
-	
 	$consulta = "##Importes por Usuario
 	SELECT
 	id_usuarios,
 	nombre_usuarios,
 	suma_abonos_unidades,
 	suma_abonos_general,
-	suma_mutualidad
+	suma_mutualidad,
+	suma_egresos,
+	suma_desglose
 	FROM
 	usuarios
 	LEFT JOIN (
@@ -25,8 +26,7 @@
 	LEFT JOIN tarjetas USING(tarjeta)
 	WHERE
 	estatus_abonos <> 'Cancelado'
-	AND date(fecha_abonos) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'
+	AND date(fecha_abonos) = CURDATE()
 	";
 	
 	if($_GET["id_empresas"] != ""){
@@ -47,8 +47,7 @@
 	LEFT JOIN unidades USING(id_unidades)
 	WHERE
 	estatus_abono <> 'Cancelado'
-	AND date(fecha_abonogeneral) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'";
+	AND date(fecha_abonogeneral) = CURDATE()";
 	
 	if($_GET["id_empresas"] != ""){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
@@ -58,6 +57,7 @@
 	$consulta.=" GROUP BY
 	id_usuarios
 	) AS t_suma_abonos_general USING (id_usuarios)
+	
 	LEFT JOIN (
 	SELECT
 	id_usuarios,
@@ -66,8 +66,7 @@
 	mutualidad
 	WHERE
 	estatus_mutualidad <> 'Cancelado'
-	AND DATE(fecha_mutualidad) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'";
+	AND DATE(fecha_mutualidad) = CURDATE()";
 	
 	if($_GET["id_empresas"] != ""){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
@@ -76,14 +75,48 @@
 	$consulta.= " GROUP BY
 	id_usuarios
 	) AS t_suma_mutualidad USING (id_usuarios)
-	WHERE usuarios.id_administrador = '{$_COOKIE["id_administrador"]}'
 	
+	";
+	
+	
+	$consulta.="
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(importe_desglose) AS suma_desglose
+	FROM
+	desglose_dinero
+	WHERE
+	estatus_desglose <> 'Cancelado'
+	AND DATE(fecha_desglose) = CURDATE()
+	GROUP BY
+	id_usuarios
+	) AS t_suma_desglose USING (id_usuarios)
+	
+	";
+	
+	
+	$consulta.="
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(importe) AS suma_egresos
+	FROM
+	egresos_caja
+	WHERE
+	estatus <> 'Cancelado'
+	AND DATE(fecha) = CURDATE()
+	GROUP BY
+	id_usuarios
+	) AS t_suma_egresos USING (id_usuarios)
 	
 	";
 	
 	
 	
-	$consulta.=" AND id_usuarios = {$_COOKIE["id_usuarios"]}";
+	$consulta.=" WHERE id_usuarios = {$_COOKIE["id_usuarios"]}";
 	
 	
 	
@@ -97,44 +130,37 @@
 			
 		}
 		
-		while($fila = mysqli_fetch_assoc($result)){
+		while($row = mysqli_fetch_assoc($result)){
 			
-			$filas = $fila ;
+			$fila = $row ;
 			
 		}
+		
+		$total_recaudacion = $fila["suma_abonos_unidades"] + $fila["suma_abonos_general"] + $fila["suma_mutualidad"] ;
+		
+		$diferencia = $total_recaudacion - ($fila["suma_egresos"] + $fila["suma_desglose"]);
 		
 		for ($x = 0 ; $x < 1; $x++){
 			$respuesta.= file_get_contents('../../img/logo_brujaz.tmb');
 			$respuesta.= "COORDINADORA DE TRANSPORTE GRUPO AAZ A.C.\n";
 			$respuesta.= "\n";
-			$respuesta.=   "\x1b"."@";
+			$respuesta.= "\x1b"."@";
 			$respuesta.= "\x1b"."E".chr(1); // Bold
 			
 			$respuesta.= "!\x10"; //font size
-			$respuesta.=   "INFORME DE ENTREGA DE RECAUDACION \n";
-			$respuesta.=  "\x1b"."E".chr(0); // Not Bold
-			$respuesta.=   "\x1b"."@";
-			$respuesta.= "FOLIO: 1234". "\n";
+			$respuesta.= "INFORME DE ENTREGA DE RECAUDACION \n";
+			$respuesta.= "\x1b"."E".chr(0); // Not Bold
+			$respuesta.= "\x1b"."@";
+			
 			$respuesta.= "FECHA:". date("d-m-Y"). "\n";
-			$respuesta.= "Turno:". $_COOKIE["nombre_usuarios"]."\n\n";
-			// $respuesta.= "MONTO TOTAL RECAUDADO:  $123". $filas["suma_abonos_general"] + $filas["suma_abonos_unidades"]."\n\n";
-			// $respuesta.= "MONTO TOTAL RECAUDADO:  $123". "\n\n";
-			// $respuesta.= "MONTO TOTAL RECAUDADO:  $123". "\n\n";
-			$respuesta.= "MONTO TOTAL RECAUDADO:  $123". "\n\n";
-			$respuesta.= "MUTUALIDAD:             $123". "\n\n";
-			// $respuesta.= "MUTUALIDAD:             $123". $filas["suma_mutualidad"]."\n\n";
-			// $respuesta.= "TOTAL:                  $123".$filas["suma_abonos_general"] + $filas["suma_abonos_unidades"] + $filas["suma_mutualidad"]."\n\n";
-			$respuesta.= "TOTAL:                  $123"."\n\n";
-			$respuesta.= "VALES PAGADOS:          "."$123"."\n\n";
-			$respuesta.= "BOLETOS PAGADOS:      "."$123"."\n\n";
-			$respuesta.= "VALES DE OPERADOR:      "."$123"."\n\n";
-			$respuesta.= "BOLETOS CANCELADOS:      "."$123"."\n\n";
-			
-			$respuesta.= "EFECTIVO:   $123"."\n\n";
-			
-			
-			
-			$respuesta.=  "\nIMPORTE TOTAL:              $ 123" .chr(9). number_format($filas["importe_desglose"]);
+			$respuesta.= "USUARIO:". $_COOKIE["nombre_usuarios"]."\n\n";
+			$respuesta.= "ABONO DE UNIDADES:   $".number_format($fila["suma_abonos_unidades"])."\n\n";
+			$respuesta.= "ABONO GENERAL:       $".number_format($fila["suma_abonos_general"])."\n\n";
+			$respuesta.= "MUTUALIDAD:          $".number_format($fila["suma_mutualidad"])."\n\n";
+			$respuesta.= "TOTAL RECAUDACION:   $".number_format($total_recaudacion)."\n\n";
+			$respuesta.= "EGRESOS:             $".number_format($fila["suma_egresos"])."\n\n";
+			$respuesta.= "EFECTIVO:            $".number_format($fila["suma_desglose"])."\n\n";
+			$respuesta.= "DIFERENCIA:          $".number_format($diferencia);
 			
 			
 			$respuesta.= "\x1b"."d".chr(2); // 4 Blank lines

@@ -134,7 +134,7 @@
 				
 				
 				return $.ajax({
-				url: "impresion/imprimir_corte_usario.php"
+				url: "impresion/imprimir_corte_usuario.php"
 				}).done(function (respuesta){
 				
 				$.ajax({
