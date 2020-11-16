@@ -6,7 +6,7 @@
 	$respuesta = array();
 	$fecha_cancelacion = date("Y-m-d H:i:s");
 
-	$cancelar = "UPDATE vales_operador
+	$cancelar = "UPDATE egresos_caja
 	
 	SET
 	estatus = 'Cancelado',

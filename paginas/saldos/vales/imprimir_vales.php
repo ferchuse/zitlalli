@@ -6,7 +6,7 @@
 	
 	// $boletos_id= implode("," ,$_GET['boletos']);
 	
-	$consulta = "SELECT * FROM vales_operador 
+	$consulta = "SELECT * FROM egresos_caja 
 	LEFT JOIN usuarios  USING(id_usuarios)
 	
 	WHERE id_vales = '{$_GET['folio']}'";
@@ -34,7 +34,7 @@
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
 		$respuesta.= "!";
-		$respuesta.=   "Vale de Operador \n";
+		$respuesta.=   "Egreso de Caja \n";
 		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
 		$respuesta.= "!\x10";
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines

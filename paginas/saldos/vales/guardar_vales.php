@@ -6,7 +6,7 @@
 	
 	
 	
-	$query ="INSERT INTO vales_operador SET 
+	$query ="INSERT INTO egresos_caja SET 
 	fecha = NOW(),
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
 	importe = '{$_POST["importe"]}',

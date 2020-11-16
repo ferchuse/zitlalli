@@ -4,7 +4,7 @@
 	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	
-	$consulta = "SELECT * FROM vales_operador
+	$consulta = "SELECT * FROM egresos_caja
 	
 	LEFT JOIN usuarios USING(id_usuarios) 
 	
@@ -52,7 +52,7 @@
 								
 								$total+= $fila["importe"];
 								
-								if(dame_permiso("vales_operador.php", $link) == 'Supervisor'){
+								if(dame_permiso("egresos_caja.php", $link) == 'Supervisor'){
 								?>
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila["id_vales"]?>'>
 									<i class="fas fa-times"></i>

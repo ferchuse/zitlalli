@@ -110,7 +110,7 @@
 	id_usuarios,
 	SUM(importe) AS suma_vales
 	FROM
-	vales_operador
+	egresos_caja
 	WHERE
 	estatus <> 'Cancelado'
 	AND DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'

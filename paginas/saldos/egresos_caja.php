@@ -5,7 +5,7 @@
 	// include_once('../../funciones/dame_permiso.php');
 	
 	$link = Conectarse();
-	$nombre_pagina = "Vales de Operador";
+	$nombre_pagina = "Egresos de Caja";
 	
 	
 ?>
@@ -88,7 +88,7 @@
 									</form>
 									<div class="card card-primary mt-4 ">
 										<div class="card-header bg-secondary text-white">
-											<b> <i class="fas fa-ticket"></i> Vales de Operador</b>
+											<b> <i class="fas fa-ticket"></i> <?php echo $nombre_pagina;?></b>
 											
 										</div>
 										<div class="card-body table-responsive">
