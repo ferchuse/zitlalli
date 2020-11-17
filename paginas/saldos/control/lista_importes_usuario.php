@@ -138,7 +138,7 @@
 	
 	
 	
-	if(dame_permiso("importes_usuario.php", $link) == "Lectura" || dame_permiso("importes_usuario.php", $link) == "Escritura")
+	if(dame_permiso("importes_usuario.php", $link) != "Supervisor" )
 	{
 		
 		$consulta.=" WHERE id_usuarios = {$_COOKIE["id_usuarios"]}";
