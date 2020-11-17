@@ -95,7 +95,13 @@
 	WHERE
 	estatus_desglose <> 'Cancelado'
 	AND DATE(fecha_desglose) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'
+	AND '{$_GET["fecha_final"]}'";
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
+	}
+	
+	$consulta.= "
 	GROUP BY
 	id_usuarios
 	) AS t_suma_desglose USING (id_usuarios)
@@ -114,7 +120,14 @@
 	WHERE
 	estatus <> 'Cancelado'
 	AND DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'
+	AND '{$_GET["fecha_final"]}'";
+	
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
+	}
+	
+	$consulta.= "
 	GROUP BY
 	id_usuarios
 	) AS t_suma_egresos USING (id_usuarios)

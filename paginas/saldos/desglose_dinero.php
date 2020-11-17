@@ -17,17 +17,17 @@
 <!DOCTYPE html>
 <html lang="es_mx">
 	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $nombre_pagina;?></title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title><?php echo $nombre_pagina;?></title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper" class="d-print-none">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper" class="d-print-none">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
@@ -58,6 +58,15 @@
 								<label >Usuario:</label>
 								<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"])?>
 							</div>	
+							
+							<div class="form-group  col-sm-2">
+								<label>
+									Empresa:
+								</label>
+								<?php
+									echo generar_select($link, "empresas" , "id_empresas", "nombre_empresas", true, false, false,0 ,0, "id_empresas" , "id_empresas")
+								?>
+							</div>
 						</div>
 						<div class=" col-md-2 d-none">
 							<button type="button" id="btn_imprimir" title="Imprimir" class="btn btn-outline-primary mb-2"><i class="fas fa-print"></i></button>

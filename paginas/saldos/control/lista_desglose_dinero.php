@@ -13,10 +13,12 @@
 	*
 	FROM
 	desglose_dinero
-	LEFT JOIN 
-	usuarios
-	USING (id_usuarios)
-	WHERE usuarios.id_administrador = '{$_COOKIE["id_administrador"]}'
+	
+	LEFT JOIN empresas USING (id_empresas)
+	LEFT JOIN usuarios USING (id_usuarios)
+	
+	WHERE 
+	usuarios.id_administrador = '{$_COOKIE["id_administrador"]}'
 	AND DATE(fecha_desglose) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
 	";
@@ -24,6 +26,12 @@
 	IF($_GET["id_usuarios"] != ""){
 		
 		$consulta.=" AND id_usuarios = '{$_GET["id_usuarios"]}'";
+		
+	}
+	
+	IF($_GET["id_empresas"] != ""){
+		
+		$consulta.=" AND id_empresas = '{$_GET["id_empresas"]}'";
 		
 	}
 	
@@ -45,6 +53,7 @@
 			<tr>
 				<th>Imprimir</th>
 				<th>Folio</th>
+				<th>Empresa</th>
 				<th>Usuario</th>
 				<th>Fecha</th>
 				<th>Importe</th>
@@ -97,6 +106,7 @@
 						?>
 					</td>
 					<td class="text-center"><?= $fila["id_desglose"]?></td>
+					<td class="text-center"><?= $fila["nombre_empresas"]?></td>
 					<td class="text-center"><?= $fila["nombre_usuarios"]?></td>
 					<td class="text-center"><?= $fila["fecha_desglose"]?></td>
 					<td class="text-center">$ <?= number_format($fila["importe_desglose"])?></td>
@@ -110,7 +120,7 @@
 		</tbody>
 		<tfoot>
 			<tr class="h5">
-				<td colspan="4" ><b> <?= mysqli_num_rows($result);?> Registros</b></td>
+				<td colspan="5" ><b> <?= mysqli_num_rows($result);?> Registro(s)</b></td>
 				
 				<td  class="text-center"><b>$ <?php echo number_format($totales[0])?></b></td>
 			</tr>
