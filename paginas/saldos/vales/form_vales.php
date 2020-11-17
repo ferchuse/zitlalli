@@ -12,6 +12,11 @@
 				
 				<!-- Modal body -->
 				<div class="modal-body">
+					
+					<div class="form-group">
+						<label for="id_empresas">Empresa</label>
+						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true)?>
+					</div>
                     <div class="form-group">
                         <label for="">Concepto:</label>
                         <input class="form-control" id="concepto" name="concepto" required>

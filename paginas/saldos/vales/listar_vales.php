@@ -6,16 +6,22 @@
 	
 	$consulta = "SELECT * FROM egresos_caja
 	
+	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN usuarios USING(id_usuarios) 
 	
-	
+	WHERE DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
 	";
 	
 	
 	
 	
 	if($_GET["id_usuarios"] != ""){
-		$consulta.=" WHERE id_usuarios = '{$_GET["id_usuarios"]}' ";
+		$consulta.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.=" AND id_empresas = '{$_GET["id_empresas"]}' ";
 	}
 	
 	
@@ -29,6 +35,8 @@
 			<tr>
 				<th class="text-center"></th>
 				<th class="text-center">Folio</th>
+				<th class="text-center">Fecha</th>
+				<th class="text-center">Empresa</th>
 				<th class="text-center">Concepto</th>
 				<th class="text-center">Importe</th>
 				<th class="text-center">Usuario</th>
@@ -68,6 +76,8 @@
 					</td>
 					
 					<td><?php echo $fila["id_vales"];?></td>
+					<td><?php echo $fila["fecha"];?></td>
+					<td><?php echo $fila["nombre_empresas"];?></td>
 					<td><?php echo $fila["concepto"];?></td>
 					<td>
 						
@@ -90,6 +100,8 @@
 				<td >
 					<?php echo mysqli_num_rows($result);?> Registros.
 				</td>
+				<td ></td>
+				<td ></td>
 				<td ></td>
 				<td ><B> Total </b></td>
 				<td >

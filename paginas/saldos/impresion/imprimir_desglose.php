@@ -10,6 +10,7 @@
 	$denominaciones = ["1000", "500", "200", "100", "50", "20", "10", "5", "2", "1", "0.5"];
 	$consulta = "SELECT * FROM desglose_dinero 
 	
+	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN usuarios USING(id_usuarios)
 	WHERE id_desglose= '{$_GET['id_registro']}'";
   
@@ -34,6 +35,7 @@
 		$print.= "@";
 		$print.= "!".chr(16)."DESGLOSE DE DINERO"."!".chr(0)."\n";
 		$print.= "Folio: ".$filas["id_desglose"]."\n";
+		$print.= "Empresa: ".$filas["nombre_empresas"]."\n";
 		$print.= "Fecha: ".$filas["fecha_desglose"]."\n";
 		$print.= "Usuario: ".$filas["nombre_usuarios"]."\n";
 		$print.= "Denom".chr(9).chr(9)."Cantidad".chr(9)."Importe  \n";

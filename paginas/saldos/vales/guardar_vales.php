@@ -9,6 +9,7 @@
 	$query ="INSERT INTO egresos_caja SET 
 	fecha = NOW(),
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
+	id_empresas = '{$_POST["id_empresas"]}',
 	importe = '{$_POST["importe"]}',
 	concepto = '{$_POST["concepto"]}'
 	

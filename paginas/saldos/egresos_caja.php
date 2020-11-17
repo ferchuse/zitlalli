@@ -40,7 +40,7 @@
 								<div class="col-sm-12">
 									<?php 
 										
-										if(dame_permiso("vales_operador.php", $link) == "Supervisor"){
+										if(dame_permiso("egresos_caja.php", $link) == "Supervisor"){
 											$permiso = "";
 										}
 										else{
@@ -61,10 +61,19 @@
 												
 											</div>
 										</div>
-										<div class="row" <?= $permiso?> >
+										<div class="row"  >
 											
 											
 											<div class="form-group  col-sm-2">
+												<label>
+													Empresa:
+												</label>
+												<?php
+													echo generar_select($link, "empresas" , "id_empresas", "nombre_empresas", true, false, false,0 ,0, "id_empresas" , "id_empresas")
+												?>
+											</div>
+											
+											<div class="form-group  col-sm-2 <?= $permiso?>">
 												<label>
 													Usuario:
 												</label>
@@ -72,13 +81,13 @@
 													echo generar_select($link, "usuarios" , "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"],0, "id_usuarios" , "filtro_usuarios")
 												?>
 											</div>
-											<div class="form-group  col-sm-3">
+											<div class="form-group  col-sm-3 <?= $permiso?>">
 												<label>
 													Fecha Inicial:
 												</label>
 												<input type="date" class="form-control" name="fecha_inicial" value="<?= date("Y-m-d")?>">
 											</div>
-											<div class="form-group  col-sm-3">
+											<div class="form-group  col-sm-3 <?= $permiso?>">
 												<label>
 													Fecha Final:
 												</label>

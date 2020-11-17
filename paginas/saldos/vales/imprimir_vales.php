@@ -7,6 +7,7 @@
 	// $boletos_id= implode("," ,$_GET['boletos']);
 	
 	$consulta = "SELECT * FROM egresos_caja 
+	LEFT JOIN empresas  USING(id_empresas)
 	LEFT JOIN usuarios  USING(id_usuarios)
 	
 	WHERE id_vales = '{$_GET['folio']}'";
@@ -40,6 +41,7 @@
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		$respuesta.= "Folio:". $registro["id_vales"]. "\n";
 		$respuesta.= "Fecha:" . ($registro["fecha"])."\n";
+		$respuesta.= "Empresa:" . ($registro["nombre_empresas"])."\n";
 		$respuesta.= "Concepto:" . ($registro["concepto"])."\n";
 		$respuesta.= "Importe: $ ". $registro["importe"]."\n";
 		$respuesta.=  "Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n";

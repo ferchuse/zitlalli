@@ -17,7 +17,19 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="fecha_abonogeneral">FECHA</label>
+							
+						</div>
+						<div class="form-group col-md-6">
 							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" id="fecha_desglose" name="fecha_desglose" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="id_empresas">Empresa</label>
+							
+						</div>
+						<div class="form-group col-md-6">
+							<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true)?>
 						</div>
 					</div>
 					
@@ -120,8 +132,8 @@
 						</div>
 					</div>
 				</div>
-		    <!-- Modal footer -->
-		    <div class="modal-footer">
+				<!-- Modal footer -->
+				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 					<button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Guardar</button>
 				</div>
