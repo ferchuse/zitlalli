@@ -88,73 +88,74 @@
 						</div>
 						
 					</div>
-					</div>
-					<!-- /.container-fluid -->
-					
-					<!-- Sticky Footer -->
-					<footer class="sticky-footer">
-						<div class="container my-auto ">
-							<div class="copyright text-center my-auto">
-								<span class="d-print-none">Copyright © Glifo Media 2018</span>
-							</div>
+				</div>
+				<!-- /.container-fluid -->
+				
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto ">
+						<div class="copyright text-center my-auto">
+							<span class="d-print-none">Copyright © Glifo Media 2018</span>
 						</div>
-					</footer>
-				</div> 
-				<!-- /.content-wrapper -->
-			</div>
-			<!-- /#wrapper -->
+					</div>
+				</footer>
+			</div> 
+			<!-- /.content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+		
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded d-print-none" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>
+		
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+		<div class="d-print-block p-2" hidden id="ticket">
+		</div>
+		<?php include("forms/form_vales.php")?>
+		
+		<?php include("../../scripts.php")?>
+		<script >
+			listarRegistros();
 			
-			<!-- Scroll to Top Button-->
-			<a class="scroll-to-top rounded d-print-none" href="#page-top">
-				<i class="fas fa-angle-up"></i>
-			</a>
+			$('#form_filtro').on('submit', function filtrar(event){
+			event.preventDefault();
 			
-			<script src="../../plugins/pos_print/websocket-printer.js" > </script>
-			<div class="d-print-block p-2" hidden id="ticket">
-			</div>
-			<?php include("forms/form_vales.php")?>
+			listarRegistros();
 			
-			<?php include("../../scripts.php")?>
-			<script >
-				listarRegistros();
-				
-				$('#form_filtro').on('submit', function filtrar(event){
-				event.preventDefault();
-				
-				listarRegistros();
-				
-				});
-				
-				var printService = new WebSocketPrinter();
-				
-				
-				
-				function imprimirTicket(){
-				console.log("imprimirTicket()");
-				
-				
-				return $.ajax({
-				url: "impresion/imprimir_corte_usuario.php"
-				}).done(function (respuesta){
-				
-				$.ajax({
-				url: "http://localhost/imprimir_zitlalli.php",
-				method: "POST",
-				data:{
-				"texto" : respuesta
-				}
-				});
-				
-				printService.submit({
-				'type': 'LABEL',
-				'raw_content': respuesta
-				});
-				
-				});
-				}
-				
-				
-				function listarRegistros(){
+			});
+			
+			var printService = new WebSocketPrinter();
+			
+			
+			
+			function imprimirTicket(){
+			console.log("imprimirTicket()");
+			
+			
+			return $.ajax({
+			url: "impresion/imprimir_corte_usuario.php",
+			data: $("#form_filtro").serialize()
+			}).done(function (respuesta){
+			
+			$.ajax({
+			url: "http://localhost/imprimir_zitlalli.php",
+			method: "POST",
+			data:{
+			"texto" : respuesta
+			}
+			});
+			
+			printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+			});
+			
+			});
+			}
+			
+			
+			function listarRegistros(){
 				console.log("listarRegistros()");
 				$("#tabla_registros").html("<h3 class='text-center'>Cargando <i class='fas fa-spinner fa-spin'></i></h3>")
 				let form = $("#form_filtro");
@@ -165,27 +166,27 @@
 				icono.toggleClass('fa-save fa-spinner fa-pulse ');
 				
 				return $.ajax({
-				url: 'control/lista_importes_usuario.php',
-				data: $("#form_filtro").serialize()
-				}).done(function(respuesta){
-				
-				$("#tabla_registros").html(respuesta)
-				// $("#dataTable").dataTable();
-				$(".imprimir").click(imprimirTicket);
-				// $(".imprimir").click(imprimirTicket);
-				// $(".cancelar").click(confirmaCancelacion);
-				
-				
-				}).always(function(){
-				
-				boton.prop('disabled',false);
-				icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
-				
+					url: 'control/lista_importes_usuario.php',
+					data: $("#form_filtro").serialize()
+					}).done(function(respuesta){
+					
+					$("#tabla_registros").html(respuesta)
+					// $("#dataTable").dataTable();
+					$(".imprimir").click(imprimirTicket);
+					// $(".imprimir").click(imprimirTicket);
+					// $(".cancelar").click(confirmaCancelacion);
+					
+					
+					}).always(function(){
+					
+					boton.prop('disabled',false);
+					icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
+					
 				});
 				
-				}
-				
-			</script>
+			}
 			
-		</body>
-	</html>						
+		</script>
+		
+	</body>
+</html>						

@@ -141,7 +141,7 @@
 	if(dame_permiso("importes_usuario.php", $link) == "Lectura" || dame_permiso("importes_usuario.php", $link) == "Escritura")
 	{
 		
-		$consulta.=" AND id_usuarios = {$_COOKIE["id_usuarios"]}";
+		$consulta.=" WHERE id_usuarios = {$_COOKIE["id_usuarios"]}";
 	}
 	
 	
@@ -244,7 +244,7 @@
 						
 						
 						<?php 
-							$diferencia = $total_recaudacion - ($filas["suma_egresos"] + $filas["suma_desglose"]);
+							$diferencia = ($filas["suma_egresos"] + $filas["suma_desglose"]) - $total_recaudacion ;
 							
 						echo number_format($diferencia);  ?>
 					</td>

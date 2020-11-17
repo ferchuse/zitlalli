@@ -26,7 +26,8 @@
 	LEFT JOIN tarjetas USING(tarjeta)
 	WHERE
 	estatus_abonos <> 'Cancelado'
-	AND date(fecha_abonos) = CURDATE()
+	AND date(fecha_abonos) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
 	";
 	
 	if($_GET["id_empresas"] != ""){
@@ -47,7 +48,8 @@
 	LEFT JOIN unidades USING(id_unidades)
 	WHERE
 	estatus_abono <> 'Cancelado'
-	AND date(fecha_abonogeneral) = CURDATE()";
+	AND date(fecha_abonogeneral) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'";
 	
 	if($_GET["id_empresas"] != ""){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
@@ -66,7 +68,8 @@
 	mutualidad
 	WHERE
 	estatus_mutualidad <> 'Cancelado'
-	AND DATE(fecha_mutualidad) = CURDATE()";
+	AND DATE(fecha_mutualidad) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'";
 	
 	if($_GET["id_empresas"] != ""){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
@@ -89,7 +92,14 @@
 	desglose_dinero
 	WHERE
 	estatus_desglose <> 'Cancelado'
-	AND DATE(fecha_desglose) = CURDATE()
+	AND DATE(fecha_desglose) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'";
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
+	}
+	
+	$consulta.= "
 	GROUP BY
 	id_usuarios
 	) AS t_suma_desglose USING (id_usuarios)
@@ -107,12 +117,21 @@
 	egresos_caja
 	WHERE
 	estatus <> 'Cancelado'
-	AND DATE(fecha) = CURDATE()
+	AND DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'";
+	
+	
+	if($_GET["id_empresas"] != ""){
+		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}'";
+	}
+	
+	$consulta.= "
 	GROUP BY
 	id_usuarios
 	) AS t_suma_egresos USING (id_usuarios)
 	
 	";
+	
 	
 	
 	
@@ -138,7 +157,7 @@
 		
 		$total_recaudacion = $fila["suma_abonos_unidades"] + $fila["suma_abonos_general"] + $fila["suma_mutualidad"] ;
 		
-		$diferencia = $total_recaudacion - ($fila["suma_egresos"] + $fila["suma_desglose"]);
+		$diferencia = ($fila["suma_egresos"] + $fila["suma_desglose"]) - $total_recaudacion  ;
 		
 		for ($x = 0 ; $x < 1; $x++){
 			$respuesta.= file_get_contents('../../img/logo_brujaz.tmb');
