@@ -55,7 +55,7 @@
 								<div class="form-group">
 									<label for="">Empresa:</label>
 									<?= generar_select($link, "empresas", "id_empresas", "nombre_empresas", true)?>
-									
+									<input type="hidden" id="nombre_empresa" name="nombre_empresa" value="Todas">
 								</div>
 							</div>
 						</div>
@@ -115,78 +115,7 @@
 		<?php include("forms/form_vales.php")?>
 		
 		<?php include("../../scripts.php")?>
-		<script >
-			listarRegistros();
-			
-			$('#form_filtro').on('submit', function filtrar(event){
-			event.preventDefault();
-			
-			listarRegistros();
-			
-			});
-			
-			var printService = new WebSocketPrinter();
-			
-			
-			
-			function imprimirTicket(){
-			console.log("imprimirTicket()");
-			
-			
-			return $.ajax({
-			url: "impresion/imprimir_corte_usuario.php",
-			data: $("#form_filtro").serialize()
-			}).done(function (respuesta){
-			
-			$.ajax({
-			url: "http://localhost/imprimir_zitlalli.php",
-			method: "POST",
-			data:{
-			"texto" : respuesta
-			}
-			});
-			
-			printService.submit({
-			'type': 'LABEL',
-			'raw_content': respuesta
-			});
-			
-			});
-			}
-			
-			
-			function listarRegistros(){
-				console.log("listarRegistros()");
-				$("#tabla_registros").html("<h3 class='text-center'>Cargando <i class='fas fa-spinner fa-spin'></i></h3>")
-				let form = $("#form_filtro");
-				let boton = form.find(":submit");
-				let icono = boton.find('.fas');
-				
-				boton.prop('disabled',true);
-				icono.toggleClass('fa-save fa-spinner fa-pulse ');
-				
-				return $.ajax({
-					url: 'control/lista_importes_usuario.php',
-					data: $("#form_filtro").serialize()
-					}).done(function(respuesta){
-					
-					$("#tabla_registros").html(respuesta)
-					// $("#dataTable").dataTable();
-					$(".imprimir").click(imprimirTicket);
-					// $(".imprimir").click(imprimirTicket);
-					// $(".cancelar").click(confirmaCancelacion);
-					
-					
-					}).always(function(){
-					
-					boton.prop('disabled',false);
-					icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
-					
-				});
-				
-			}
-			
-		</script>
+		<script src="js/importes_usuario.js?v=123"></script>
 		
 	</body>
 </html>						

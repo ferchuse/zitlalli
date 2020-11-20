@@ -249,7 +249,7 @@
 						echo number_format($diferencia);  ?>
 					</td>
 					<td class="text-right">
-						<button class="btn btn-info imprimir" data-id_registro='<?php echo $fila['id_usuario']?>'>
+						<button class="btn btn-info imprimir" data-id_usuarios='<?php echo $fila['id_usuarios']?>'>
 							<i class="fas fa-print"></i>
 						</button>
 					</td>

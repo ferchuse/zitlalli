@@ -135,7 +135,10 @@
 	
 	
 	
-	$consulta.=" WHERE id_usuarios = {$_COOKIE["id_usuarios"]}";
+	$consulta.=" 
+	
+	
+	WHERE id_usuarios = {$_GET["id_usuarios"]}";
 	
 	
 	
@@ -155,6 +158,34 @@
 			
 		}
 		
+		
+		$consulta_egresos = "
+		SELECT * FROM egresos_caja
+		
+		
+		WHERE
+		estatus <> 'Cancelado'
+		AND DATE(fecha) BETWEEN '{$_GET["fecha_inicial"]}'
+		AND '{$_GET["fecha_final"]}'
+		AND id_usuarios = '{$_COOKIE["id_usuarios"]}'
+		
+		";
+		
+		
+		if($_GET["id_empresas"] != ""){
+			$consulta_egresos.= " AND id_empresas = '{$_GET["id_empresas"]}'";
+		}
+		
+		$result_egresos = mysqli_query($link,$consulta_egresos);
+		
+		while($row = mysqli_fetch_assoc($result_egresos)){
+			
+			$lista_egresos[] = $row ;
+			
+		}
+		
+		
+		
 		$total_recaudacion = $fila["suma_abonos_unidades"] + $fila["suma_abonos_general"] + $fila["suma_mutualidad"] ;
 		
 		$diferencia = ($fila["suma_egresos"] + $fila["suma_desglose"]) - $total_recaudacion  ;
@@ -171,13 +202,24 @@
 			$respuesta.= "\x1b"."E".chr(0); // Not Bold
 			$respuesta.= "\x1b"."@";
 			
+			$respuesta.= "EMPRESA: ".$_GET["nombre_empresa"]. "\n";
 			$respuesta.= "FECHA:". date("d-m-Y"). "\n";
 			$respuesta.= "USUARIO:". $_COOKIE["nombre_usuarios"]."\n\n";
 			$respuesta.= "ABONO DE UNIDADES:   $".number_format($fila["suma_abonos_unidades"])."\n\n";
 			$respuesta.= "ABONO GENERAL:       $".number_format($fila["suma_abonos_general"])."\n\n";
 			$respuesta.= "MUTUALIDAD:          $".number_format($fila["suma_mutualidad"])."\n\n";
 			$respuesta.= "TOTAL RECAUDACION:   $".number_format($total_recaudacion)."\n\n";
-			$respuesta.= "EGRESOS:             $".number_format($fila["suma_egresos"])."\n\n";
+			
+			$respuesta.= "EGRESOS:  \n\n";
+			foreach($lista_egresos as $egreso){
+				
+				$respuesta.= "#{$egreso["id_vales"]} {$egreso["concepto"]}      $ {$egreso["importe"]}   \n";
+			}
+			
+			
+			
+			
+			$respuesta.= "TOTAL EGRESOS:             $".number_format($fila["suma_egresos"])."\n\n";
 			$respuesta.= "EFECTIVO:            $".number_format($fila["suma_desglose"])."\n\n";
 			$respuesta.= "DIFERENCIA:          $".number_format($diferencia);
 			
@@ -185,6 +227,8 @@
 			$respuesta.= "\x1b"."d".chr(2); // 4 Blank lines
 			$respuesta.= "\nVA"; // Cut
 		}
+		
+		// echo $consulta;
 		
 		echo base64_encode ( $respuesta );
 		// echo  ( $respuesta );
