@@ -39,6 +39,9 @@
 		$print.= "a".chr(0)."!".chr(176)."TARJETA"."!".chr(0)."\n a".chr(0);
 		$print.= "E".chr(1)."FOLIO: E".chr(0).$filas["tarjeta"]."\n";
 		$print.= "FECHA CUENTA: ".$filas["fecha_tarjetas"]."\n";
+		$print.= "FECHA CAPTURA: ".$filas["fecha_creacion"]."\n";
+		$print.= "FECHA IMPRESION: ".date("d-m-Y H:i:s")."\n";
+		$print.= "USUARIO IMPRESION: ".$_COOKIE["nombre_usuarios"]."\n";
 		$print.= "USUARIO: ".$filas["nombre_usuarios"]."\n";
 		$print.= "EMPRESA: ".$filas["nombre_empresas"]."\n";
 		$print.= "NUM ECO: ".$filas["num_eco"]."\n";
