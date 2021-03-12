@@ -67,7 +67,7 @@
 													<label>
 														Empresa:
 													</label>
-													<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true	);	?>
+													<?php echo generar_select($link, "taquilla_empresas", "id_empresas", "nombre_empresas", true	);	?>
 												</div>
 												<div class="form-group mx-sm-3 mb-2">
 													<label for="num_eco" >Num Eco:</label>
