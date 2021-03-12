@@ -82,12 +82,12 @@
 													<input type="date" class="form-control" value="<?php echo $date_final;?>" name="fecha_final" id="fecha_final">
 													
 												</div>
-												<br>
-												<label>
+												
+												<label >
 													Usuario:
 												</label>
-												<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"])?>
-												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
+												<?php echo generar_select($link, "taquilla_usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
+												<button  type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
 													<i class="fas fa-search"></i>
 												</button>
 											</form>
@@ -96,7 +96,7 @@
 									<div class="card ">
 										<div class="card-header">
 											<h3 >Lista de Corridas
-												<?php if(dame_permiso("venta_boletos.php", $link) == "Supervisor"){?>
+												<?php if(dame_permiso("venta_boletos.php", $link) == "Escritura" || dame_permiso("venta_boletos.php", $link) == "Supervisor"){?>
 													<button disabled type="button" class="btn btn-primary float-right d-print-none" id="btn_pagar">
 														<i class="fas fa-dollar-sign"></i> Pagar 
 														<span id="span_num_selected">0</span>

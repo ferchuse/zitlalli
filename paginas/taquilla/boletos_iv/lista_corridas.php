@@ -46,14 +46,14 @@
 	
 	$consulta = "SELECT * FROM corridas 
 	
-	LEFT JOIN empresas USING(id_empresas)
+	LEFT JOIN taquilla_empresas USING(id_empresas)
 	LEFT JOIN origenes USING(id_origenes)
 	LEFT JOIN (
 	SELECT id_origenes AS id_destinos, 
 	nombre_origenes AS nombre_destinos 
 	FROM origenes ) AS t_destinos 
 	USING(id_destinos)
-	LEFT JOIN usuarios USING(id_usuarios)
+	LEFT JOIN taquilla_usuarios USING(id_usuarios)
 	LEFT JOIN (SELECT id_corridas, SUM(precio_boletos) AS importe_corridas
 	FROM boletos GROUP BY id_corridas
 	) AS t_importes USING(id_corridas)
