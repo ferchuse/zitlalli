@@ -139,12 +139,12 @@
 								
 								case "Finalizada":
 								
-								echo "<span class='badge badge-warning'>".$filas["estatus_corridas"]."</span>";
+								echo "<span hidden class='badge badge-warning'>".$filas["estatus_corridas"]."</span>";
 								
 								// if(dame_permiso(""))
 							?>
 							
-							<button  class="btn btn-info  btn-sm imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_corridas"]?>'>
+							<button  hidden class="btn btn-info  btn-sm imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_corridas"]?>'>
 								<i class="fas fa-print"></i> Imprimir Guía
 							</button>	
 							
@@ -165,7 +165,7 @@
 						
 						<?php if($fila["estatus_corridas"] != 'Cancelada'){?>
 							
-							<button hidden class="btn btn-info imprimir" title="Imprimir"     data-id_registro='<?php echo $filas["id_corridas"]?>'>
+							<button hidden class="btn btn-info imprimir d-none" title="Imprimir"     data-id_registro='<?php echo $filas["id_corridas"]?>'>
 								<i class="fas fa-print"></i>
 							</button>	
 							<?php
